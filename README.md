@@ -21,6 +21,7 @@ Järjestelmä hyödyntää palvelinratkaisussa Spring Framework -alustaa ja alus
 - Järjestelmä tunnistaa käyttäjän kirjautumisen perusteella, ja hakee tämän käyttöön käyttöoikeuksissa määritellyt toiminnot, jotta käyttäjä voi tehdä vain sen mihin hänellä on oikeuksia. Järjestelmä myös generoi lippuihin uniikkeja koodeja, jotka se osaa tunnistaa ja merkitä käytetyiksi. Järjestelmään mahtuu 500 eri tapahtuman tiedot. Myyntitapahtumat ja muu tapahtumahistoria tallentuu automaattisesti. Järjestelmä ei kaadu käyttäjän tekemiin virheisiin, esimerkiksi virheelliseen syötteeseen. 
 
 **Käyttötapauskaavio**
+
 ![TicketGuru](https://user-images.githubusercontent.com/118562724/216828204-881deabd-4623-452a-95c7-82a55ca5fcd8.png)
 
 ## Käyttöliittymä
