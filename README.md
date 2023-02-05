@@ -19,3 +19,5 @@ Koodivelehot: Estrada Salla, Helminen Sonja, Koskinen Erika, Laaja Milla, Sirki�
 **Myyntiraportti** näyttää, montako mitäkin lipputyyppiä on tapahtumaan myyty, ja paljonko lipputuotot ovat per lipputyyppi sekä kaikki liput yhteensä. Raportin kautta pääsee selaamaan listaa tapahtuman myyntitapahtumista, joka näyttää jokaisen myyntitapahtuman ajan, uniikin id:n sekä yhteissumman.
 
 ![myyntiraportti](https://user-images.githubusercontent.com/118562724/216830550-99eab081-4e99-4e12-9a96-9f7a6185226d.png)
+
+Wireframemallit on saatu asiakkaalta.
