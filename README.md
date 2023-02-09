@@ -15,14 +15,18 @@ Järjestelmä hyödyntää palvelinratkaisussa Spring Framework -alustaa ja alus
 - Pääkäyttäjällä on käyttöoikeudet kaikkiin järjestelmän tarjoamiin toimintoihin ja ominaisuuksiin. Pääkäyttäjä voi lisätä järjestelmään tapahtumia ja lipputyyppejä, sekä muokata tapahtuman ja lipputyypin tietoja. Pääkäyttäjä voi lisäksi tarkastella järjestelmän tapahtumahistoriaa. 
 
 **Myyjä**
-- Myyjä myy ja tulostaa asiakkaalle lippuja tapahtumiin järjestelmän kautta. Myyjä voi valita kerralla useamman lipun yhteen tai useaan tapahtumaan, ja tulostaa ne heti asiakkaan käyttöön. Myyjä voi myös tarkastella tapahtumakohtaisten lippujen jäljellä olevaa määrää sekä tulostaa jäljellä olevat liput kerralla ovelle myytäväksi. 
+- Myyjä myy ja tulostaa asiakkaalle lippuja tapahtumiin järjestelmän kautta. Myyjä voi valita kerralla useamman lipun yhteen tai useaan tapahtumaan, ja tulostaa ne heti asiakkaan käyttöön. Myyjä voi myös tarkastella tapahtumakohtaisten lippujen jäljellä olevaa määrää sekä tulostaa jäljellä olevat liput kerralla ovelle myytäväksi.
+
+**Lipuntarkastaja
+- Lipuntarkastaja kirjautuu järjestelmään, jotta voi todentaa käytettävän lipun järjestelmästä. 
 
 **Järjestelmä**
 - Järjestelmä tunnistaa käyttäjän kirjautumisen perusteella, ja hakee tämän käyttöön käyttöoikeuksissa määritellyt toiminnot, jotta käyttäjä voi tehdä vain sen mihin hänellä on oikeuksia. Järjestelmä myös generoi lippuihin uniikkeja koodeja, jotka se osaa tunnistaa ja merkitä käytetyiksi. Järjestelmään mahtuu 500 eri tapahtuman tiedot. Myyntitapahtumat ja muu tapahtumahistoria tallentuu automaattisesti. Järjestelmä ei kaadu käyttäjän tekemiin virheisiin, esimerkiksi virheelliseen syötteeseen. 
 
 **Käyttötapauskaavio**
 
-![TicketGuru](https://user-images.githubusercontent.com/118562724/216828204-881deabd-4623-452a-95c7-82a55ca5fcd8.png)
+![TicketGuru (1)](https://user-images.githubusercontent.com/118562724/217885940-fb5d3c54-afd9-4f65-9635-9281e2db3eaa.png)
+
 
 ## Käyttöliittymä
 **Lipunmyynti** toteutetaan valitsemalla tapahtumaan oikea määrä oikean lipputyypin lippuja ja vahvistamalla myyntitapahtuma. Vahvistuksen jälkeen järjestelmä näyttää tehdyn myyntitapahtuman tiedot, ja myydyt liput tulostusta varten.
