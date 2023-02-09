@@ -25,7 +25,7 @@ Järjestelmä hyödyntää palvelinratkaisussa Spring Framework -alustaa ja alus
 
 **Käyttötapauskaavio**
 
-![TicketGuru](https://user-images.githubusercontent.com/118562724/217886433-715e4284-3655-4b7f-827f-095d2e7d1ee5.png)
+![TicketGuru](https://user-images.githubusercontent.com/118562724/217886824-f2d973aa-295a-4c25-a1c5-402aa8b6b4a0.png)
 
 
 ## Käyttöliittymä
