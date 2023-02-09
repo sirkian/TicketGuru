@@ -2,6 +2,8 @@ package com.example.TicketGuru.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,6 +34,7 @@ public class TicketType {
 	@JoinColumn(name = "event_id")
 	private Event event;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ticket")
 	private List<Ticket> tickets;
 
@@ -39,13 +42,12 @@ public class TicketType {
 		super();
 	}
 
-	public TicketType(Long typeId, String typeName, double price, Event event, List<Ticket> tickets) {
+	public TicketType(Long typeId, String typeName, double price, Event event) {
 		super();
 		this.typeId = typeId;
 		this.typeName = typeName;
 		this.price = price;
 		this.event = event;
-		this.tickets = tickets;
 	}
 
 	public Long getTypeId() {

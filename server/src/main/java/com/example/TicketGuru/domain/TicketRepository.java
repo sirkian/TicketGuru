@@ -1,10 +1,10 @@
 package com.example.TicketGuru.domain;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
 public interface TicketRepository extends CrudRepository<Ticket, Long> {
 	
-	List<Ticket> findById(long ticketId);
+	Optional<Ticket> findById(Long ticketId);
 }
