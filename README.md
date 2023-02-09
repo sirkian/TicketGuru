@@ -17,7 +17,7 @@ Järjestelmä hyödyntää palvelinratkaisussa Spring Framework -alustaa ja alus
 **Myyjä**
 - Myyjä myy ja tulostaa asiakkaalle lippuja tapahtumiin järjestelmän kautta. Myyjä voi valita kerralla useamman lipun yhteen tai useaan tapahtumaan, ja tulostaa ne heti asiakkaan käyttöön. Myyjä voi myös tarkastella tapahtumakohtaisten lippujen jäljellä olevaa määrää sekä tulostaa jäljellä olevat liput kerralla ovelle myytäväksi.
 
-**Lipuntarkastaja
+**Lipuntarkastaja**
 - Lipuntarkastaja kirjautuu järjestelmään, jotta voi todentaa käytettävän lipun järjestelmästä. 
 
 **Järjestelmä**
