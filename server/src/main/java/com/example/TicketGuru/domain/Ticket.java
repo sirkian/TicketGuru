@@ -45,6 +45,15 @@ public class Ticket {
 		this.ticketType = ticketType;
 		this.event = event;
 	}
+	
+
+	public Ticket(String verificationCode, LocalDate usedDate, TicketType ticketType, Event event) {
+		super();
+		this.verificationCode = verificationCode;
+		this.usedDate = usedDate;
+		this.ticketType = ticketType;
+		this.event = event;
+	}
 
 	public Long getTicketId() {
 		return ticketId;
