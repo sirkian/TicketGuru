@@ -35,7 +35,7 @@ public class TicketType {
 	private Event event;
 	
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ticket")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ticketType")
 	private List<Ticket> tickets;
 
 	public TicketType() {

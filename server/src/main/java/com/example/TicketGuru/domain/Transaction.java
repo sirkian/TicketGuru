@@ -29,22 +29,28 @@ public class Transaction {
 	private LocalDate transactionDate;
 	
 	// Käytetään listaa, koska lippuja voi olla yksi tai useampi.
+	
+	
 	@JsonIgnore  
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "transaction")
 	private List<Ticket> tickets;
+	
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id") 
 	private AppUser appUser;
 	
+	
 	public Transaction() {}
 
+	
 	public Transaction(Long transactionId, LocalDate transactionDate, AppUser appUser) {
 		super();
 		this.transactionId = transactionId;
 		this.transactionDate = transactionDate;
-		this.appUser = appUser;
+		//this.appUser = appUser;
 	}
+	
 
 	public Long getTransactionId() {
 		return transactionId;
@@ -62,6 +68,7 @@ public class Transaction {
 		this.transactionDate = transactionDate;
 	}
 
+	
 	public AppUser getAppUser() {
 		return appUser;
 	}
