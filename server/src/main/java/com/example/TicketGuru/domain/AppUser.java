@@ -58,4 +58,10 @@ public class AppUser {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "role_id") 
 	private Role role;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "event_id")
+	private Postalcode postalCode;
+	
+	
 }
