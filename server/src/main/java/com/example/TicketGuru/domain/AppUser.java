@@ -33,7 +33,7 @@ public class AppUser {
 	//Yhdelle käyttäjälle vain yksi rooli
 	//JsonIgnore
 	//ei konstruktoriin eikä toString
-	(name = "role_id", nullable = false, updatable = false)
+	@Column(name = "role_id", nullable = false, updatable = false)
 	private Long roleId;
 	
 	@Column(name="first_name", length = 50, nullable = false, updatable = true)
@@ -68,7 +68,7 @@ public class AppUser {
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "postal_code")
-	private List<Postalcode> postalcodes;
+	private List<PostalCode> postalcodes;
 	
 	
 	public void setUserId(Long userId) {
@@ -115,7 +115,7 @@ public class AppUser {
 		this.role = role;
 	}
 
-	public void setPostalcodes(List<Postalcode> postalcodes) {
+	public void setPostalcodes(List<PostalCode> postalcodes) {
 		this.postalcodes = postalcodes;
 	}
 
@@ -163,7 +163,7 @@ public class AppUser {
 		return role;
 	}
 
-	public List<Postalcode> getPostalcodes() {
+	public List<PostalCode> getPostalcodes() {
 		return postalcodes;
 	}
 
