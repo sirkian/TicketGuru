@@ -1,14 +1,27 @@
 package com.example.TicketGuru;
 
-import java.time.LocalDate;
-import java.time.Month;
+import java.time.LocalDateTime;
 
-import com.example.TicketGuru.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import com.example.TicketGuru.domain.AppUser;
+import com.example.TicketGuru.domain.AppUserRepository;
+import com.example.TicketGuru.domain.Event;
+import com.example.TicketGuru.domain.EventRepository;
+import com.example.TicketGuru.domain.PostalCode;
+import com.example.TicketGuru.domain.PostalCodeRepository;
+import com.example.TicketGuru.domain.Role;
+import com.example.TicketGuru.domain.RoleRepository;
+import com.example.TicketGuru.domain.Ticket;
+import com.example.TicketGuru.domain.TicketRepository;
+import com.example.TicketGuru.domain.TicketType;
+import com.example.TicketGuru.domain.TicketTypeRepository;
+import com.example.TicketGuru.domain.Transaction;
+import com.example.TicketGuru.domain.TransactionRepository;
 
 @SpringBootApplication
 public class TicketGuruApplication {
@@ -25,6 +38,8 @@ public class TicketGuruApplication {
 	RoleRepository roleRepository;
 	@Autowired
 	AppUserRepository userRepository;
+	@Autowired
+	PostalCodeRepository postRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TicketGuruApplication.class, args);
@@ -34,11 +49,24 @@ public class TicketGuruApplication {
 	public CommandLineRunner ticketguru(TicketRepository ticketRepository, TicketTypeRepository ticketTypeRepository, TransactionRepository transactionRepository) {
 		return (args) -> {
 			
+			// POSTINUMEROT
+			
+			PostalCode postcode1 = new PostalCode("00100", "Helsinki");
+			postRepository.save(postcode1);
+			PostalCode postcode2 = new PostalCode("33101", "Tampere 10");
+			postRepository.save(postcode2);
+			
+			System.out.println("** PostalCodes: **");
+			for (PostalCode postalCode : postRepository.findAll()) {
+				System.out.println("PostalCode: " + postalCode.toString());
+			}
+			System.out.println("");
+			
 			// TAPAHTUMAT
 			
-			Event event1 = new Event("Testitapahtuma", "Tapahtuman kuvaus", LocalDate.of(2023, Month.FEBRUARY, 20), LocalDate.of(2023, Month.FEBRUARY, 21), "Testikatu 1", 100);
+			Event event1 = new Event("Testitapahtuma", "Tapahtuman kuvaus", LocalDateTime.of(2023, 2, 14, 16, 00), LocalDateTime.of(2023, 2, 14, 18, 00), "Testikatu 1", 100, postcode1);
 			eventRepository.save(event1);
-			Event event2 = new Event("Tapahtuma 2", "Kuvaus kakkostapahtumalle", LocalDate.of(2023, Month.FEBRUARY, 25), LocalDate.of(2023, Month.FEBRUARY, 26), "Testikatu 2", 200);
+			Event event2 = new Event("Tapahtuma 2", "Kuvaus kakkostapahtumalle", LocalDateTime.of(2023, 4, 20, 20, 30), LocalDateTime.of(2023, 4, 20, 22, 00), "Testikatu 2", 200, postcode2);
 			eventRepository.save(event2);
 			
 			System.out.println("** Events: **");
@@ -90,9 +118,9 @@ public class TicketGuruApplication {
 			
 			// KÄYTTÄJÄT
 			
-			AppUser user1 = new AppUser("Anneli", "Admin", "admin@tiketguru.com", "$2a$10$Xp67oEDHyODcnTzkIIp9z.SpmmpZg33mqZe/jvaSHMnpWtEQGov5e", "+358123456", "Järjestelmän pääkäyttäjä", "Osoite1", role1);
+			AppUser user1 = new AppUser("Anneli", "Admin", "admin@tiketguru.com", "$2a$10$Xp67oEDHyODcnTzkIIp9z.SpmmpZg33mqZe/jvaSHMnpWtEQGov5e", "+358123456", "Järjestelmän pääkäyttäjä", "Osoite1", role1, postcode1);
 			userRepository.save(user1);
-			AppUser user2 = new AppUser("Make", "Myyjä", "make@tiketguru.com", "$2a$10$Rc25Yhstdcr9Ce3WcQFKLeHT3nN1Yr.ud6M0AywXA8Q1tidWcdvqy", "+358654321", "Lipunmyyjä, hyvä jäbä", "Osoite2", role2);
+			AppUser user2 = new AppUser("Make", "Myyjä", "make@tiketguru.com", "$2a$10$Rc25Yhstdcr9Ce3WcQFKLeHT3nN1Yr.ud6M0AywXA8Q1tidWcdvqy", "+358654321", "Lipunmyyjä, hyvä jäbä", "Osoite2", role2, postcode2);
 			userRepository.save(user2);
 			
 			System.out.println("** Users: **");
@@ -103,7 +131,7 @@ public class TicketGuruApplication {
 			
 			// MYYNTITAPAHTUMAT
 			
-			Transaction transaction1 = new Transaction(user2, LocalDate.now());
+			Transaction transaction1 = new Transaction(user2, LocalDateTime.now());
 			transactionRepository.save(transaction1);
 			
 			System.out.println("** Transactions: **");

@@ -41,23 +41,20 @@ public class AppUser {
 	@Column(name="address", length = 250, nullable = false)
 	private String address;
 	
-	// KÄYTTÄJÄLLÄ VOI OLLA YKSI ROOLI 
-	// ROOLILLA VOI OLLA MONTA KÄYTTÄJÄÄ
-	// TEHDÄÄN VÄLITAULU JOS HALUTAAN USEEMPIA ROOLEJA KÄYTTÄJÄLLE
+	// Tehdää välitaulu, jos halutaan yhelle käyttäjälle useempia rooleja
+	// Nyt tässä kuitenkin monen suhde yhteen, eli roolilla voi olla monta käyttäjää, muttei toisinpäin
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "role_id") 
 	private Role role;
 	
-	/*
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "postal_code")
-	private List<Postalcode> postalcodes;
-	*/
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="postal_code")
+	private PostalCode postalCode;
 	
 	public AppUser() { }
 
 	public AppUser(String firstName, String lastName, String email, String password, String phoneNum,
-			String details, String address, Role role) {
+			String details, String address, Role role, PostalCode postalCode) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -67,6 +64,7 @@ public class AppUser {
 		this.details = details;
 		this.address = address;
 		this.role = role;
+		this.postalCode = postalCode;
 	}
 
 	public Long getUserId() {
@@ -140,13 +138,24 @@ public class AppUser {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+	
+
+	public PostalCode getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(PostalCode postalCode) {
+		this.postalCode = postalCode;
+	}
 
 	@Override
 	public String toString() {
 		return "AppUser [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", password=" + password + ", phoneNum=" + phoneNum + ", details=" + details + ", address=" + address
-				+ ", role=" + role + "]";
+				+ ", role=" + role + ", postalCode=" + postalCode + "]";
 	}
+
+
 	
 	
 	

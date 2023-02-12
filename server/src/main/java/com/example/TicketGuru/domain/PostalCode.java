@@ -2,31 +2,33 @@ package com.example.TicketGuru.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 
 @Entity
 public class PostalCode {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // Otin tästä autogenin pois, että voidaa ite asettaa postikoodi / PK
+    // Ja joutu muuttaa tyypin Stringiks, kokonaislukuna 00100 tulostu ja tallentu kantaan lukuna 64 :D
+    // https://stackoverflow.com/a/7218803
     @Column(name = "postal_id", nullable = false, updatable = false)
-    private Long postalCode;
+    private String postalCode;
 
     @Column(name = "city")
     private String city;
+    
+    public PostalCode() { }
 
-    public PostalCode(Long postalCode, String city) {
+    public PostalCode(String postalCode, String city) {
         this.postalCode = postalCode;
         this.city = city;
     }
 
-    public Long getPostalCode() {
+    public String getPostalCode() {
         return postalCode;
     }
 
-    public void setPostalCode(Long postalCode) {
+    public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 

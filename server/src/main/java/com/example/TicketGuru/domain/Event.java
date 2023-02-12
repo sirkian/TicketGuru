@@ -1,11 +1,7 @@
 package com.example.TicketGuru.domain;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 
 
 @Entity
@@ -31,11 +26,12 @@ public class Event {
 	@Column(length = 450)
 	private String description;
 	
+	// Muutettu LocalDate LocalDateTimeksi, että saadaan kellonajat mukaan
 	@Column(name = "start_time")
-	private LocalDate startTime;
+	private LocalDateTime startTime;
 	
 	@Column(name = "end_time")
-	private LocalDate endTime;
+	private LocalDateTime endTime;
 	
 	@Column(length = 250)
 	private String address;
@@ -43,11 +39,11 @@ public class Event {
 	@Column(name = "amount_tickets")
 	private int amountTickets;
 	
-	// postalcode- luokkaa ei ole vielä, yhteys one-to-many -> eventissä yksi postinro
 	// yhtä postinumeroa vastaa usea event
-	//ManyToOne
-	//@ManyToOne(fetch = FetchType.EAGER)
-	//@JoinColumn(name="postal_code")
+	// ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="postal_code")
+	private PostalCode postalCode;
 	
 	/*
 	@JsonIgnore // to prevent infinite loop in rest service
@@ -68,8 +64,8 @@ public class Event {
 	public Event(String eventName) {}
 	
 
-	public Event(String eventName, String description, LocalDate startTime, LocalDate endTime, String address,
-			int amountTickets) {
+	public Event(String eventName, String description, LocalDateTime startTime, LocalDateTime endTime, String address,
+			int amountTickets, PostalCode postalCode) {
 		super();
 		this.eventName = eventName;
 		this.description = description;
@@ -77,6 +73,7 @@ public class Event {
 		this.endTime = endTime;
 		this.address = address;
 		this.amountTickets = amountTickets;
+		this.postalCode = postalCode;
 	}
 
 
@@ -110,22 +107,22 @@ public class Event {
 	}
 
 
-	public LocalDate getStartTime() {
+	public LocalDateTime getStartTime() {
 		return startTime;
 	}
 
 
-	public void setStartTime(LocalDate startTime) {
+	public void setStartTime(LocalDateTime startTime) {
 		this.startTime = startTime;
 	}
 
 
-	public LocalDate getEndTime() {
+	public LocalDateTime getEndTime() {
 		return endTime;
 	}
 
 
-	public void setEndTime(LocalDate endTime) {
+	public void setEndTime(LocalDateTime endTime) {
 		this.endTime = endTime;
 	}
 
@@ -149,22 +146,22 @@ public class Event {
 		this.amountTickets = amountTickets;
 	}
 
-/*
-	public String getPostalCode() {
+
+	public PostalCode getPostalCode() {
 		return postalCode;
 	}
 
 
-	public void setPostalCode(String postalCode) {
+	public void setPostalCode(PostalCode postalCode) {
 		this.postalCode = postalCode;
 	}
-*/
+
 
 	@Override
 	public String toString() {
 		return "Event [eventId=" + eventId + ", eventName=" + eventName + ", description=" + description
 				+ ", startTime=" + startTime + ", endTime=" + endTime + ", address=" + address + ", amountTickets="
-				+ amountTickets + ", tickets=" +  ", ticket_types="
+				+ amountTickets + ", postalCode=" +  postalCode
 				+"]";
 	}
 

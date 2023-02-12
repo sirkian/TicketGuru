@@ -1,6 +1,6 @@
 package com.example.TicketGuru.domain;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,7 +26,7 @@ public class Transaction {
 	private Long transactionId;
 	
 	@Column(name = "transaction_date", nullable = false)
-	private LocalDate transactionDate;
+	private LocalDateTime transactionDate;
 	
 	// Käytetään listaa, koska lippuja voi olla yksi tai useampi.
 	@JsonIgnore  
@@ -42,7 +42,7 @@ public class Transaction {
 	public Transaction() {}
 
 	
-	public Transaction(AppUser appUser, LocalDate transactionDate) {
+	public Transaction(AppUser appUser, LocalDateTime  transactionDate) {
 		super();
 		this.transactionDate = transactionDate;
 		this.appUser = appUser;
@@ -56,11 +56,11 @@ public class Transaction {
 		this.transactionId = transactionId;
 	}
 
-	public LocalDate getTransactionDate() {
+	public LocalDateTime getTransactionDate() {
 		return transactionDate;
 	}
 
-	public void setTransactionDate(LocalDate transactionDate) {
+	public void setTransactionDate(LocalDateTime transactionDate) {
 		this.transactionDate = transactionDate;
 	}
 
