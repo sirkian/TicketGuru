@@ -3,24 +3,12 @@ package com.example.TicketGuru;
 import java.time.LocalDate;
 import java.time.Month;
 
+import com.example.TicketGuru.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import com.example.TicketGuru.domain.AppUser;
-import com.example.TicketGuru.domain.AppUserRepository;
-import com.example.TicketGuru.domain.Event;
-import com.example.TicketGuru.domain.EventRepository;
-import com.example.TicketGuru.domain.Role;
-import com.example.TicketGuru.domain.RoleRepository;
-import com.example.TicketGuru.domain.Ticket;
-import com.example.TicketGuru.domain.TicketRepository;
-import com.example.TicketGuru.domain.TicketType;
-import com.example.TicketGuru.domain.TicketTypeRepository;
-import com.example.TicketGuru.domain.Transaction;
-import com.example.TicketGuru.domain.TransactionRepository;
 
 @SpringBootApplication
 public class TicketGuruApplication {
@@ -123,7 +111,6 @@ public class TicketGuruApplication {
 				System.out.println("Transaction: " + transaction.toString());
 			}
 			System.out.println("");
-
 		
 	};
 	}
