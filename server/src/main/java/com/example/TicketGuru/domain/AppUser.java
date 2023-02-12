@@ -68,7 +68,7 @@ public class AppUser {
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "postal_code")
-	private List<PostalCode> postalcodes;
+	//private List<PostalCode> postalcodes;
 	
 	
 	public void setUserId(Long userId) {
@@ -115,9 +115,9 @@ public class AppUser {
 		this.role = role;
 	}
 
-	public void setPostalcodes(List<PostalCode> postalcodes) {
-		this.postalcodes = postalcodes;
-	}
+	//public void setPostalcodes(List<PostalCode> postalcodes) {
+		//this.postalcodes = postalcodes;
+	//}
 
 	public Long getUserId() {
 		return userId;
@@ -163,9 +163,9 @@ public class AppUser {
 		return role;
 	}
 
-	public List<PostalCode> getPostalcodes() {
-		return postalcodes;
-	}
+	//public List<PostalCode> getPostalcodes() {
+		//return postalcodes;
+	//}
 
 	@Override
 	public String toString() {
