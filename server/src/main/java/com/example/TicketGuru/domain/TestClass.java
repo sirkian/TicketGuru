@@ -5,8 +5,9 @@ public class TestClass {
 	// Lisätkää vaikka kommentti jonon jatkoksi ja puskekaa gittiin. Poistetaan nää testiluokat sitten kun kaikilla ok.
 <<<<<<< HEAD
 	// Tämä on Sallan testikommentti
+<<<<<<< HEAD
 =======
-	
+=======
 	//Hyvin toimii! -Sonja
->>>>>>> main
+>>>>>>> 675c4fd (#45 AppUser-luokkaan lisätty setterit, getterit ja toString)
 }

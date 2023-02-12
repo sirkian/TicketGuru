@@ -23,6 +23,7 @@ import jakarta.persistence.Table;
 @Table(name="app_user")
 public class AppUser {
 	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id", nullable = false, updatable = false)
@@ -68,6 +69,111 @@ public class AppUser {
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "postal_code")
 	private List<Postalcode> postalcodes;
+	
+	
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+
+	public void setDetails(String details) {
+		this.details = details;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setPostalCode(int postalCode) {
+		this.postalCode = postalCode;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public void setPostalcodes(List<Postalcode> postalcodes) {
+		this.postalcodes = postalcodes;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	public String getDetails() {
+		return details;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public int getPostalCode() {
+		return postalCode;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public List<Postalcode> getPostalcodes() {
+		return postalcodes;
+	}
+
+	@Override
+	public String toString() {
+		return "AppUser [userId=" + userId + ", roleId=" + roleId + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", email=" + email + ", password=" + password + ", phoneNum=" + phoneNum + ", details="
+				+ details + ", address=" + address + ", postalCode=" + postalCode + "]";
+	}
+
 	
 	
 }
