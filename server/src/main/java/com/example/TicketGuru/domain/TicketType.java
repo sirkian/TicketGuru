@@ -42,9 +42,8 @@ public class TicketType {
 		super();
 	}
 
-	public TicketType(Long typeId, String typeName, double price, Event event) {
+	public TicketType(String typeName, double price, Event event) {
 		super();
-		this.typeId = typeId;
 		this.typeName = typeName;
 		this.price = price;
 		this.event = event;
@@ -98,7 +97,7 @@ public class TicketType {
 
 	@Override
 	public String toString() {
-		return "TicketType [typeId=" + typeId + ", typeName=" + typeName + ", price=" + price + "]";
+		return "TicketType [typeId=" + typeId + ", typeName=" + typeName + ", price=" + price + ", event=" + event + "]";
 	}
 	
 	

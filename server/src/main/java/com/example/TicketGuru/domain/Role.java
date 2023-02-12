@@ -1,16 +1,10 @@
 package com.example.TicketGuru.domain;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Role {
@@ -23,19 +17,11 @@ public class Role {
 	@Column(name = "role", length=50)
 	private String role;
 	
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
-	private List<Role> roles;
-	
-	public Role() {
-		super();
-	}
+	public Role() { }
 
-	public Role(Long roleId, String role, List<Role> roles) {
+	public Role(String role) {
 		super();
-		this.roleId = roleId;
 		this.role = role;
-		this.roles = roles;
 	}
 
 	public Long getRoleId() {
@@ -54,18 +40,12 @@ public class Role {
 		this.role = role;
 	}
 
-	public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
-
 	@Override
 	public String toString() {
-		return "Role [role=" + role + "]";
+		return "Role [roleId=" + roleId + ", role=" + role + "]";
 	}
+
+
 
 	
 	

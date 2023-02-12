@@ -32,14 +32,17 @@ public class Ticket {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "event_id")
 	private Event event;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "transaction_id")
+	private Transaction transaction;
 
 	public Ticket() {
 		super();
 	}
 
-	public Ticket(Long ticketId, String verificationCode, LocalDate usedDate, TicketType ticketType, Event event) {
+	public Ticket(String verificationCode, LocalDate usedDate, TicketType ticketType, Event event) {
 		super();
-		this.ticketId = ticketId;
 		this.verificationCode = verificationCode;
 		this.usedDate = usedDate;
 		this.ticketType = ticketType;
@@ -47,10 +50,9 @@ public class Ticket {
 	}
 	
 
-	public Ticket(String verificationCode, LocalDate usedDate, TicketType ticketType, Event event) {
+	public Ticket(String verificationCode, TicketType ticketType, Event event) {
 		super();
 		this.verificationCode = verificationCode;
-		this.usedDate = usedDate;
 		this.ticketType = ticketType;
 		this.event = event;
 	}
@@ -94,12 +96,23 @@ public class Ticket {
 	public void setEvent(Event event) {
 		this.event = event;
 	}
+	
+
+	public Transaction getTransaction() {
+		return transaction;
+	}
+
+	public void setTransaction(Transaction transaction) {
+		this.transaction = transaction;
+	}
 
 	@Override
 	public String toString() {
 		return "Ticket [ticketId=" + ticketId + ", verificationCode=" + verificationCode + ", usedDate=" + usedDate
-				+ "]";
+				+ ", ticketType=" + ticketType + ", event=" + event + ", transaction=" + transaction + "]";
 	}
+
+
 	
 	
 	
