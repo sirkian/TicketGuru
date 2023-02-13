@@ -48,12 +48,6 @@ public class TicketType {
 		this.price = price;
 		this.event = event;
 	}
-	
-	public TicketType(String typeName, double price) {
-		super();
-		this.typeName = typeName;
-		this.price = price;
-	}
 
 	public Long getTypeId() {
 		return typeId;

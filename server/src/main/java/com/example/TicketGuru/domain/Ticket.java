@@ -30,31 +30,29 @@ public class Ticket {
 	private TicketType ticketType;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "event_id")
-	private Event event;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "transaction_id")
 	private Transaction transaction;
 
 	public Ticket() {
 		super();
 	}
+	
+	// Konstruktori ilman usedDatea, koska alkuun null
+	public Ticket(String verificationCode, TicketType ticketType,
+			Transaction transaction) {
+		super();
+		this.verificationCode = verificationCode;
+		this.ticketType = ticketType;
+		this.transaction = transaction;
+	}
 
-	public Ticket(String verificationCode, LocalDate usedDate, TicketType ticketType, Event event) {
+	public Ticket(String verificationCode, LocalDate usedDate, TicketType ticketType,
+			Transaction transaction) {
 		super();
 		this.verificationCode = verificationCode;
 		this.usedDate = usedDate;
 		this.ticketType = ticketType;
-		this.event = event;
-	}
-	
-
-	public Ticket(String verificationCode, TicketType ticketType, Event event) {
-		super();
-		this.verificationCode = verificationCode;
-		this.ticketType = ticketType;
-		this.event = event;
+		this.transaction = transaction;
 	}
 
 	public Long getTicketId() {
@@ -88,14 +86,6 @@ public class Ticket {
 	public void setTicketType(TicketType ticketType) {
 		this.ticketType = ticketType;
 	}
-
-	public Event getEvent() {
-		return event;
-	}
-
-	public void setEvent(Event event) {
-		this.event = event;
-	}
 	
 
 	public Transaction getTransaction() {
@@ -109,7 +99,7 @@ public class Ticket {
 	@Override
 	public String toString() {
 		return "Ticket [ticketId=" + ticketId + ", verificationCode=" + verificationCode + ", usedDate=" + usedDate
-				+ ", ticketType=" + ticketType + ", event=" + event + ", transaction=" + transaction + "]";
+				+ ", ticketType=" + ticketType + "]";
 	}
 
 

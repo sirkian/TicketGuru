@@ -44,8 +44,8 @@ public class Transaction {
 	
 	public Transaction(AppUser appUser, LocalDateTime  transactionDate) {
 		super();
-		this.transactionDate = transactionDate;
 		this.appUser = appUser;
+		this.transactionDate = transactionDate;
 	}
 
 	public Long getTransactionId() {

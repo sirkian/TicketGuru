@@ -1,7 +1,11 @@
 package com.example.TicketGuru.domain;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -10,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 
 @Entity
@@ -44,16 +49,10 @@ public class Event {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="postal_code")
 	private PostalCode postalCode;
-	
-	/*
-	@JsonIgnore // to prevent infinite loop in rest service
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ticketId")
-	private List<Ticket> tickets;
-	
+		
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
 	private List<TicketType> ticketTypes;
-	*/
 
 	public Event() {
 		super();
@@ -156,6 +155,14 @@ public class Event {
 		this.postalCode = postalCode;
 	}
 
+
+	public List<TicketType> getTicketTypes() {
+		return ticketTypes;
+	}
+
+	public void setTicketTypes(List<TicketType> ticketTypes) {
+		this.ticketTypes = ticketTypes;
+	}
 
 	@Override
 	public String toString() {

@@ -1,6 +1,8 @@
 package com.example.TicketGuru;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -86,20 +88,7 @@ public class TicketGuruApplication {
 			for (TicketType ticketType : ticketTypeRepository.findAll()) {
 				System.out.println("TicketType: " + ticketType.toString());
 			}
-			System.out.println("");
-			
-			// LIPUT
-			
-			Ticket ticket1 = new Ticket("testcod1", type1, event1);
-			ticketRepository.save(ticket1);
-			Ticket ticket2 = new Ticket("testcod2", type2, event1);
-			ticketRepository.save(ticket2);
-			
-			System.out.println("** Tickets: **");
-			for (Ticket ticket : ticketRepository.findAll()) {
-				System.out.println("Ticket: " + ticket.toString());
-			}
-			System.out.println("");
+			System.out.println("");	
 			
 			// ROOLIT
 			
@@ -133,15 +122,69 @@ public class TicketGuruApplication {
 			
 			Transaction transaction1 = new Transaction(user2, LocalDateTime.now());
 			transactionRepository.save(transaction1);
+			Transaction transaction2 = new Transaction(user2, LocalDateTime.now());
+			transactionRepository.save(transaction2);
 			
-			System.out.println("** Transactions: **");
-			for (Transaction transaction : transactionRepository.findAll()) {
-				System.out.println("Transaction: " + transaction.toString());
+			// LIPUT
+			
+			Ticket ticket1 = new Ticket("testcod1", type1, transaction1);
+			ticketRepository.save(ticket1);
+			Ticket ticket2 = new Ticket("testcod2", type2, transaction1);
+			ticketRepository.save(ticket2);
+			Ticket ticket3 = new Ticket("testcod3", type1, transaction2);
+			ticketRepository.save(ticket3);
+			
+			// Lisätään luodut liput myyntitapahtumiin
+			
+			List<Ticket> tickets = new ArrayList<>();
+			tickets.add(ticket1);
+			tickets.add(ticket2);
+			transaction1.setTickets(tickets);
+			
+			List<Ticket> tickets2 = new ArrayList<>();
+			tickets2.add(ticket3);
+			transaction2.setTickets(tickets2);
+			
+			// Lisätään myyntitapahtumat myyjälle
+			
+			List<Transaction> transactions = new ArrayList<>();
+			transactions.add(transaction1);
+			transactions.add(transaction2);
+			user2.setTransactions(transactions);
+			
+			// Tulostellaan nyt vielä vähän lisää
+			
+			System.out.println("** Tickets: **");
+			for (Ticket ticket : ticketRepository.findAll()) {
+				System.out.println("Ticket: " + ticket.toString());
+				System.out.println("Price: " + ticket.getTicketType().getPrice());
+				System.out.println("Verification code: " + ticket.getVerificationCode());
+				System.out.println("Event: " + ticket.getTicketType().getEvent().getEventName());
+				System.out.println("Transaction: " + ticket.getTransaction().getTransactionId());
+				System.out.println("");
 			}
 			System.out.println("");
-		
-	};
+			
+			// Rautalankamallin mukainen tulostus (Kaavio 2)
+			
+			System.out.println("** Transactions: ** \n");
+			for (Transaction transaction : transactionRepository.findAll()) {
+				System.out.println("Myyntitapahtuma: " + transaction.getTransactionId());
+				System.out.println("Maksettu: " + transaction.getTransactionDate()); // Huono formaatti, mutta ajaa asiansa tässä
+				System.out.println("");
+				// Summa pitää laskee viel, mutta siinä tuskin törmätään ongelmiin
+				for (Ticket ticket : ticketRepository.findByTransaction(transaction)) {
+					System.out.println("Tapahtuma: " + ticket.getTicketType().getEvent().getEventName());
+					System.out.println("Lippu: " + ticket.getTicketType().getTypeName());
+					System.out.println("Hinta: " + ticket.getTicketType().getPrice());
+					System.out.println("Koodi: " + ticket.getVerificationCode());
+					System.out.println("");
+				}
+				System.out.println("\n ** end of transaction ** \n");
+				
+			}	
+		};
 	}
-	}
+}
 
 
