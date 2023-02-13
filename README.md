@@ -45,5 +45,7 @@ Wireframemallit on saatu asiakkaalta.
 
 ## Tietokannat
 
-[Tietokannan suunnittelu.docx](https://github.com/Bjorn-Eric/TicketGuru/files/10724406/Tietokannan.suunnittelu.docx)
+Tähän kuva tietokantakaaviosta
+
+[Tietohakemisto](https://github.com/Bjorn-Eric/TicketGuru/files/10724406/Tietokannan.suunnittelu.docx)
 
