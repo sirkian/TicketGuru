@@ -7,12 +7,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -28,25 +25,18 @@ public class TicketType {
 	@Column(name = "type_name", length = 25, nullable = false)
 	private String typeName;
 	
-	private double price;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "event_id")
-	private Event event;
-	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ticketType")
-	private List<Ticket> tickets;
+	private List<EventTicketType> eventTicketTypes;
 
 	public TicketType() {
 		super();
 	}
 
-	public TicketType(String typeName, double price, Event event) {
+	public TicketType(String typeName, List<EventTicketType> eventTicketType) {
 		super();
 		this.typeName = typeName;
-		this.price = price;
-		this.event = event;
+		this.eventTicketTypes = eventTicketType;
 	}
 
 	public Long getTypeId() {
@@ -65,35 +55,17 @@ public class TicketType {
 		this.typeName = typeName;
 	}
 
-	public double getPrice() {
-		return price;
+	public List<EventTicketType> getEventTicketType() {
+		return eventTicketTypes;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public Event getEvent() {
-		return event;
-	}
-
-	public void setEvent(Event event) {
-		this.event = event;
-	}
-
-	public List<Ticket> getTickets() {
-		return tickets;
-	}
-
-	public void setTickets(List<Ticket> tickets) {
-		this.tickets = tickets;
+	public void setEventTicketType(List<EventTicketType> eventTicketType) {
+		this.eventTicketTypes = eventTicketType;
 	}
 
 	@Override
 	public String toString() {
-		return "TicketType [typeId=" + typeId + ", typeName=" + typeName + ", price=" + price + ", event=" + event + "]";
+		return "TicketType [typeId=" + typeId + ", typeName=" + typeName + "]";
 	}
-	
-	
 	
 }
