@@ -47,12 +47,6 @@ public class AppUser {
 	@Column(name="address", length = 250, nullable = false)
 	private String address;
 	
-	// Tehdää välitaulu, jos halutaan yhelle käyttäjälle useempia rooleja
-	// Nyt tässä kuitenkin monen suhde yhteen, eli roolilla voi olla monta käyttäjää, muttei toisinpäin
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "role_id") 
-	private Role role;
-	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="postal_code")
 	private PostalCode postalCode;
@@ -61,10 +55,16 @@ public class AppUser {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "appUser")
 	private List<Transaction> transactions;
 	
+	// Lisätty välitaulu AppUser_Role
+	// Käyttäjällä voi olla monta roolia, joten listataan ne käyttäjälle
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "appUser")
+	private List<AppUser_Role> appUserRoles;
+	
 	public AppUser() { }
 
 	public AppUser(String firstName, String lastName, String email, String password, String phoneNum,
-			String details, String address, Role role, PostalCode postalCode) {
+			String details, String address, PostalCode postalCode) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -73,7 +73,6 @@ public class AppUser {
 		this.phoneNum = phoneNum;
 		this.details = details;
 		this.address = address;
-		this.role = role;
 		this.postalCode = postalCode;
 	}
 
@@ -141,15 +140,6 @@ public class AppUser {
 		this.address = address;
 	}
 
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-	
-
 	public PostalCode getPostalCode() {
 		return postalCode;
 	}
@@ -166,11 +156,19 @@ public class AppUser {
 		this.transactions = transactions;
 	}
 
+	public List<AppUser_Role> getAppUserRoles() {
+		return appUserRoles;
+	}
+
+	public void setAppUserRoles(List<AppUser_Role> appUserRoles) {
+		this.appUserRoles = appUserRoles;
+	}
+
 	@Override
 	public String toString() {
 		return "AppUser [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", password=" + password + ", phoneNum=" + phoneNum + ", details=" + details + ", address=" + address
-				+ ", role=" + role + ", postalCode=" + postalCode + "]";
+				+ ", postalCode=" + postalCode + "]";
 	}
 
 
