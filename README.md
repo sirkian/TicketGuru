@@ -42,3 +42,12 @@ Järjestelmä hyödyntää palvelinratkaisussa Spring Framework -alustaa ja alus
 ![myyntiraportti](https://user-images.githubusercontent.com/118562724/216830550-99eab081-4e99-4e12-9a96-9f7a6185226d.png)
 
 Wireframemallit on saatu asiakkaalta.
+
+## Tietokannat
+
+![entityrel2 0](https://user-images.githubusercontent.com/91193039/218547193-ea9347d9-9cb2-4124-b8f1-5283c1ab4040.png)
+
+
+
+[Tietohakemisto](https://github.com/Bjorn-Eric/TicketGuru/files/10724406/Tietokannan.suunnittelu.docx)
+
