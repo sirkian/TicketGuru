@@ -47,6 +47,7 @@ public class Event {
 	@Column(name = "presale_ends")
 	private LocalDateTime presaleEnds;
 	
+	// Voiko oletusarvon laittaa näin suoraan?
 	private boolean cancelled = false;
 	
 	// Kommentoitu tämä pois, kun otetaan käyttöön Venue -taulu, jonka sisässä yhteys PostalCodeen, 
@@ -62,7 +63,7 @@ public class Event {
 			
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
-	private List<TicketType> ticketTypes;
+	private List<EventTicketType> eventTicketTypes;
 
 	public Event() {
 		super();
@@ -178,12 +179,12 @@ public class Event {
 		this.venue = venue;
 	}
 
-	public List<TicketType> getTicketTypes() {
-		return ticketTypes;
+	public List<EventTicketType> getEventTicketTypes() {
+		return eventTicketTypes;
 	}
 
-	public void setTicketTypes(List<TicketType> ticketTypes) {
-		this.ticketTypes = ticketTypes;
+	public void setEventTicketTypes(List<EventTicketType> eventTicketTypes) {
+		this.eventTicketTypes = eventTicketTypes;
 	}
 
 	@Override
