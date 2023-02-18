@@ -53,9 +53,9 @@ public class Event {
 	// Kommentoitu tämä pois, kun otetaan käyttöön Venue -taulu, jonka sisässä yhteys PostalCodeen, 
 	// poistettu myös getterit ja setterit
 	// yhtä postinumeroa vastaa usea event
-	// @ManyToOne(fetch = FetchType.EAGER)
-	// @JoinColumn(name="postal_code")
-	// private PostalCode postalCode;
+	 @ManyToOne(fetch = FetchType.EAGER)
+	 @JoinColumn(name="postal_code")
+	 private PostalCode postalCode;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "venue_id")

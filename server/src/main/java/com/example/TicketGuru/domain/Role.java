@@ -30,7 +30,9 @@ public class Role {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
 	private List<AppUser_Role> appUserRoles;
 	
-	public Role() { }
+	public Role() { 
+		super();
+	}
 
 	public Role(String role) {
 		super();
