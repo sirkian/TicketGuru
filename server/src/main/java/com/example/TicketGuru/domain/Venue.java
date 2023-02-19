@@ -32,31 +32,48 @@ public class Venue {
 	@Column(name = "address", length=250)
 	private String address;
 	
-	@Column(name = "postal_code", length=10)
-	private String postalCode;
-	
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ticketType")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "venue")
 	private List<Event> events;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "postal_code")
-	private PostalCode PostalCode;
+	@JoinColumn(name = "postalCode")
+	private PostalCode postalCode;
 	
 	public Venue() {
 		super();
 	}
 	
-	//Kuuluuko konstruktorissa olla tuo lista??
-	public Venue(Long venueId, String venueName, String venueDescription, String address, String postalCode,
-			List<Event> events) {
+	// konstruktori testikäyttöön
+	public Venue(String venueName) {
 		super();
-		this.venueId = venueId;
+		this.venueName = venueName;
+	}
+	
+
+	public Venue(String venueName, String venueDescription, String address) {
+		super();
+		this.venueName = venueName;
+		this.venueDescription = venueDescription;
+		this.address = address;
+	}
+
+	public Venue(String venueName, String venueDescription, String address, PostalCode postalCode) {
+		super();
 		this.venueName = venueName;
 		this.venueDescription = venueDescription;
 		this.address = address;
 		this.postalCode = postalCode;
-		this.events = events; //??
+	}
+
+	public Venue(String venueName, String venueDescription, String address, String postalCode) {
+		super();
+		
+		this.venueName = venueName;
+		this.venueDescription = venueDescription;
+		this.address = address;
+		//this.postalCode = postalCode;
+		
 	}
 
 	public Long getVenueId() {
@@ -91,11 +108,13 @@ public class Venue {
 		this.address = address;
 	}
 
-	public String getPostalCode() {
+	
+
+	public PostalCode getPostalCode() {
 		return postalCode;
 	}
 
-	public void setPostalCode(String postalCode) {
+	public void setPostalCode(PostalCode postalCode) {
 		this.postalCode = postalCode;
 	}
 

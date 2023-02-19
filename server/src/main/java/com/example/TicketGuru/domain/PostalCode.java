@@ -1,8 +1,14 @@
 package com.example.TicketGuru.domain;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class PostalCode {
@@ -11,13 +17,26 @@ public class PostalCode {
     // Otin tästä autogenin pois, että voidaa ite asettaa postikoodi / PK
     // Ja joutu muuttaa tyypin Stringiks, kokonaislukuna 00100 tulostu ja tallentu kantaan lukuna 64 :D
     // https://stackoverflow.com/a/7218803
-    @Column(name = "postal_id", nullable = false, updatable = false)
+    @Column(name = "postal_id", nullable = false, updatable = false, unique = true)
     private String postalCode;
 
     @Column(name = "city")
     private String city;
     
-    public PostalCode() { }
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "postalCode")
+    private List<Venue> venues;
+    
+    
+    public List<Venue> getVenues() {
+		return venues;
+	}
+
+	public void setVenues(List<Venue> venues) {
+		this.venues = venues;
+	}
+
+	public PostalCode() { }
 
     public PostalCode(String postalCode, String city) {
         this.postalCode = postalCode;
@@ -40,11 +59,10 @@ public class PostalCode {
         this.city = city;
     }
 
-    @Override
-    public String toString() {
-        return "PostalCode{" +
-                "postalCode=" + postalCode +
-                ", city='" + city + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "PostalCode [postalCode=" + postalCode + ", city=" + city + ", venues=" + venues + "]";
+	}
+
+    
 }

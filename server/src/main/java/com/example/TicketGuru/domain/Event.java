@@ -22,7 +22,7 @@ public class Event {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "event_id", nullable = false)
+	@Column(name = "event_id", nullable = false, updatable = false)
 	private Long eventId;
 	
 	@Column(name = "event_name", length=100)
@@ -38,8 +38,6 @@ public class Event {
 	@Column(name = "end_time")
 	private LocalDateTime endTime;
 	
-	@Column(length = 250)
-	private String address;
 	
 	@Column(name = "amount_tickets")
 	private int amountTickets;
@@ -50,12 +48,6 @@ public class Event {
 	// Voiko oletusarvon laittaa näin suoraan?
 	private boolean cancelled = false;
 	
-	// Kommentoitu tämä pois, kun otetaan käyttöön Venue -taulu, jonka sisässä yhteys PostalCodeen, 
-	// poistettu myös getterit ja setterit
-	// yhtä postinumeroa vastaa usea event
-	 @ManyToOne(fetch = FetchType.EAGER)
-	 @JoinColumn(name="postal_code")
-	 private PostalCode postalCode;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "venue_id")
@@ -73,13 +65,13 @@ public class Event {
 	public Event(String eventName) {}
 	
 	public Event( String eventName, String description, LocalDateTime startTime, LocalDateTime endTime,
-			String address, int amountTickets, LocalDateTime presaleEnds, boolean cancelled, Venue venue) {
+		 int amountTickets, LocalDateTime presaleEnds, boolean cancelled, Venue venue) {
 		super();
 		this.eventName = eventName;
 		this.description = description;
 		this.startTime = startTime;
 		this.endTime = endTime;
-		this.address = address;
+	
 		this.amountTickets = amountTickets;
 		this.presaleEnds = presaleEnds;
 		this.cancelled = cancelled;
@@ -136,15 +128,6 @@ public class Event {
 	}
 
 
-	public String getAddress() {
-		return address;
-	}
-
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 
 	public int getAmountTickets() {
 		return amountTickets;
@@ -190,7 +173,7 @@ public class Event {
 	@Override
 	public String toString() {
 		return "Event [eventId=" + eventId + ", eventName=" + eventName + ", description=" + description
-				+ ", startTime=" + startTime + ", endTime=" + endTime + ", address=" + address + ", amountTickets="
+				+ ", startTime=" + startTime + ", endTime=" + endTime + ", amountTickets="
 				+ amountTickets + ", presaleEnds=" + presaleEnds + ", cancelled=" + cancelled + "]";
 	}
 
