@@ -24,6 +24,8 @@ import com.example.TicketGuru.domain.TicketType;
 import com.example.TicketGuru.domain.TicketTypeRepository;
 import com.example.TicketGuru.domain.Transaction;
 import com.example.TicketGuru.domain.TransactionRepository;
+import com.example.TicketGuru.domain.Venue;
+import com.example.TicketGuru.domain.VenueRepository;
 
 @SpringBootApplication
 public class TicketGuruApplication {
@@ -42,6 +44,8 @@ public class TicketGuruApplication {
 	AppUserRepository userRepository;
 	@Autowired
 	PostalCodeRepository postRepository;
+	@Autowired
+	VenueRepository venueRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TicketGuruApplication.class, args);
@@ -58,14 +62,22 @@ public class TicketGuruApplication {
 			PostalCode postcode2 = new PostalCode("33101", "Tampere 10");
 			postRepository.save(postcode2);
 			
+			/* TO STRING AIHEUTTAA ONGELMIA TÄSSÄ
 			System.out.println("** PostalCodes: **");
 			for (PostalCode postalCode : postRepository.findAll()) {
 				System.out.println("PostalCode: " + postalCode.toString());
 			}
 			System.out.println("");
+			*/
+			// TAPAHTUMAPAIKAT
+			
+			Venue venue1 = new Venue("tapahtumapaikka1", "pieni paikka", "Maitokatu 1", postcode1);
+			venueRepository.save(venue1);
+			Venue venue2 = new Venue("tapahtumapaikka2", "iso paikka", "Piimätie 34", postcode2);
+			venueRepository.save(venue2);
 			
 			// TAPAHTUMAT
-			
+			/* 
 			Event event1 = new Event("Testitapahtuma", "Tapahtuman kuvaus", LocalDateTime.of(2023, 2, 14, 16, 00), LocalDateTime.of(2023, 2, 14, 18, 00), "Testikatu 1", 100, postcode1);
 			eventRepository.save(event1);
 			Event event2 = new Event("Tapahtuma 2", "Kuvaus kakkostapahtumalle", LocalDateTime.of(2023, 4, 20, 20, 30), LocalDateTime.of(2023, 4, 20, 22, 00), "Testikatu 2", 200, postcode2);
@@ -182,8 +194,9 @@ public class TicketGuruApplication {
 				}
 				System.out.println("\n ** end of transaction ** \n");
 				
-			}	
+			}	*/
 		};
+		
 	}
 }
 
