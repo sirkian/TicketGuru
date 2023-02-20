@@ -57,6 +57,31 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		 <!--
+   		https://springdoc.org/v2/
+   		 -->
+   		<dependency>
+      		<groupId>org.springdoc</groupId>
+      		<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      		<version>2.0.2</version>
+   		</dependency>
+   		<dependency>
+      		<groupId>org.springdoc</groupId>
+      		<artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+      		<version>2.0.2</version>
+   		</dependency>
+   		<!--
+   		jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. 
+   		Add a provider like Hibernate Validator (RI) to your classpath.
+   		Kiitos stackoverflow
+   		https://stackoverflow.com/a/71596702
+   		 -->
+   		<dependency>
+  			<groupId>org.springframework.boot</groupId>
+  			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>

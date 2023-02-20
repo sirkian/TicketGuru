@@ -1,8 +1,6 @@
 package com.example.TicketGuru;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -10,24 +8,23 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.TicketGuru.domain.AppUser;
 import com.example.TicketGuru.domain.AppUserRepository;
 import com.example.TicketGuru.domain.Event;
 import com.example.TicketGuru.domain.EventRepository;
 import com.example.TicketGuru.domain.PostalCode;
 import com.example.TicketGuru.domain.PostalCodeRepository;
-import com.example.TicketGuru.domain.Role;
 import com.example.TicketGuru.domain.RoleRepository;
-import com.example.TicketGuru.domain.Ticket;
 import com.example.TicketGuru.domain.TicketRepository;
-import com.example.TicketGuru.domain.TicketType;
 import com.example.TicketGuru.domain.TicketTypeRepository;
-import com.example.TicketGuru.domain.Transaction;
 import com.example.TicketGuru.domain.TransactionRepository;
 import com.example.TicketGuru.domain.Venue;
 import com.example.TicketGuru.domain.VenueRepository;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+
 @SpringBootApplication
+@OpenAPIDefinition(info = @Info(title = "TicketGuruAPI", version = "0.1", description = "TicketGurun Rest API"))
 public class TicketGuruApplication {
 	
 	@Autowired
@@ -77,12 +74,12 @@ public class TicketGuruApplication {
 			venueRepository.save(venue2);
 			
 			// TAPAHTUMAT
-			/* 
-			Event event1 = new Event("Testitapahtuma", "Tapahtuman kuvaus", LocalDateTime.of(2023, 2, 14, 16, 00), LocalDateTime.of(2023, 2, 14, 18, 00), "Testikatu 1", 100, postcode1);
+
+			Event event1 = new Event("Testitapahtuma", "Tapahtuman kuvaus", LocalDateTime.of(2023, 2, 14, 16, 00), LocalDateTime.of(2023, 2, 14, 18, 00), 100, LocalDateTime.of(2023, 2, 12, 18, 00), false, venue1);
 			eventRepository.save(event1);
-			Event event2 = new Event("Tapahtuma 2", "Kuvaus kakkostapahtumalle", LocalDateTime.of(2023, 4, 20, 20, 30), LocalDateTime.of(2023, 4, 20, 22, 00), "Testikatu 2", 200, postcode2);
+			Event event2 = new Event("Tapahtuma 2", "Kuvaus kakkostapahtumalle", LocalDateTime.of(2023, 4, 20, 20, 30), LocalDateTime.of(2023, 4, 20, 22, 00), 200, LocalDateTime.of(2023, 4, 19, 18, 00), false, venue2);
 			eventRepository.save(event2);
-			
+			/* 
 			System.out.println("** Events: **");
 			for (Event event : eventRepository.findAll()) {
 				System.out.println("Event: " + event.toString());
