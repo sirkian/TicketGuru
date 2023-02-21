@@ -71,7 +71,6 @@ public class Event {
 		this.description = description;
 		this.startTime = startTime;
 		this.endTime = endTime;
-	
 		this.amountTickets = amountTickets;
 		this.presaleEnds = presaleEnds;
 		this.cancelled = cancelled;
