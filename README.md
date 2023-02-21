@@ -51,3 +51,8 @@ Wireframemallit on saatu asiakkaalta.
 
 [Tietohakemisto](https://github.com/Bjorn-Eric/TicketGuru/files/10724406/Tietokannan.suunnittelu.docx)
 
+## Rajapinnan kuvaus
+
+#### Tapahtumat
+- [Hae tapahtumat](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/get.md): ``GET /events``
+
