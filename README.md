@@ -45,7 +45,11 @@ Wireframemallit on saatu asiakkaalta.
 
 ## Tietokannat
 
-![entityrel2 0](https://user-images.githubusercontent.com/91193039/218547193-ea9347d9-9cb2-4124-b8f1-5283c1ab4040.png)
+![entityrel4 0](https://user-images.githubusercontent.com/91193039/220619879-dc1e23b3-0f6a-485c-9de5-b0cdd6bf672e.jpg)
+
+Versiohistoria:
+[Versio 1] (![entityrel2 0](https://user-images.githubusercontent.com/91193039/220620475-552eafc8-0e00-4c67-84d4-bca138d11271.png)
+
 
 
 
