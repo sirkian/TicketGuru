@@ -1,6 +1,10 @@
-# Näytä kaikki tapahtumat
+# Näytä tapahtumat, joissa hakusana vastaa eventNamea
 
-**URL**: `/events`
+Palauttaa kaikki tapahtumat, joiden nimi sisältää hakusanana käytetyn merkkijonon kirjainkoosta välittämättä.
+
+Palauttaa tyhjän listan koodilla 200 OK, mikäli hakusanalla ei löydy yhtäkään tapahtumaa.
+
+**URL**: `/events/search?name=:hakusana`
 
 **Metodi**: `GET`
 
@@ -10,7 +14,7 @@
 
 ## Esimerkkivastaus:
 
-**Polku**: `BASE_URL/events`
+**Polku**: `BASE_URL/events/search?name=testi`
 
 ```json
 [
@@ -31,26 +35,6 @@
       "postalCode": {
         "postalCode": "00100",
         "city": "Helsinki"
-      }
-    }
-  },
-  {
-    "eventId": 2,
-    "eventName": "Tapahtuma 2",
-    "description": "Kuvaus kakkostapahtumalle",
-    "startTime": "2023-04-20T20:30:00",
-    "endTime": "2023-04-20T22:00:00",
-    "amountTickets": 200,
-    "presaleEnds": "2023-04-19T18:00:00",
-    "cancelled": false,
-    "venue": {
-      "venueId": 2,
-      "venueName": "tapahtumapaikka2",
-      "venueDescription": "iso paikka",
-      "address": "Piimätie 34",
-      "postalCode": {
-        "postalCode": "33101",
-        "city": "Tampere 10"
       }
     }
   }

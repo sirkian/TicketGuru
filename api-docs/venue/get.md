@@ -8,8 +8,11 @@
 
 **Koodi**: `200 OK`
 
-**Esimerkkivastaus**:
-```
+## Esimerkkivastaus:
+
+**Polku**: `BASE_URL/venues`
+
+```json
 [
   {
     "venueId": 1,
@@ -33,4 +36,3 @@
   }
 ]
 ```
-
