@@ -1,5 +1,7 @@
 package com.example.TicketGuru.web;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +25,13 @@ public class EventRestController {
 		return eventRepository.findAll();	
 	}
 	
+	@GetMapping("/events/{eventId}")
+	public Optional<Event> getEvent(@PathVariable("eventId") Long eventId) {
+		return eventRepository.findById(eventId);	
+	}
+	
 	// Muokkaa valittua tapahtumaa, ei vielä toimi
+	// Toimii, mutta rivin 36 alkuun vois lisätä 'public' ja PathVariablen perään ("eventId")
 	@PutMapping("/events/{eventId}")
 	Event editEvent(@RequestBody Event editedEvent, @PathVariable Long eventId) {
 		editedEvent.setEventId(eventId);
