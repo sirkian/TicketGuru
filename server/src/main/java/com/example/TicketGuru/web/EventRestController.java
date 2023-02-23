@@ -38,18 +38,11 @@ public class EventRestController {
 		return eventRepository.findByEventNameContainingIgnoreCase(name);
 	}
 	
-	// Muokkaa valittua tapahtumaa, ei vielä toimi
-	// Toimii, mutta rivin 36 alkuun vois lisätä 'public' ja PathVariablen perään ("eventId")
+	// Muokkaa id:llä valittua tapahtumaa
 	@PutMapping("/events/{eventId}")
-	Event editEvent(@RequestBody Event editedEvent, @PathVariable Long eventId) {
+	public Event editEvent(@RequestBody Event editedEvent, @PathVariable("eventId") Long eventId) {
 		editedEvent.setEventId(eventId);
 	 	return eventRepository.save(editedEvent);
 	}
 	
-	// 2. yritys
-	//@RequestMapping(value = "/events/{eventId}")
-	//public String showEvent(@PathVariable("eventId") Long eventId, Model model) {
-	//	model.addAttribute("event", eventRepository.findById(eventId));
-	//return eventRepository.save(editedEvent);
-	//}
 }
