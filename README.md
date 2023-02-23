@@ -58,8 +58,24 @@ Wireframemallit on saatu asiakkaalta.
 
 ## Rajapinnan kuvaus
 
-#### Tapahtumat
+---
 
-- [Hae tapahtumat](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/get.md): `GET /events`
-- [Hae tapahtuma id:llä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/getById.md): `GET /events/:pk`
-- [Hae tapahtumia nimellä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/getByName.md): `GET /events/search?name=:hakusana`
+**Base URL:** `http://localhost:8080/`
+
+---
+
+### Tapahtumat
+
+| Toiminto                                                                                                    | Metodi | Polku                           | Param. tyyppi  |
+| ----------------------------------------------------------------------------------------------------------- | ------ | ------------------------------- | -------------- |
+| [Hae tapahtumat](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/get.md)               | `GET`  | `/events`                       | -              |
+| [Hae tapahtuma id:llä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/getById.md)     | `GET`  | `/events/:pk`                   | Integer (Long) |
+| [Hae tapahtumia nimellä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/getByName.md) | `GET`  | `/events/search?name=:hakusana` | String         |
+| [Muokkaa tapahtumaa](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/put.md)           | `PUT`  | `/events/:pk`                   | Integer (Long) |
+
+### Tapahtumapaikat
+
+| Toiminto                                                                                              | Metodi | Polku     | Param. tyyppi |
+| ----------------------------------------------------------------------------------------------------- | ------ | --------- | ------------- |
+| [Hae tapahtumapaikat](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/get.md)    | `GET`  | `/venues` | -             |
+| [Lisää tapahtumapaikka](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/post.md) | `POST` | `/venues` | -             |
