@@ -1,12 +1,12 @@
 # Muokkaa id:llä haettua tapahtumaa
 
-**URL**: `/events:pk`
+**URL**: `/events/:pk`
 
 **Metodi**: `PUT`
 
 ## Vastauksen paluukoodit
 
-**Koodit**: 
+**Koodit**:
 
 `200 OK`
 
@@ -14,53 +14,46 @@
 
 `204 No content`
 
+## Esimerkkipyyntö:
+
+**Polku**: `BASE_URL/events/1`
+
+```json
+{
+  "eventName": "Testimuokkaus",
+  "description": "Muokattu tapahtuman kuvaus",
+  "startTime": "2023-02-14T16:00:00",
+  "endTime": "2023-02-14T18:00:00",
+  "amountTickets": 600,
+  "presaleEnds": "2023-02-12T18:00:00",
+  "cancelled": false,
+  "venue": {
+    "venueId": 2
+  }
+}
+```
 
 ## Esimerkkivastaus:
 
-**Polku**: `BASE_URL/events:pk`
-
 ```json
-[
 {
-  "eventName": "string",
-  "description": "string",
-  "startTime": "2023-02-23T06:27:44.400Z",
-  "endTime": "2023-02-23T06:27:44.400Z",
-  "amountTickets": 0,
-  "presaleEnds": "2023-02-23T06:27:44.400Z",
-  "cancelled": true,
-  "_links": {
-    "additionalProp1": {
-      "href": "string",
-      "hreflang": "string",
-      "title": "string",
-      "type": "string",
-      "deprecation": "string",
-      "profile": "string",
-      "name": "string",
-      "templated": true
-    },
-    "additionalProp2": {
-      "href": "string",
-      "hreflang": "string",
-      "title": "string",
-      "type": "string",
-      "deprecation": "string",
-      "profile": "string",
-      "name": "string",
-      "templated": true
-    },
-    "additionalProp3": {
-      "href": "string",
-      "hreflang": "string",
-      "title": "string",
-      "type": "string",
-      "deprecation": "string",
-      "profile": "string",
-      "name": "string",
-      "templated": true
+  "eventId": 1,
+  "eventName": "Testimuokkaus",
+  "description": "Muokattu tapahtuman kuvaus",
+  "startTime": "2023-02-14T16:00:00",
+  "endTime": "2023-02-14T18:00:00",
+  "amountTickets": 600,
+  "presaleEnds": "2023-02-12T18:00:00",
+  "cancelled": false,
+  "venue": {
+    "venueId": 2,
+    "venueName": "tapahtumapaikka2",
+    "venueDescription": "iso paikka",
+    "address": "Piimätie 34",
+    "postalCode": {
+      "postalCode": "33101",
+      "city": "Tampere 10"
     }
   }
 }
-]
 ```
