@@ -79,6 +79,8 @@ public class TicketGuruApplication {
 			eventRepository.save(event1);
 			Event event2 = new Event("Tapahtuma 2", "Kuvaus kakkostapahtumalle", LocalDateTime.of(2023, 4, 20, 20, 30), LocalDateTime.of(2023, 4, 20, 22, 00), 200, LocalDateTime.of(2023, 4, 19, 18, 00), false, venue2);
 			eventRepository.save(event2);
+			Event event3 = new Event("Kolmas tapahtuma toden sanoo", "Syvällistä pohdintaa ja runonlausuntaa aiheesta testidatan keksimisen vaikeus", LocalDateTime.of(2023, 4, 20, 20, 30), LocalDateTime.of(2023, 4, 20, 22, 00), 200, LocalDateTime.of(2023, 4, 19, 18, 00), false, venue1);
+			eventRepository.save(event3);
 			/* 
 			System.out.println("** Events: **");
 			for (Event event : eventRepository.findAll()) {

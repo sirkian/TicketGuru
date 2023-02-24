@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.TicketGuru.domain.Event;
 import com.example.TicketGuru.domain.EventRepository;
+import com.example.TicketGuru.domain.Venue;
 
 
 @RestController
@@ -34,8 +35,15 @@ public class EventRestController {
 	
 	// Palauttaa tapahtumat joiden nimi sisältää hakusanan
 	@GetMapping("/events/search")
-	public Iterable<Event> getEventByName(@RequestParam(value = "name") String name) {
+	public Iterable<Event> getEventsByName(@RequestParam(value = "name") String name) {
 		return eventRepository.findByEventNameContainingIgnoreCase(name);
+	}
+	
+	// Palauttaa haetun tapahtumapaikan kaikki tapahtumat
+	// Polkua voisi vielä miettiä, mutta /event/ polun alkuun tuntui loogiselta, sillä eventtejähän tässä haetaan
+	@GetMapping("/events/venue/{venueId}")
+	public Iterable<Event> getEventsByVenue(@PathVariable("venueId") Venue venue) {
+		return eventRepository.findByVenue(venue);
 	}
 	
 	// Muokkaa id:llä valittua tapahtumaa
