@@ -79,3 +79,7 @@ Wireframemallit on saatu asiakkaalta.
 | ----------------------------------------------------------------------------------------------------- | ------ | --------- | ------------- |
 | [Hae tapahtumapaikat](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/get.md)    | `GET`  | `/venues` | -             |
 | [Lisää tapahtumapaikka](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/post.md) | `POST` | `/venues` | -             |
+| [Muokkaa tapahtumaa](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/put.md)     | `PUT`  | `/venues/:pk` | Integer (Long) |
+
+
+
