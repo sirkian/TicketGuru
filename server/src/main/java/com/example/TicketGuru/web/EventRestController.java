@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,6 +45,12 @@ public class EventRestController {
 	@GetMapping("/events/venue/{venueId}")
 	public Iterable<Event> getEventsByVenue(@PathVariable("venueId") Venue venue) {
 		return eventRepository.findByVenue(venue);
+	}
+	
+	//lisää uuden tapahtuman
+	@PostMapping("/events")
+	Event newEvent(@RequestBody Event newEvent) {
+		return eventRepository.save(newEvent);
 	}
 	
 	// Muokkaa id:llä valittua tapahtumaa
