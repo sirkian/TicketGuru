@@ -77,9 +77,10 @@ Wireframemallit on saatu asiakkaalta.
 
 | Toiminto                                                                                              | Metodi | Polku     | Param. tyyppi |
 | ----------------------------------------------------------------------------------------------------- | ------ | --------- | ------------- |
-| [Hae tapahtumapaikat](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/get.md)    | `GET`  | `/venues` | -             |
+| [Hae tapahtumapaikat](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/get.md)    | `GET`  | `/venues` | -             | 
+| [Hae tapahtumapaikka id:llä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/getById.md) | `GET` | `/venues/:pk` | Integer (Long) |
 | [Lisää tapahtumapaikka](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/post.md) | `POST` | `/venues` | -             |
-| [Muokkaa tapahtumaa](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/put.md)     | `PUT`  | `/venues/:pk` | Integer (Long) |
+| [Muokkaa tapahtumapaikkaa](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/put.md)     | `PUT`  | `/venues/:pk` | Integer (Long) |
 
 
 
