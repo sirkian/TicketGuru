@@ -64,7 +64,7 @@ public class EventRestController {
 	
 	//Poistaa tapahtuman id:n perusteella
 	@RequestMapping(value = "/delete_event/{eventId}", method = RequestMethod.GET)
-	public Iterable<Event> deleteEvent(@PathVariable("id") Long eventId) {
+	public Iterable<Event> deleteEvent(@PathVariable("eventId") Long eventId) {
 		eventRepository.deleteById(eventId);
 		return eventRepository.findAll();
 	}
