@@ -8,7 +8,7 @@
 
 **Koodi**: `200 OK`
 
-**Tai***:
+**Tai**:
 
 **Koodi**: `500 INTERNAL SERVER ERROR` 
 Jos hatetaan id:llä jota ei ole olemassa
