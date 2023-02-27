@@ -71,7 +71,7 @@ Wireframemallit on saatu asiakkaalta.
 | [Hae tapahtumat](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/get.md)               | `GET`  | `/events`                       | -              |
 | [Hae tapahtuma id:llä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/getById.md)     | `GET`  | `/events/:pk`                   | Integer (Long) |
 | [Hae tapahtumia nimellä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/getByName.md) | `GET`  | `/events/search?name=:hakusana` | String         |
-| [Lisää tapahtuma](LINKKI)                                                                                   | `POST` | `/events`                       | -              |
+| [Lisää tapahtuma](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/post.md)             | `POST` | `/events`                       | -              |
 | [Muokkaa tapahtumaa](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/put.md)           | `PUT`  | `/events/:pk`                   | Integer (Long) |
 | [Poista tapahtuma](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/deleteById.md)      | `GET`  | `/delete_event/:pk`             | Integer (Long) |
 
