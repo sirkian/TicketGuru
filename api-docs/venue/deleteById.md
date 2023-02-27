@@ -6,4 +6,6 @@
 
 ## Vastauksen paluukoodi
 
+**Koodi**: `200 OK`
+
 ## Esimerkkipyyntö
