@@ -1,8 +1,6 @@
 package com.example.TicketGuru;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -10,22 +8,23 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.TicketGuru.domain.AppUser;
 import com.example.TicketGuru.domain.AppUserRepository;
 import com.example.TicketGuru.domain.Event;
 import com.example.TicketGuru.domain.EventRepository;
 import com.example.TicketGuru.domain.PostalCode;
 import com.example.TicketGuru.domain.PostalCodeRepository;
-import com.example.TicketGuru.domain.Role;
 import com.example.TicketGuru.domain.RoleRepository;
-import com.example.TicketGuru.domain.Ticket;
 import com.example.TicketGuru.domain.TicketRepository;
-import com.example.TicketGuru.domain.TicketType;
 import com.example.TicketGuru.domain.TicketTypeRepository;
-import com.example.TicketGuru.domain.Transaction;
 import com.example.TicketGuru.domain.TransactionRepository;
+import com.example.TicketGuru.domain.Venue;
+import com.example.TicketGuru.domain.VenueRepository;
+
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 
 @SpringBootApplication
+@OpenAPIDefinition(info = @Info(title = "TicketGuruAPI", version = "0.1", description = "TicketGurun Rest API"))
 public class TicketGuruApplication {
 	
 	@Autowired
@@ -42,6 +41,8 @@ public class TicketGuruApplication {
 	AppUserRepository userRepository;
 	@Autowired
 	PostalCodeRepository postRepository;
+	@Autowired
+	VenueRepository venueRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TicketGuruApplication.class, args);
@@ -58,19 +59,29 @@ public class TicketGuruApplication {
 			PostalCode postcode2 = new PostalCode("33101", "Tampere 10");
 			postRepository.save(postcode2);
 			
+			/* TO STRING AIHEUTTAA ONGELMIA TÄSSÄ
 			System.out.println("** PostalCodes: **");
 			for (PostalCode postalCode : postRepository.findAll()) {
 				System.out.println("PostalCode: " + postalCode.toString());
 			}
 			System.out.println("");
+			*/
+			// TAPAHTUMAPAIKAT
+			
+			Venue venue1 = new Venue("tapahtumapaikka1", "pieni paikka", "Maitokatu 1", postcode1);
+			venueRepository.save(venue1);
+			Venue venue2 = new Venue("tapahtumapaikka2", "iso paikka", "Piimätie 34", postcode2);
+			venueRepository.save(venue2);
 			
 			// TAPAHTUMAT
-			
-			Event event1 = new Event("Testitapahtuma", "Tapahtuman kuvaus", LocalDateTime.of(2023, 2, 14, 16, 00), LocalDateTime.of(2023, 2, 14, 18, 00), "Testikatu 1", 100, postcode1);
+
+			Event event1 = new Event("Testitapahtuma", "Tapahtuman kuvaus", LocalDateTime.of(2023, 2, 14, 16, 00), LocalDateTime.of(2023, 2, 14, 18, 00), 100, LocalDateTime.of(2023, 2, 12, 18, 00), false, venue1);
 			eventRepository.save(event1);
-			Event event2 = new Event("Tapahtuma 2", "Kuvaus kakkostapahtumalle", LocalDateTime.of(2023, 4, 20, 20, 30), LocalDateTime.of(2023, 4, 20, 22, 00), "Testikatu 2", 200, postcode2);
+			Event event2 = new Event("Tapahtuma 2", "Kuvaus kakkostapahtumalle", LocalDateTime.of(2023, 4, 20, 20, 30), LocalDateTime.of(2023, 4, 20, 22, 00), 200, LocalDateTime.of(2023, 4, 19, 18, 00), false, venue2);
 			eventRepository.save(event2);
-			
+			Event event3 = new Event("Kolmas tapahtuma toden sanoo", "Syvällistä pohdintaa ja runonlausuntaa aiheesta testidatan keksimisen vaikeus", LocalDateTime.of(2023, 4, 20, 20, 30), LocalDateTime.of(2023, 4, 20, 22, 00), 200, LocalDateTime.of(2023, 4, 19, 18, 00), false, venue1);
+			eventRepository.save(event3);
+			/* 
 			System.out.println("** Events: **");
 			for (Event event : eventRepository.findAll()) {
 				System.out.println("Event: " + event.toString());
@@ -182,8 +193,9 @@ public class TicketGuruApplication {
 				}
 				System.out.println("\n ** end of transaction ** \n");
 				
-			}	
+			}	*/
 		};
+		
 	}
 }
 

@@ -22,7 +22,7 @@ public class Event {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "event_id", nullable = false)
+	@Column(name = "event_id", nullable = false, updatable = false)
 	private Long eventId;
 	
 	@Column(name = "event_name", length=100)
@@ -38,43 +38,44 @@ public class Event {
 	@Column(name = "end_time")
 	private LocalDateTime endTime;
 	
-	@Column(length = 250)
-	private String address;
 	
 	@Column(name = "amount_tickets")
 	private int amountTickets;
 	
-	// yhtä postinumeroa vastaa usea event
-	// ManyToOne
+	@Column(name = "presale_ends")
+	private LocalDateTime presaleEnds;
+	
+	// Voiko oletusarvon laittaa näin suoraan?
+	private boolean cancelled = false;
+	
+	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="postal_code")
-	private PostalCode postalCode;
-		
+	@JoinColumn(name = "venue_id")
+	private Venue venue;
+			
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
-	private List<TicketType> ticketTypes;
+	private List<EventTicketType> eventTicketTypes;
 
 	public Event() {
 		super();
 	}
 
 	// konstruktori testikäyttöön, voi lisätä olion nimellä
-	
 	public Event(String eventName) {}
 	
-
-	public Event(String eventName, String description, LocalDateTime startTime, LocalDateTime endTime, String address,
-			int amountTickets, PostalCode postalCode) {
+	public Event( String eventName, String description, LocalDateTime startTime, LocalDateTime endTime,
+		 int amountTickets, LocalDateTime presaleEnds, boolean cancelled, Venue venue) {
 		super();
 		this.eventName = eventName;
 		this.description = description;
 		this.startTime = startTime;
 		this.endTime = endTime;
-		this.address = address;
 		this.amountTickets = amountTickets;
-		this.postalCode = postalCode;
+		this.presaleEnds = presaleEnds;
+		this.cancelled = cancelled;
+		this.venue = venue;
 	}
-
 
 	public Long getEventId() {
 		return eventId;
@@ -126,15 +127,6 @@ public class Event {
 	}
 
 
-	public String getAddress() {
-		return address;
-	}
-
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 
 	public int getAmountTickets() {
 		return amountTickets;
@@ -145,31 +137,43 @@ public class Event {
 		this.amountTickets = amountTickets;
 	}
 
-
-	public PostalCode getPostalCode() {
-		return postalCode;
+	public LocalDateTime getPresaleEnds() {
+		return presaleEnds;
 	}
 
-
-	public void setPostalCode(PostalCode postalCode) {
-		this.postalCode = postalCode;
+	public void setPresaleEnds(LocalDateTime presaleEnds) {
+		this.presaleEnds = presaleEnds;
 	}
 
-
-	public List<TicketType> getTicketTypes() {
-		return ticketTypes;
+	public boolean isCancelled() {
+		return cancelled;
 	}
 
-	public void setTicketTypes(List<TicketType> ticketTypes) {
-		this.ticketTypes = ticketTypes;
+	public void setCancelled(boolean cancelled) {
+		this.cancelled = cancelled;
+	}
+
+	public Venue getVenue() {
+		return venue;
+	}
+
+	public void setVenue(Venue venue) {
+		this.venue = venue;
+	}
+
+	public List<EventTicketType> getEventTicketTypes() {
+		return eventTicketTypes;
+	}
+
+	public void setEventTicketTypes(List<EventTicketType> eventTicketTypes) {
+		this.eventTicketTypes = eventTicketTypes;
 	}
 
 	@Override
 	public String toString() {
 		return "Event [eventId=" + eventId + ", eventName=" + eventName + ", description=" + description
-				+ ", startTime=" + startTime + ", endTime=" + endTime + ", address=" + address + ", amountTickets="
-				+ amountTickets + ", postalCode=" +  postalCode
-				+"]";
+				+ ", startTime=" + startTime + ", endTime=" + endTime + ", amountTickets="
+				+ amountTickets + ", presaleEnds=" + presaleEnds + ", cancelled=" + cancelled + "]";
 	}
 
 	

@@ -1,10 +1,16 @@
 package com.example.TicketGuru.domain;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Role {
@@ -17,7 +23,16 @@ public class Role {
 	@Column(name = "role", length=50)
 	private String role;
 	
-	public Role() { }
+	// Lisätty välitaulu AppUser_Role
+	// Nyt en oo kyllä satavarma tarvittaisko tätä oneToMany-suhdetta oikeesti
+	// Tai siis, tuskin tarvii ikinä hakee role.getAppUserRoles(), mutta pelataa varman päälle
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
+	private List<AppUser_Role> appUserRoles;
+	
+	public Role() { 
+		super();
+	}
 
 	public Role(String role) {
 		super();
@@ -38,6 +53,14 @@ public class Role {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public List<AppUser_Role> getAppUserRoles() {
+		return appUserRoles;
+	}
+
+	public void setAppUserRoles(List<AppUser_Role> appUserRoles) {
+		this.appUserRoles = appUserRoles;
 	}
 
 	@Override
