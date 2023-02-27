@@ -6,8 +6,9 @@
 
 ## Vastauksen paluukoodi
 
-**Koodi**: 
+**Koodi**: `200 OK`
 
-`200 OK`
-`500 INTERNAL SERVER ERROR` 
+**Tai***:
+
+**Koodi**: `500 INTERNAL SERVER ERROR` 
 Jos hatetaan id:llä jota ei ole olemassa
