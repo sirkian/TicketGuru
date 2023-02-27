@@ -1,8 +1,8 @@
 # Poista tapahtumapaikka
 
-#### URL: /venue_delete
+**URL**: `/venue_delete`
 
-#### Metodi: DELETE
+**Metodi**: `DELETE
 
 ## Vastauksen paluukoodi
 
