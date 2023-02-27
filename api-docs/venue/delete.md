@@ -1,1 +1,1 @@
-
+# Poista tapahtumapaikka
