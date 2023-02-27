@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -58,6 +60,13 @@ public class EventRestController {
 	public Event editEvent(@RequestBody Event editedEvent, @PathVariable("eventId") Long eventId) {
 		editedEvent.setEventId(eventId);
 	 	return eventRepository.save(editedEvent);
+	}
+	
+	//Poistaa tapahtuman id:n perusteella
+	@RequestMapping(value = "/delete_event/{eventId}", method = RequestMethod.GET)
+	public Iterable<Event> deleteEvent(@PathVariable("id") Long eventId) {
+		eventRepository.deleteById(eventId);
+		return eventRepository.findAll();
 	}
 	
 }
