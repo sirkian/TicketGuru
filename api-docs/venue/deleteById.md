@@ -2,10 +2,10 @@
 
 **URL**: `/venue_delete`
 
-**Metodi**: `DELETE
+**Metodi**: DELETE
 
 ## Vastauksen paluukoodi
 
 **Koodi**: `200 OK`
 
-## Esimerkkipyyntö
+
