@@ -88,4 +88,4 @@ Versiohistoria:
 | [Hae tapahtumapaikka id:llä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/getById.md) | `GET`    | `/venues/:pk`       | Integer (Long) |
 | [Lisää tapahtumapaikka](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/post.md)         | `POST`   | `/venues`           | -              |
 | [Muokkaa tapahtumapaikkaa](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/put.md)       | `PUT`    | `/venues/:pk`       | Integer (Long) |
-| [Poista tapahtumapaikka](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/delete.md)      | `DELETE` | `/delete_venue/:pk` | Integer (Long) |
+| [Poista tapahtumapaikka](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/deleteById.md)      | `DELETE` | `/delete_venue/:pk` | Integer (Long) |
