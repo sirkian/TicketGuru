@@ -15,6 +15,7 @@ import com.example.TicketGuru.domain.PostalCode;
 import com.example.TicketGuru.domain.PostalCodeRepository;
 import com.example.TicketGuru.domain.RoleRepository;
 import com.example.TicketGuru.domain.TicketRepository;
+import com.example.TicketGuru.domain.TicketType;
 import com.example.TicketGuru.domain.TicketTypeRepository;
 import com.example.TicketGuru.domain.TransactionRepository;
 import com.example.TicketGuru.domain.Venue;
@@ -81,7 +82,7 @@ public class TicketGuruApplication {
 			eventRepository.save(event2);
 			Event event3 = new Event("Kolmas tapahtuma toden sanoo", "Syvällistä pohdintaa ja runonlausuntaa aiheesta testidatan keksimisen vaikeus", LocalDateTime.of(2023, 4, 20, 20, 30), LocalDateTime.of(2023, 4, 20, 22, 00), 200, LocalDateTime.of(2023, 4, 19, 18, 00), false, venue1);
 			eventRepository.save(event3);
-			/* 
+			
 			System.out.println("** Events: **");
 			for (Event event : eventRepository.findAll()) {
 				System.out.println("Event: " + event.toString());
@@ -90,11 +91,12 @@ public class TicketGuruApplication {
 			
 			// LIPPUTYYPIT
 			
-			TicketType type1 = new TicketType("Opiskelija-lippu", 15.0, event1);
+			TicketType type1 = new TicketType("Opiskelija-lippu");
 			ticketTypeRepository.save(type1);
-			TicketType type2 = new TicketType("Eläkeläinen", 12.0, event1);
+			TicketType type2 = new TicketType("Eläkeläinen");
 			ticketTypeRepository.save(type2);
 			
+			/* 
 			System.out.println("** TicketTypes: **");
 			for (TicketType ticketType : ticketTypeRepository.findAll()) {
 				System.out.println("TicketType: " + ticketType.toString());
