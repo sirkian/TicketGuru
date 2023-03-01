@@ -41,22 +41,18 @@ public class Venue {
 	private PostalCode postalCode;
 	
 	public Venue() {
-		super();
+		
 	}
 	
-	// konstruktori testikäyttöön
-	public Venue(String venueName) {
-		super();
-		this.venueName = venueName;
-	}
-	
-
-	public Venue(String venueName, String venueDescription, String address) {
-		super();
-		this.venueName = venueName;
-		this.venueDescription = venueDescription;
-		this.address = address;
-	}
+	/*
+	 * // konstruktori testikäyttöön public Venue(String venueName) { super();
+	 * this.venueName = venueName; }
+	 * 
+	 * 
+	 * public Venue(String venueName, String venueDescription, String address) {
+	 * super(); this.venueName = venueName; this.venueDescription =
+	 * venueDescription; this.address = address; }
+	 */
 
 	public Venue(String venueName, String venueDescription, String address, PostalCode postalCode) {
 		super();
@@ -66,15 +62,16 @@ public class Venue {
 		this.postalCode = postalCode;
 	}
 
-	public Venue(String venueName, String venueDescription, String address, String postalCode) {
-		super();
-		
-		this.venueName = venueName;
-		this.venueDescription = venueDescription;
-		this.address = address;
-		//this.postalCode = postalCode;
-		
-	}
+	/*
+	 * public Venue(String venueName, String venueDescription, String address,
+	 * String postalCode) { super();
+	 * 
+	 * this.venueName = venueName; this.venueDescription = venueDescription;
+	 * this.address = address; //this.postalCode = postalCode;
+	 * 
+	 * }
+	 */		
+	
 
 	public Long getVenueId() {
 		return venueId;

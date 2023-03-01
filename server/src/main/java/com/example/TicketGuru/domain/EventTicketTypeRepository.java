@@ -7,5 +7,8 @@ import org.springframework.data.repository.CrudRepository;
 public interface EventTicketTypeRepository extends CrudRepository<EventTicketType, Long> {
 	
 	Optional<EventTicketType> findById(Long eventTypeId);
+	
+	// Haetaan kaikki tapahtuman lipputyypit
+	Iterable<EventTicketType> findByEvent(Event event);
 
 }

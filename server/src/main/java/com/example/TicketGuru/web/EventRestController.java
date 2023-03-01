@@ -43,8 +43,8 @@ public class EventRestController {
 	}
 	
 	// Palauttaa haetun tapahtumapaikan kaikki tapahtumat
-	// Polkua voisi vielä miettiä, mutta /event/ polun alkuun tuntui loogiselta, sillä eventtejähän tässä haetaan
-	@GetMapping("/events/venue/{venueId}")
+	// Korvataan endpoint suoralla vastauksella (linkit poies)
+	@GetMapping("/venues/{venueId}/events")
 	public Iterable<Event> getEventsByVenue(@PathVariable("venueId") Venue venue) {
 		return eventRepository.findByVenue(venue);
 	}
