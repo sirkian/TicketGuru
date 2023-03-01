@@ -32,6 +32,14 @@ public class TicketType {
 	public TicketType() {
 		super();
 	}
+	
+	
+
+	public TicketType(String typeName) {
+		super();
+		this.typeName = typeName;
+	}
+
 
 	public TicketType(String typeName, List<EventTicketType> eventTicketType) {
 		super();
