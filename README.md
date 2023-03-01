@@ -59,7 +59,8 @@ Versiohistoria:
 [Versio 1](https://user-images.githubusercontent.com/91193039/220620475-552eafc8-0e00-4c67-84d4-bca138d11271.png)
 
 
-[Tietohakemisto](https://github.com/Bjorn-Eric/TicketGuru/files/10724406/Tietokannan.suunnittelu.docx)
+[Tietohakemisto](https://github.com/Bjorn-Eric/TicketGuru/files/10862258/Tietokannan.suunnittelu.1.docx)
+
 
 ## Rajapinnan kuvaus
 
