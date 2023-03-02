@@ -97,3 +97,13 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa [täältä](localhost:8080/v3/
 | [Hae yhden tapahtuman lipputyypit](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/eventTicketType/getByEvent.md) | `GET`  | `/events/:pk/eventtickettypes` | Integer (Long) |
 | [Lisää tapahtumalle lipputyyppi](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/eventTicketType/post.md)         | `POST` | `/eventtickettypes`            | -              |
 | [Muokkaa tapahtuman lipputyyppiä](TODO)                                                                                          | `PUT`  | `/eventtickettypes/:pk`        | Integer (Long) |
+
+### Liput
+
+| Toiminto                                                                                                      | Metodi   | Polku               | Param. tyyppi  |
+| ------------------------------------------------------------------------------------------------------------- | -------- | ------------------- | -------------- |
+| [Hae liput](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/get.md)                     | `GET`    | `/tickets`           | -              |
+| [Hae lippu id:llä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/getById.md)          | `GET`    | `/tickets/:pk`       | Integer (Long) |
+| [Lisää lippu](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/post.md)                  | `POST`   | `/tickets`           | -              |
+| [Muokkaa lippua](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/put.md)                | `PUT`    | `/tickets/:pk`       | Integer (Long) |
+| [Poista lippu](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/deleteById.md)           | `DELETE` | `/tickets/:pk`      | Integer (Long) |
