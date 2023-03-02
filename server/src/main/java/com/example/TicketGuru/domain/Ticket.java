@@ -37,6 +37,11 @@ public class Ticket {
 		super();
 	}
 	
+	// Testiksi konstruktori pelkällä verificationCodella
+	public Ticket(String verificationCode) {
+		this.verificationCode = verificationCode;
+	}
+	
 	// Konstruktori ilman usedDatea, koska alkuun null
 	public Ticket(String verificationCode, EventTicketType eventTicketType,
 			Transaction transaction) {
