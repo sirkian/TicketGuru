@@ -62,7 +62,9 @@ Wireframemallit on saatu asiakkaalta.
 
 **Base URL:** `http://localhost:8080/`
 
-**Swagger-UI:** `http://localhost:8080/swagger-ui/index.html`
+_Vielä yksityiskohtaisempaa API-dokumentaatiota varten käytössä on Open-API:n Swagger-UI osoitteessa: `http://localhost:8080/swagger-ui/index.html`._
+
+_YAML-muotoinen API-dokumentaatio on ladattavissa [täältä](localhost:8080/v3/api-docs.yaml)._
 
 ---
 
@@ -86,3 +88,12 @@ Wireframemallit on saatu asiakkaalta.
 | [Lisää tapahtumapaikka](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/post.md)         | `POST`   | `/venues`           | -              |
 | [Muokkaa tapahtumapaikkaa](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/put.md)       | `PUT`    | `/venues/:pk`       | Integer (Long) |
 | [Poista tapahtumapaikka](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/delete.md)      | `DELETE` | `/delete_venue/:pk` | Integer (Long) |
+
+### Tapahtuman lipputyypit
+
+| Toiminto                                                                                                                         | Metodi | Polku                          | Param. tyyppi  |
+| -------------------------------------------------------------------------------------------------------------------------------- | ------ | ------------------------------ | -------------- |
+| [Hae kaikki tapahtumien lipputyypit](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/eventTicketType/get.md)      | `GET`  | `/eventtickettypes`            | -              |
+| [Hae yhden tapahtuman lipputyypit](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/eventTicketType/getByEvent.md) | `GET`  | `/events/:pk/eventtickettypes` | Integer (Long) |
+| [Lisää tapahtumalle lipputyyppi](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/eventTicketType/post.md)         | `POST` | `/eventtickettypes`            | -              |
+| [Muokkaa tapahtuman lipputyyppiä](TODO)                                                                                          | `PUT`  | `/eventtickettypes/:pk`        | Integer (Long) |
