@@ -1,14 +1,13 @@
 # Tapahtuman poisto
 
-**URL**: `/events_delete`
+**URL**: `/events/:pk`
 
-**Metodi**: `GET`
+**Metodi**: `DELETE`
 
-## Vastauksen paluukoodi
+## Vastauksen paluukoodit
 
-**Koodi**: `200 OK`
+**Koodi**: 
 
-**Tai**:
+`204 No Content`
 
-**Koodi**: `500 INTERNAL SERVER ERROR` 
-Jos hatetaan id:llä jota ei ole olemassa
+`404 Not Found`

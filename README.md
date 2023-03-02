@@ -77,7 +77,7 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa [täältä](localhost:8080/v3/
 | [Hae tapahtumia nimellä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/getByName.md) | `GET`  | `/events/search?name=:hakusana` | String         |
 | [Lisää tapahtuma](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/post.md)             | `POST` | `/events`                       | -              |
 | [Muokkaa tapahtumaa](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/put.md)           | `PUT`  | `/events/:pk`                   | Integer (Long) |
-| [Poista tapahtuma](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/deleteById.md)      | `GET`  | `/delete_event/:pk`             | Integer (Long) |
+| [Poista tapahtuma](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/deleteById.md)      | `DELETE`  | `/events/:pk`             | Integer (Long) |
 
 ### Tapahtumapaikat
 
