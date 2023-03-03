@@ -62,22 +62,22 @@ Wireframemallit on saatu asiakkaalta.
 
 **Base URL:** `http://localhost:8080/`
 
-_Vielä yksityiskohtaisempaa API-dokumentaatiota varten käytössä on Open-API:n Swagger-UI osoitteessa: `http://localhost:8080/swagger-ui/index.html`._
+_Vielä yksityiskohtaisempaa API-dokumentaatiota varten käytössä on Open-API:n Swagger-UI osoitteessa:_ [/swagger-ui.html](http://localhost:8080/swagger-ui/index.html)
 
-_YAML-muotoinen API-dokumentaatio on ladattavissa [täältä](localhost:8080/v3/api-docs.yaml)._
+_YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost:8080/v3/api-docs.yaml)
 
 ---
 
 ### Tapahtumat
 
-| Toiminto                                                                                                    | Metodi | Polku                           | Param. tyyppi  |
-| ----------------------------------------------------------------------------------------------------------- | ------ | ------------------------------- | -------------- |
-| [Hae tapahtumat](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/get.md)               | `GET`  | `/events`                       | -              |
-| [Hae tapahtuma id:llä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/getById.md)     | `GET`  | `/events/:pk`                   | Integer (Long) |
-| [Hae tapahtumia nimellä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/getByName.md) | `GET`  | `/events/search?name=:hakusana` | String         |
-| [Lisää tapahtuma](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/post.md)             | `POST` | `/events`                       | -              |
-| [Muokkaa tapahtumaa](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/put.md)           | `PUT`  | `/events/:pk`                   | Integer (Long) |
-| [Poista tapahtuma](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/deleteById.md)      | `DELETE`  | `/events/:pk`             | Integer (Long) |
+| Toiminto                                                                                                    | Metodi   | Polku                      | Param. tyyppi  |
+| ----------------------------------------------------------------------------------------------------------- | -------- | -------------------------- | -------------- |
+| [Hae tapahtumat](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/get.md)               | `GET`    | `/events`                  | -              |
+| [Hae tapahtuma id:llä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/getById.md)     | `GET`    | `/events/:pk`              | Integer (Long) |
+| [Hae tapahtumia nimellä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/getByName.md) | `GET`    | `/events/q?name=:hakusana` | String         |
+| [Lisää tapahtuma](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/post.md)             | `POST`   | `/events`                  | -              |
+| [Muokkaa tapahtumaa](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/put.md)           | `PUT`    | `/events/:pk`              | Integer (Long) |
+| [Poista tapahtuma](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/event/deleteById.md)      | `DELETE` | `/events/:pk`              | Integer (Long) |
 
 ### Tapahtumapaikat
 
@@ -100,10 +100,10 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa [täältä](localhost:8080/v3/
 
 ### Liput
 
-| Toiminto                                                                                                      | Metodi   | Polku               | Param. tyyppi  |
-| ------------------------------------------------------------------------------------------------------------- | -------- | ------------------- | -------------- |
-| [Hae liput](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/get.md)                     | `GET`    | `/tickets`           | -              |
-| [Hae lippu id:llä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/getById.md)          | `GET`    | `/tickets/:pk`       | Integer (Long) |
-| [Lisää lippu](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/post.md)                  | `POST`   | `/tickets`           | -              |
-| [Muokkaa lippua](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/put.md)                | `PUT`    | `/tickets/:pk`       | Integer (Long) |
-| [Poista lippu](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/deleteById.md)           | `DELETE` | `/tickets/:pk`      | Integer (Long) |
+| Toiminto                                                                                             | Metodi   | Polku          | Param. tyyppi  |
+| ---------------------------------------------------------------------------------------------------- | -------- | -------------- | -------------- |
+| [Hae liput](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/get.md)            | `GET`    | `/tickets`     | -              |
+| [Hae lippu id:llä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/getById.md) | `GET`    | `/tickets/:pk` | Integer (Long) |
+| [Lisää lippu](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/post.md)         | `POST`   | `/tickets`     | -              |
+| [Muokkaa lippua](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/put.md)       | `PUT`    | `/tickets/:pk` | Integer (Long) |
+| [Poista lippu](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/deleteById.md)  | `DELETE` | `/tickets/:pk` | Integer (Long) |

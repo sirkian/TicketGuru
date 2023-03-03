@@ -36,7 +36,7 @@ public class EventRestController {
 	}
 	
 	// Palauttaa tapahtumat joiden nimi sisältää hakusanan
-	@GetMapping("/events/search")
+	@GetMapping("/events/q")
 	public Iterable<Event> getEventsByName(@RequestParam(value = "name") String name) {
 		return eventRepository.findByEventNameContainingIgnoreCase(name);
 	}

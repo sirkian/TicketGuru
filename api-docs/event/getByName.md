@@ -4,7 +4,7 @@ Palauttaa kaikki tapahtumat, joiden nimi sisältää hakusanana käytetyn merkki
 
 Palauttaa tyhjän listan koodilla 200 OK, mikäli hakusanalla ei löydy yhtäkään tapahtumaa.
 
-**URL**: `/events/search?name=:hakusana`
+**URL**: `/events/q?name=:hakusana`
 
 **Metodi**: `GET`
 
@@ -14,7 +14,7 @@ Palauttaa tyhjän listan koodilla 200 OK, mikäli hakusanalla ei löydy yhtäkä
 
 ## Esimerkkivastaus:
 
-**Polku**: `BASE_URL/events/search?name=testi`
+**Polku**: `BASE_URL/events/q?name=testi`
 
 ```json
 [
