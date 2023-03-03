@@ -2,9 +2,11 @@ package com.example.TicketGuru.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.example.TicketGuru.domain.TicketType;
 import com.example.TicketGuru.domain.TicketTypeRepository;
@@ -35,6 +37,14 @@ public class TicketTypeRestController {
 	@PostMapping("/tickettypes")
 	public TicketType newTicketType(@RequestBody TicketType newTicketType) {
 		return typeRepository.save(newTicketType);
+	}
+	
+	// muokkaa lipputyyppiä
+	// esim http://localhost:8080/tickettypes/4 [PUT] Body: {"typeId": 4,"typeName": "LapsiMUOKATTU"}
+	@PutMapping("/tickettypes/{typeId}")
+	public TicketType editTicketType(@RequestBody TicketType editedType, @PathVariable("typeId") Long typeId) {
+		editedType.setTypeId(typeId);
+		return typeRepository.save(editedType);
 	}
 	
 	
