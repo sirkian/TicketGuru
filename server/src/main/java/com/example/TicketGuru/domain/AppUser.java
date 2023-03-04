@@ -62,6 +62,7 @@ public class AppUser {
 	private List<AppUser_Role> appUserRoles;
 	
 	public AppUser() { }
+	
 
 	public AppUser(String firstName, String lastName, String email, String password, String phoneNum,
 			String details, String address, PostalCode postalCode) {
