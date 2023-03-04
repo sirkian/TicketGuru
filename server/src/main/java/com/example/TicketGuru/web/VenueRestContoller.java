@@ -49,7 +49,7 @@ public class VenueRestContoller {
 		return venueRepository.save(editedVenue);
 	}
 	//Poistaa tapahtumapaikan id:n perusteella
-	@DeleteMapping(value = "/delete_venue/{venueId}")
+	@DeleteMapping(value = "/venues/{venueId}")
 	public Iterable<Venue> deleteVenue(@PathVariable("venueId") Long venueId) {
 		venueRepository.deleteById(venueId);
 		return venueRepository.findAll();
