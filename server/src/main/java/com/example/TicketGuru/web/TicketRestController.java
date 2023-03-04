@@ -1,6 +1,7 @@
 package com.example.TicketGuru.web;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,6 +36,8 @@ public class TicketRestController {
 	// Lisää uuden lipun myydyksi
 	@PostMapping("/tickets")
 	Ticket newTicket(@RequestBody Ticket newTicket) {
+		String verificationCode = generateVerificationCode();
+		newTicket.setVerificationCode(verificationCode);
 		return ticketRepository.save(newTicket);
 	}
 	
@@ -50,6 +53,17 @@ public class TicketRestController {
 	public Iterable<Ticket> deleteTicket(@PathVariable("ticketId") Long ticketId) {
 		ticketRepository.deleteById(ticketId);
 		return ticketRepository.findAll();
+	}
+	
+	// METODIT
+	
+	// Luodaan jokaiselle lipulle varmistuskoodi
+	private static String generateVerificationCode() {
+		UUID randomUUID = UUID.randomUUID();
+		// RandomUUIDin luoma merkkijono sisältää välillä alaviivoja, poistetaan ne
+		String code = randomUUID.toString().replaceAll("_", "");
+		// RandomUUID palauttaa 32-merkkiä pitkän merkkijonon, palautetaan 8 ekaa merkkiä
+		return code.substring(0, 8);
 	}
 	
 	

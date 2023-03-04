@@ -19,7 +19,7 @@ public class Ticket {
 	@Column(name = "ticket_id", nullable = false, updatable = false)
 	private Long ticketId;
 	
-	@Column(name = "verification_code", length = 8, nullable = false, unique = true)
+	@Column(name = "verification_code", length = 8, unique = true)
 	private String verificationCode;
 	
 	@Column(name = "used_date")
