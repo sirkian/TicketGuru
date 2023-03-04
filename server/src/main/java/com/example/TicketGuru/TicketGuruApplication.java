@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.example.TicketGuru.domain.AppUser;
 import com.example.TicketGuru.domain.AppUserRepository;
 import com.example.TicketGuru.domain.Event;
 import com.example.TicketGuru.domain.EventRepository;
@@ -96,6 +97,7 @@ public class TicketGuruApplication {
 			TicketType type2 = new TicketType("Eläkeläinen");
 			ticketTypeRepository.save(type2);
 			
+
 			/* 
 			System.out.println("** TicketTypes: **");
 			for (TicketType ticketType : ticketTypeRepository.findAll()) {
