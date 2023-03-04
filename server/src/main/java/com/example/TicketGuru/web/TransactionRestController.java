@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.TicketGuru.domain.Event;
@@ -29,6 +32,19 @@ public class TransactionRestController {
 		@GetMapping("/transactions/{transactionId}")
 		public Optional<Transaction> getTransaction(@PathVariable("transactionId") Long transactionId) {
 			return transactionRepository.findById(transactionId);
+		}
+		
+		//lisää uuden myyntitapahtuman
+		@PostMapping("/transactions")
+		Transaction newTransaction(@RequestBody Transaction newTransaction) {
+			return transactionRepository.save(newTransaction);
+		}
+		
+		// Muokkaa id:llä valittua myyntitapahtumaa
+		@PutMapping("/transactions/{transactionId}")
+		public Transaction editTransaction(@RequestBody Transaction editedTransaction, @PathVariable("transactionId") Long transactionId) {
+			editedTransaction.setTransactionId(transactionId);
+		 	return transactionRepository.save(editedTransaction);
 		}
 		
 		//Poistaa myyntitapahtuman id:n perusteella
