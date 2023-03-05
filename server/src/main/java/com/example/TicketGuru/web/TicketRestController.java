@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.TicketGuru.domain.Ticket;
@@ -31,6 +32,14 @@ public class TicketRestController {
 	@GetMapping("/tickets/{ticketId}")
 	public Optional<Ticket> getTicket(@PathVariable("ticketId") Long ticketId) {
 		return ticketRepository.findById(ticketId);
+	}
+	
+	// Palauttaa lipun tarkastuskoodin perusteella
+	// lipun tarkastuksessa voi olla hyödyllinen
+	// esim http://localhost:8080/tickets/q?name=27cfbbca
+	@GetMapping("/tickets/q")
+	public Optional<Ticket> getTicketByVerificationCode(@RequestParam(value = "name") String verificationCode){
+		return ticketRepository.findByVerificationCode(verificationCode);
 	}
 	
 	// Lisää uuden lipun myydyksi

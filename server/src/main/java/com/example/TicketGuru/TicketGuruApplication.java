@@ -12,6 +12,8 @@ import com.example.TicketGuru.domain.AppUser;
 import com.example.TicketGuru.domain.AppUserRepository;
 import com.example.TicketGuru.domain.Event;
 import com.example.TicketGuru.domain.EventRepository;
+import com.example.TicketGuru.domain.EventTicketType;
+import com.example.TicketGuru.domain.EventTicketTypeRepository;
 import com.example.TicketGuru.domain.PostalCode;
 import com.example.TicketGuru.domain.PostalCodeRepository;
 import com.example.TicketGuru.domain.RoleRepository;
@@ -21,6 +23,7 @@ import com.example.TicketGuru.domain.TicketTypeRepository;
 import com.example.TicketGuru.domain.TransactionRepository;
 import com.example.TicketGuru.domain.Venue;
 import com.example.TicketGuru.domain.VenueRepository;
+
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -45,6 +48,8 @@ public class TicketGuruApplication {
 	PostalCodeRepository postRepository;
 	@Autowired
 	VenueRepository venueRepository;
+	@Autowired
+	EventTicketTypeRepository eventTicketTypeRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TicketGuruApplication.class, args);
@@ -97,7 +102,12 @@ public class TicketGuruApplication {
 			TicketType type2 = new TicketType("Eläkeläinen");
 			ticketTypeRepository.save(type2);
 			
-
+			
+			// EVENTTICKETTYPE- välitaulu
+			
+			EventTicketType eventTicketType1 = new EventTicketType(12.50, event1, type1);
+			eventTicketTypeRepository.save(eventTicketType1);
+			
 			/* 
 			System.out.println("** TicketTypes: **");
 			for (TicketType ticketType : ticketTypeRepository.findAll()) {
