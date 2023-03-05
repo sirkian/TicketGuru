@@ -22,13 +22,13 @@ public class TicketRestController {
 	@Autowired
 	TicketRepository ticketRepository;
 	
-	// Palauttaa listan kaikista myydyistä lipuista
+	// Palauttaa listan kaikista lipuista
 	@GetMapping("/tickets")
 	public Iterable<Ticket> getTickets() {
 		return ticketRepository.findAll();
 	}
 	
-	// Palauttaa id:llä haetun myydyn lipun
+	// Palauttaa id:llä haetun lipun
 	@GetMapping("/tickets/{ticketId}")
 	public Optional<Ticket> getTicket(@PathVariable("ticketId") Long ticketId) {
 		return ticketRepository.findById(ticketId);
@@ -43,8 +43,9 @@ public class TicketRestController {
 	}
 	
 	// Lisää uuden lipun myydyksi
+	// Lisää uuden lipun a8b20a8e7ce12e054b433a08439424dda2f44ce6
 	@PostMapping("/tickets")
-	Ticket newTicket(@RequestBody Ticket newTicket) {
+	public Ticket newTicket(@RequestBody Ticket newTicket) {
 		String verificationCode = generateVerificationCode();
 		newTicket.setVerificationCode(verificationCode);
 		return ticketRepository.save(newTicket);
