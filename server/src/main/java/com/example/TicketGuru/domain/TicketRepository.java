@@ -9,4 +9,8 @@ public interface TicketRepository extends CrudRepository<Ticket, Long> {
 	
 	Optional<Ticket> findById(Long ticketId);
 	List<Ticket> findByTransaction(Transaction transaction);
+	
+	// lipun haku varmennuskoodilla
+	Optional<Ticket> findByVerificationCode(String verificationCode);
+	
 }
