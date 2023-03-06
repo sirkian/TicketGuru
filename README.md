@@ -96,7 +96,7 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost
 | [Hae kaikki tapahtumien lipputyypit](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/eventTicketType/get.md)      | `GET`  | `/eventtickettypes`            | -              |
 | [Hae yhden tapahtuman lipputyypit](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/eventTicketType/getByEvent.md) | `GET`  | `/events/:pk/eventtickettypes` | Integer (Long) |
 | [Lisää tapahtumalle lipputyyppi](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/eventTicketType/post.md)         | `POST` | `/eventtickettypes`            | -              |
-| [Muokkaa tapahtuman lipputyyppiä](TODO)                                                                                          | `PUT`  | `/eventtickettypes/:pk`        | Integer (Long) |
+| [Muokkaa tapahtuman lipputyyppiä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/eventTicketType/put.md)                                                                                          | `PUT`  | `/eventtickettypes/:pk`        | Integer (Long) |
 
 ### Liput
 
