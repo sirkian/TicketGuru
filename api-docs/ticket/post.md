@@ -14,8 +14,31 @@
 
 **Polku**: `BASE_URL/tickets`
 
-_tulossa_
+```json
+{
+  "usedDate": null,
+  "eventTicketType": { "eventTypeId": 1 },
+  "transaction": { "transactionId": 1 }
+}
+```
 
 ## Esimerkkivastaus:
 
-_tulossa_
+```json
+{
+  "ticketId": 1,
+  "verificationCode": "0a50ec7f",
+  "usedDate": null,
+  "eventTicketType": {
+    "eventTypeId": 1,
+    "price": 0.0,
+    "event": null,
+    "ticketType": null
+  },
+  "transaction": {
+    "transactionId": 1,
+    "transactionDate": null,
+    "appUser": null
+  }
+}
+```
