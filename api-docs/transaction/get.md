@@ -13,3 +13,14 @@
 ## Esimerkkivastaus:
 
 **Polku**: `BASE_URL/transactions`
+
+```json
+[
+  {  
+  "usedDate": null,  
+  "eventTicketType": {"eventTypeId": 1},  
+  "transaction": {"transactionId": 1}
+  }
+]
+```
+
