@@ -1,26 +1,24 @@
 # Näytä tapahtumapaikan kaikki tapahtumat
 
-**URL**: `/events/venue/:pk` , jossa pk on venueId.
+**URL**: `/venues/:pk/events` , jossa pk on venueId.
 
 **Metodi**: `GET`
 
 ## Vastauksen paluukoodit
 
-**Koodi**: `200 OK`
+**Koodit**: 
 
-**Koodi**: `404 NOT FOUND`
+`200 OK`
 
-Jos yritetään hakea ilman tapahtumapaikan id:tä.
+`404 NOT FOUND` Jos yritetään hakea ilman tapahtumapaikan id:tä.
 
-**Koodi**: `500 INTERNAL SERVER ERROR`
-
-Jos yritetään hakea tapahtumapaikan id:llä, jota ei ole olemassa.
+`500 INTERNAL SERVER ERROR` Jos yritetään hakea tapahtumapaikan id:llä, jota ei ole olemassa.
 
 Vastaus: `"Required path variable 'venueId' is not present."`
 
 ## Esimerkkivastaus:
 
-**Polku**: `BASE_URL/events/venue/1`
+**Polku**: `BASE_URL/venues/1/events`
 
 ```json
 [
@@ -69,7 +67,9 @@ Vastaus: `"Required path variable 'venueId' is not present."`
 
 ## Huom.
 
-Käytännössä samaan lopputulokseen päästään myös polulla `venues/1/events`, jolloin vastaus on mallia:
+~~Käytännössä samaan lopputulokseen päästään myös polulla `venues/1/events`, jolloin vastaus on mallia:~~
+
+Endpointin polku muutettu, korvaa alla olevan esimerkin.
 
 ```json
 {

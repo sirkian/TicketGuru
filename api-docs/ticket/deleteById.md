@@ -1,10 +1,8 @@
-# Poista tapahtumapaikka
+# Poista lippu ticketId:llä
 
+**URL**: `/tickets/:pk`
 
-**URL**: `/venues/:pk`
-
-
-**Metodi**: DELETE
+**Metodi**: `DELETE`
 
 ## Vastauksen paluukoodi
 
@@ -13,4 +11,3 @@
 `204 No Content`
 
 `404 Not Found`
-

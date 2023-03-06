@@ -42,14 +42,14 @@ public class VenueRestContoller {
 	}
 	
 	// muokkaa tapahtumapaikkaa, jolla valittu venueId
-	// jos tapahtumapaikkaa ei löydy ID:llä, metodi luo uuden tapahtuman valitulla id:llä
+	// jos tapahtumapaikkaa ei löydy ID:llä, metodi luo uuden tapahtuman seuraavalla vapaalla id:llä
 	@PutMapping("/venues/{venueId}")
 	Venue replaceVenue(@RequestBody Venue editedVenue, @PathVariable("venueId") Long venueId) {
 		editedVenue.setVenueId(venueId);
 		return venueRepository.save(editedVenue);
 	}
 	//Poistaa tapahtumapaikan id:n perusteella
-	@DeleteMapping(value = "/delete_venue/{venueId}")
+	@DeleteMapping("/venues/{venueId}")
 	public Iterable<Venue> deleteVenue(@PathVariable("venueId") Long venueId) {
 		venueRepository.deleteById(venueId);
 		return venueRepository.findAll();

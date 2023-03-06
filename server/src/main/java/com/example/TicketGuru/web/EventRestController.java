@@ -3,13 +3,12 @@ package com.example.TicketGuru.web;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,14 +36,14 @@ public class EventRestController {
 	}
 	
 	// Palauttaa tapahtumat joiden nimi sisältää hakusanan
-	@GetMapping("/events/search")
+	@GetMapping("/events/q")
 	public Iterable<Event> getEventsByName(@RequestParam(value = "name") String name) {
 		return eventRepository.findByEventNameContainingIgnoreCase(name);
 	}
 	
 	// Palauttaa haetun tapahtumapaikan kaikki tapahtumat
-	// Polkua voisi vielä miettiä, mutta /event/ polun alkuun tuntui loogiselta, sillä eventtejähän tässä haetaan
-	@GetMapping("/events/venue/{venueId}")
+	// Korvataan endpoint suoralla vastauksella (linkit poies)
+	@GetMapping("/venues/{venueId}/events")
 	public Iterable<Event> getEventsByVenue(@PathVariable("venueId") Venue venue) {
 		return eventRepository.findByVenue(venue);
 	}
@@ -63,7 +62,7 @@ public class EventRestController {
 	}
 	
 	//Poistaa tapahtuman id:n perusteella
-	@RequestMapping(value = "/delete_event/{eventId}", method = RequestMethod.GET)
+	@DeleteMapping("/events/{eventId}")
 	public Iterable<Event> deleteEvent(@PathVariable("eventId") Long eventId) {
 		eventRepository.deleteById(eventId);
 		return eventRepository.findAll();

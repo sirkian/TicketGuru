@@ -1,26 +1,38 @@
-# Näytä tapahtumat, joissa hakusana vastaa eventNamea
+# Muokkaa tapahtuman lipputyyppiä
 
-Palauttaa kaikki tapahtumat, joiden nimi sisältää hakusanana käytetyn merkkijonon kirjainkoosta välittämättä.
+**URL**: `/eventtickettypes/:pk`
 
-Palauttaa tyhjän listan koodilla 200 OK, mikäli hakusanalla ei löydy yhtäkään tapahtumaa.
+**Metodi**: `PUT`
 
-**URL**: `/events/q?name=:hakusana`
+## Vastauksen paluukoodit
 
-**Metodi**: `GET`
-
-## Vastauksen paluukoodi
-
-**Koodit**: 
+**Koodit**:
 
 `200 OK`
 
-## Esimerkkivastaus:
+## Esimerkkipyyntö:
 
-**Polku**: `BASE_URL/events/q?name=testi`
+**Polku**: `BASE_URL/eventtickettypes/1`
 
 ```json
-[
-  {
+{
+  "event": {
+    "eventId": 1
+  },
+  "ticketType": {
+    "typeId": 1
+  },
+  "price": 25.0
+}
+```
+
+## Esimerkkivastaus:
+
+```json
+{
+  "eventTypeId": 1,
+  "price": 25.0,
+  "event": {
     "eventId": 1,
     "eventName": "Testitapahtuma",
     "description": "Tapahtuman kuvaus",
@@ -39,6 +51,10 @@ Palauttaa tyhjän listan koodilla 200 OK, mikäli hakusanalla ei löydy yhtäkä
         "city": "Helsinki"
       }
     }
+  },
+  "ticketType": {
+    "typeId": 1,
+    "typeName": "Opiskelija-lippu"
   }
-]
+}
 ```

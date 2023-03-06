@@ -1,16 +1,10 @@
 package com.example.TicketGuru.domain;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,19 +18,13 @@ public class TicketType {
 	
 	@Column(name = "type_name", length = 25, nullable = false)
 	private String typeName;
-	
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ticketType")
-	private List<EventTicketType> eventTicketTypes;
 
 	public TicketType() {
-		super();
+
 	}
 
-	public TicketType(String typeName, List<EventTicketType> eventTicketType) {
-		super();
+	public TicketType(String typeName) {
 		this.typeName = typeName;
-		this.eventTicketTypes = eventTicketType;
 	}
 
 	public Long getTypeId() {
@@ -53,14 +41,6 @@ public class TicketType {
 
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
-	}
-
-	public List<EventTicketType> getEventTicketType() {
-		return eventTicketTypes;
-	}
-
-	public void setEventTicketType(List<EventTicketType> eventTicketType) {
-		this.eventTicketTypes = eventTicketType;
 	}
 
 	@Override
