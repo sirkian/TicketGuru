@@ -6,11 +6,11 @@
 
 ## Vastauksen paluukoodit
 
-**Koodi**: `200 OK`
+**Koodit**: 
 
-**Tai**
+`200 OK`
 
-**Koodi**: `404 NOT FOUND`
+`404 NOT FOUND`
 
 ## Esimerkkivastaus:
 
