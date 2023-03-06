@@ -6,7 +6,7 @@
 
 ## Vastauksen paluukoodit
 
-**Koodi**: 
+**Koodit**: 
 
 `204 No Content`
 
