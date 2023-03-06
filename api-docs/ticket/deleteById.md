@@ -12,12 +12,3 @@
 
 `404 Not Found`
 
-## Esimerkkipyyntö:
-
-**Polku**: `BASE_URL/tickets/1`
-
-_tulossa_
-
-## Esimerkkivastaus:
-
-_tulossa_
