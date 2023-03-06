@@ -4,7 +4,7 @@
 
 **Metodi**: `PUT`
 
-## Vastauksen paluukoodit
+## Vastauksen paluukoodi
 
 **Koodit**:
 
