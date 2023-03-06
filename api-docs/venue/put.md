@@ -1,10 +1,12 @@
-# Muokkaa tapahtumaa
+# Muokkaa tapahtumapaikkaa
 
 **URL**: `/venues/:pk`
 
 **Metodi**: `PUT`
 
-#### Jos id ei löydy tietokannasta, metodi luo uuden tapahtuman seuraavalle vapaalle id:lle
+#### Jos id ei löydy tietokannasta, metodi luo uuden tapahtumapaikan seuraavalle vapaalle id:lle
+
+## Vastauksen paluukoodi
 
 **Koodit**:
 
@@ -18,7 +20,7 @@
 
 ## Esimerkkipyyntö:
 
-**Polku**: `BASE_URL/venues/1`
+**Polku**: `BASE_URL/venues/3`
 
 ```json
 {
