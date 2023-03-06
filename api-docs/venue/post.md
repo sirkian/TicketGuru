@@ -2,9 +2,9 @@
 
 **URL**: `/venues`
 
-**Metodi:**: `POST`
+**Metodi**: `POST`
 
-### Vastauksen paluukoodi
+## Vastauksen paluukoodi
 
 **Koodit**:
 
@@ -16,7 +16,7 @@
 
 `400 Bad request`
 
-## Esimerkki pyyntö:
+## Esimerkkipyyntö:
 
 ```json
 {
