@@ -10,7 +10,9 @@ Palauttaa tyhjän listan koodilla 200 OK, mikäli hakusanalla ei löydy yhtäkä
 
 ## Vastauksen paluukoodi
 
-**Koodi**: `200 OK`
+**Koodit**: 
+
+`200 OK`
 
 ## Esimerkkivastaus:
 
