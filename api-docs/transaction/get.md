@@ -1,4 +1,4 @@
-# Näytä kaikki tapahtumat
+# Näytä kaikki myyntitapahtumat
 
 **URL**: `/transactions`
 
