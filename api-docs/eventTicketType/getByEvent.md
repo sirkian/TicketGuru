@@ -6,15 +6,13 @@
 
 ## Vastauksen paluukoodit
 
-**Koodi**: `200 OK`
+**Koodit**: 
 
-**Koodi**: `404 NOT FOUND`
+`200 OK`
 
-Jos yritetään hakea ilman tapahtuman id:tä.
+`404 NOT FOUND` Jos yritetään hakea ilman tapahtuman id:tä.
 
-**Koodi**: `500 INTERNAL SERVER ERROR`
-
-Jos yritetään hakea tapahtuman id:llä, jota ei ole olemassa.
+`500 INTERNAL SERVER ERROR` Jos yritetään hakea tapahtuman id:llä, jota ei ole olemassa.
 
 Vastaus: `"Required path variable 'eventId' is not present."`
 
