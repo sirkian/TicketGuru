@@ -1,11 +1,13 @@
 # Poista tapahtumapaikka
 
-**URL**: `/venue_delete`
+**URL**: `/venues/:pk`
 
 **Metodi**: DELETE
 
 ## Vastauksen paluukoodi
 
-**Koodi**: `200 OK`
+**Koodit**:
 
+`204 No Content`
 
+`404 Not Found`
