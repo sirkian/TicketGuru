@@ -87,7 +87,7 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost
 | [Hae tapahtumapaikka id:llä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/getById.md) | `GET`    | `/venues/:pk`       | Integer (Long) |
 | [Lisää tapahtumapaikka](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/post.md)         | `POST`   | `/venues`           | -              |
 | [Muokkaa tapahtumapaikkaa](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/put.md)       | `PUT`    | `/venues/:pk`       | Integer (Long) |
-| [Poista tapahtumapaikka](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/delete.md)      | `DELETE` | `/delete_venue/:pk` | Integer (Long) |
+| [Poista tapahtumapaikka](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/venue/deleteById.md)      | `DELETE` | `/venues/:pk` | Integer (Long) |
 
 ### Tapahtuman lipputyypit
 
