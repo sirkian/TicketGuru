@@ -1,6 +1,8 @@
 # Poista tapahtumapaikka
 
+
 **URL**: `/venues/:pk`
+
 
 **Metodi**: DELETE
 
@@ -11,3 +13,4 @@
 `204 No Content`
 
 `404 Not Found`
+
