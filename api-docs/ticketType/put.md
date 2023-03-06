@@ -1,4 +1,4 @@
-# Muokka id:llä haettua lipputyyppiä
+# Muokkaa id:llä haettua lipputyyppiä
 
 **URL**: `/tickettypes/:pk`
 
