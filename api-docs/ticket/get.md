@@ -1,4 +1,4 @@
-# Näytä kaikki myydyt liput
+# Näytä kaikki liput
 
 **URL**: `/tickets`
 
@@ -6,7 +6,9 @@
 
 ## Vastauksen paluukoodi
 
-**Koodi**: `200 OK`
+**Koodit**: 
+
+`200 OK`
 
 ## Esimerkkivastaus:
 
