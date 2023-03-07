@@ -25,7 +25,7 @@ public class Transaction {
 	@Column(name = "transaction_id", nullable = false, updatable = false)
 	private Long transactionId;
 	
-	@Column(name = "transaction_date", nullable = false)
+	@Column(name = "transaction_date")
 	private LocalDateTime transactionDate;
 	
 	// Käytetään listaa, koska lippuja voi olla yksi tai useampi.

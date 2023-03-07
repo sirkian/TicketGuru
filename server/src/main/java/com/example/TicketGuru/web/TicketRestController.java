@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.TicketGuru.domain.Ticket;
 import com.example.TicketGuru.domain.TicketRepository;
+import com.example.TicketGuru.domain.Transaction;
 
 @RestController
 public class TicketRestController {
@@ -40,6 +41,11 @@ public class TicketRestController {
 	@GetMapping("/tickets/q")
 	public Optional<Ticket> getTicketByVerificationCode(@RequestParam(value = "name") String verificationCode){
 		return ticketRepository.findByVerificationCode(verificationCode);
+	}
+	
+	@GetMapping("/transactions/{transactionId}/tickets")
+	public Iterable<Ticket> getTicketByTransaction(@PathVariable("transactionId") Transaction transaction) {
+		return ticketRepository.findByTransaction(transaction);
 	}
 	
 	// Lisää uuden lipun myydyksi

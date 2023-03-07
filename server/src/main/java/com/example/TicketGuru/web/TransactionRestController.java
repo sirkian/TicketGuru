@@ -1,5 +1,6 @@
 package com.example.TicketGuru.web;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.TicketGuru.domain.Event;
-import com.example.TicketGuru.domain.Ticket;
 import com.example.TicketGuru.domain.Transaction;
 import com.example.TicketGuru.domain.TransactionRepository;
 
@@ -34,9 +33,11 @@ public class TransactionRestController {
 			return transactionRepository.findById(transactionId);
 		}
 		
-		//lisää uuden myyntitapahtuman
+		// Lisää uuden myyntitapahtuman
+		// Lisää aikaleiman myyntitapahtumaan ennen tallentamista
 		@PostMapping("/transactions")
-		Transaction newTransaction(@RequestBody Transaction newTransaction) {
+		public Transaction newTransaction(@RequestBody Transaction newTransaction) {
+			newTransaction.setTransactionDate(LocalDateTime.now());
 			return transactionRepository.save(newTransaction);
 		}
 		
