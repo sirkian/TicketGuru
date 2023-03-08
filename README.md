@@ -113,3 +113,12 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost
 | [Lisää lippu](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/post.md)         | `POST`   | `/tickets`     | -              |
 | [Muokkaa lippua](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/put.md)       | `PUT`    | `/tickets/:pk` | Integer (Long) |
 | [Poista lippu](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/deleteById.md)  | `DELETE` | `/tickets/:pk` | Integer (Long) |
+
+### Postinumerot
+
+| Toiminto                                                                                             | Metodi   | Polku          | Param. tyyppi  |
+| ---------------------------------------------------------------------------------------------------- | -------- | -------------- | -------------- |
+| [Hae postinumerot](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/postalCode/get.md) | `GET`    | `/postalcodes`     | -              |
+| [Hae postinumeroita kaupungin nimellä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/postalCode/getByName.md) | `GET`    | `/postalcodes/q?city=:hakusana` | String |
+| [Lisää postinumero](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/postalCode/post.md)         | `POST`   | `/postalcodes`     | -              |
+| [Muokkaa postinumeroa](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/postalCode/put.md)       | `PUT`    | `/postalcodes/:pk` | String |
