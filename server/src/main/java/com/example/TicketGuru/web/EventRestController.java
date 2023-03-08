@@ -50,7 +50,7 @@ public class EventRestController {
 	
 	//lisää uuden tapahtuman
 	@PostMapping("/events")
-	Event newEvent(@RequestBody Event newEvent) {
+	public Event newEvent(@RequestBody Event newEvent) {
 		return eventRepository.save(newEvent);
 	}
 	

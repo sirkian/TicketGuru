@@ -31,7 +31,7 @@ public class RoleRestController {
 		
 	//Lisää roolin
 		@PostMapping("/roles")
-		Role newRole(@RequestBody Role newRole) {
+		public Role newRole(@RequestBody Role newRole) {
 			return rolerepository.save(newRole);
 		}
 		
