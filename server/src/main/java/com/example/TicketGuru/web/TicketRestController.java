@@ -21,7 +21,7 @@ import com.example.TicketGuru.domain.Transaction;
 public class TicketRestController {
 
 	@Autowired
-	TicketRepository ticketRepository;
+	private TicketRepository ticketRepository;
 	
 	// Palauttaa listan kaikista lipuista
 	@GetMapping("/tickets")

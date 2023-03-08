@@ -30,7 +30,7 @@ public class Transaction {
 	
 	// Käytetään listaa, koska lippuja voi olla yksi tai useampi.
 	@JsonIgnore  
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "transaction")
+	@OneToMany(mappedBy = "transaction")
 	private List<Ticket> tickets;
 	
 	
