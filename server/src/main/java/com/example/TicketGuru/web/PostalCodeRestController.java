@@ -27,7 +27,7 @@ public class PostalCodeRestController {
 	// Palauttaa kaikki postinumerot joiden kaupunki sisältää hakusanan
 	@GetMapping("/postalcodes/q")
 	public Iterable<PostalCode> getPostalCodesByName(@RequestParam(value = "city") String city) {
-		return pcrepository.findByPostalCodeCityContainingIgnoreCase(city);
+		return pcrepository.findByCityContainingIgnoreCase(city);
 	}
 	
 	// Lisää uuden postinumeron
