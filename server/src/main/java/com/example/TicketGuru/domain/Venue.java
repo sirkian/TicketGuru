@@ -14,36 +14,42 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Venue {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "venue_id", nullable = false, updatable = false)
 	private Long venueId;
-	
-	@Column(name = "venue_name", length=50)
+
+	@Size(min = 2, max = 50)
+	@Column(name = "venue_name", length = 50)
 	private String venueName;
-	
-	@Column(name = "venue_description", length=500)
+
+	@Size(min = 5, max = 50)
+	@Column(name = "venue_description", length = 500)
 	private String venueDescription;
-	
-	@Column(name = "address", length=250)
+
+	@Size(min = 5, max = 250)
+	@Column(name = "address", length = 250)
 	private String address;
-	
+
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "venue")
 	private List<Event> events;
-	
+
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "postalCode")
 	private PostalCode postalCode;
-	
+
 	public Venue() {
-		
+
 	}
-	
+
 	/*
 	 * // konstruktori testikäyttöön public Venue(String venueName) { super();
 	 * this.venueName = venueName; }
@@ -70,8 +76,7 @@ public class Venue {
 	 * this.address = address; //this.postalCode = postalCode;
 	 * 
 	 * }
-	 */		
-	
+	 */
 
 	public Long getVenueId() {
 		return venueId;
@@ -105,8 +110,6 @@ public class Venue {
 		this.address = address;
 	}
 
-	
-
 	public PostalCode getPostalCode() {
 		return postalCode;
 	}
@@ -128,11 +131,5 @@ public class Venue {
 		return "Venue [venueId=" + venueId + ", venueName=" + venueName + ", venueDescription=" + venueDescription
 				+ ", address=" + address + ", postalCode=" + postalCode + "]";
 	}
-
-	
-	
-	
-	
-	
 
 }
