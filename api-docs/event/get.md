@@ -4,11 +4,15 @@
 
 **Metodi**: `GET`
 
-## Vastauksen paluukoodi
+## Vastauksen paluukoodit
 
-**Koodit**: 
+**Koodit**:
 
 `200 OK`
+
+`404 NOT FOUND`
+
+> `"message": "Tapahtumia ei löytynyt"`
 
 ## Esimerkkivastaus:
 

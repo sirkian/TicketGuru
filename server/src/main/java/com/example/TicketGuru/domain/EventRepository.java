@@ -14,5 +14,5 @@ public interface EventRepository extends CrudRepository<Event, Long> {
 	
 	// Hakee kaikki tapahtumapaikan tapahtumat
 	// Sama toiminto kuin venues/id/events, mutta nätimpi formaatti responsessa
-	Iterable<Event> findByVenue(Venue venue);
+	Iterable<Event> findByVenue(Optional<Venue> optional);
 }

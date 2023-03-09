@@ -10,9 +10,13 @@
 
 `200 OK`
 
-`201 Created`
+`400 BAD REQUEST`
 
-`204 No content`
+> `"message": "Validation failed for object='event'. Error count: n"`
+
+`404 NOT FOUND`
+
+> `"message": "Annetulla id:llä ei ole olemassa tapahtumaa"`
 
 ## Esimerkkipyyntö:
 
