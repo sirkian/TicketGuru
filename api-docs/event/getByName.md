@@ -8,11 +8,15 @@ Palauttaa tyhjän listan koodilla 200 OK, mikäli hakusanalla ei löydy yhtäkä
 
 **Metodi**: `GET`
 
-## Vastauksen paluukoodi
+## Vastauksen paluukoodit
 
-**Koodit**: 
+**Koodit**:
 
 `200 OK`
+
+`404 NOT FOUND`
+
+> `"message": "Hakusanalla ei löytynyt tapahtumia"`
 
 ## Esimerkkivastaus:
 

@@ -36,9 +36,10 @@ public class EventRestController {
 	// Palauttaa kaikki järjestelmään tallennetut tapahtumat
 	@GetMapping("/events")
 	public Iterable<Event> getAllEvents() {
+		// Haetaan kaikki tapahtumat listaan helpomman käsittelyn takia
 		List<Event> events = (List<Event>) eventRepository.findAll();
 		if (events.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Järjestelmässä ei ole ainuttakaan tapahtumaa");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tapahtumia ei löytynyt");
 		}
 		return events;
 	}
@@ -66,13 +67,19 @@ public class EventRestController {
 	// Palauttaa haetun tapahtumapaikan kaikki tapahtumat
 	// Korvataan endpoint suoralla vastauksella (linkit poies)
 	@GetMapping("/venues/{venueId}/events")
-	public Iterable<Event> getEventsByVenue(@PathVariable("venueId") Venue venue) {	
-		// HEITTÄÄ VIELÄ 500 /venues/99/events
+	public Iterable<Event> getEventsByVenue(@PathVariable("venueId") Long venueId) {	
+		Optional<Venue> venue = venueRepository.findById(venueId);
+		if (venue.isEmpty()) {
+			// Heitetään 404, mikäli annetulla idllä ei ole tapahtumapaikkaa (esim. /venues/99/events)
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tapahtumapaikkaa ei ole olemassa");
+		}
 		List<Event> events = (List<Event>) eventRepository.findByVenue(venue);
 		if (events.isEmpty()) {
+			// Heitetään 404, mikäli tapahtumapaikalla ei ole tapahtumia
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Haetulla tapahtumapaikalla ei ole tapahtumia");			
 		}
-		return events;		
+		return events;	
+			
 	}
 	
 	//lisää uuden tapahtuman
@@ -84,7 +91,11 @@ public class EventRestController {
 	
 	// Muokkaa id:llä valittua tapahtumaa
 	@PutMapping("/events/{eventId}")
-	public Event editEvent(@RequestBody Event editedEvent, @PathVariable("eventId") Long eventId) {
+	public Event editEvent(@Valid @RequestBody Event editedEvent, @PathVariable("eventId") Long eventId) {
+		Optional<Event> event = eventRepository.findById(eventId);
+		if (event.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole olemassa tapahtumaa");		
+		}
 		editedEvent.setEventId(eventId);
 	 	return eventRepository.save(editedEvent);
 	}
@@ -92,8 +103,18 @@ public class EventRestController {
 	//Poistaa tapahtuman id:n perusteella
 	@DeleteMapping("/events/{eventId}")
 	public Iterable<Event> deleteEvent(@PathVariable("eventId") Long eventId) {
-		eventRepository.deleteById(eventId);
-		return eventRepository.findAll();
+		try {
+			eventRepository.deleteById(eventId);
+		} catch (Exception e) {
+			// Heitetään 404 jos poisto epäonnistui, tuskin muita syitä kun olematon id 
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole olemassa tapahtumaa");		
+		}
+		List<Event> events = (List<Event>) eventRepository.findAll();
+		if (events.isEmpty()) {
+			// Jos poistettiin viimeinen tapahtuma, palautetaan 204 
+			throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Poisto onnistui, ei tapahtumia");
+		}
+		return events;
 	}
 	
 	
