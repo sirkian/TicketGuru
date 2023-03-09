@@ -122,3 +122,11 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost
 | [Hae postinumeroita kaupungin nimellä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/postalCode/getByName.md) | `GET`    | `/postalcodes/q?city=:hakusana` | String |
 | [Lisää postinumero](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/postalCode/post.md)         | `POST`   | `/postalcodes`     | -              |
 | [Muokkaa postinumeroa](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/postalCode/put.md)       | `PUT`    | `/postalcodes/:pk` | String |
+
+### Roolit
+
+| Toiminto                                                                                             | Metodi   | Polku          | Param. tyyppi  |
+| ---------------------------------------------------------------------------------------------------- | -------- | -------------- | -------------- |
+| [Hae roolit](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/role/get.md) | `GET`    | `/roles`     | -              |
+| [Hae rooli id:llä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/role/getById.md) | `GET`    | `/roles/:pk` | Integer (Long) |
+| [Lisää rooli](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/role/post.md)         | `POST`   | `/roles`     | -              |
