@@ -29,7 +29,7 @@ public class Venue {
 	@Column(name = "venue_name", length = 50)
 	private String venueName;
 
-	@Size(min = 5, max = 50)
+	@Size(min = 5, max = 500)
 	@Column(name = "venue_description", length = 500)
 	private String venueDescription;
 

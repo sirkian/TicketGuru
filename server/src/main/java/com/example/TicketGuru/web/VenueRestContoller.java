@@ -36,14 +36,14 @@ public class VenueRestContoller {
 	
 	// lisää uuden tapahtumapaikan
 	@PostMapping("/venues")
-	Venue newVenue(@Valid @RequestBody Venue newVenue) {
+	public Venue newVenue(@Valid @RequestBody Venue newVenue) {
 		return venueRepository.save(newVenue);
 	}
 	
 	// muokkaa tapahtumapaikkaa, jolla valittu venueId
 	// jos tapahtumapaikkaa ei löydy ID:llä, metodi luo uuden tapahtuman seuraavalla vapaalla id:llä
 	@PutMapping("/venues/{venueId}")
-	Venue replaceVenue(@Valid @RequestBody Venue editedVenue, @PathVariable("venueId") Long venueId) {
+	public Venue replaceVenue(@Valid @RequestBody Venue editedVenue, @PathVariable("venueId") Long venueId) {
 		editedVenue.setVenueId(venueId);
 		return venueRepository.save(editedVenue);
 	}
