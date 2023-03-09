@@ -15,6 +15,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 
 @Entity
@@ -25,30 +29,35 @@ public class Event {
 	@Column(name = "event_id", nullable = false, updatable = false)
 	private Long eventId;
 	
-	@Column(name = "event_name", length=100)
+	@NotBlank
+	@Size(max = 250)
+	@Column(name = "event_name")
 	private String eventName;
 	
-	@Column(length = 450)
+	@Size(max = 450)
 	private String description;
 	
 	// Muutettu LocalDate LocalDateTimeksi, että saadaan kellonajat mukaan
+	@NotNull
 	@Column(name = "start_time")
 	private LocalDateTime startTime;
 	
+	@NotNull
 	@Column(name = "end_time")
 	private LocalDateTime endTime;
 	
-	
+	@Min(value = 1)
 	@Column(name = "amount_tickets")
 	private int amountTickets;
 	
+	@NotNull
 	@Column(name = "presale_ends")
 	private LocalDateTime presaleEnds;
 	
 	// Voiko oletusarvon laittaa näin suoraan?
 	private boolean cancelled = false;
 	
-	
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "venue_id")
 	private Venue venue;
