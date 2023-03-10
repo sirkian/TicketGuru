@@ -31,12 +31,6 @@ public class AppUserRestController {
 	public Optional<AppUser> getAppUser(@PathVariable("userId") Long userId) {
 		return auRepository.findById(userId);
 	}
-	
-	// Palauttaa id:llä valitun roolin kaikki käyttäjät
-	@GetMapping("/roles/{roleId}/appusers")
-	public Iterable<AppUser> getAppUsersByRole(@PathVariable("roleId") Role role) {
-		return auRepository.findByRole(role);
-	}
 
 	// Lisää uuden käyttäjän
 	@PostMapping("/appusers")
@@ -52,7 +46,8 @@ public class AppUserRestController {
 	}
 
 	// Poistaa id:llä haetun käyttäjän
-	// Jätin vielä kommentteihin, pitäisikö tähänkin miettiä sitä soft deleteä mielummin?
+	// Jätin vielä kommentteihin, pitäisikö tähänkin miettiä sitä soft deleteä
+	// mielummin?
 	// @DeleteMapping("/appusers/{userId}")
 	// public Iterable<AppUser> deleteAppUser(@PathVariable("userID") Long userId) {
 	// auRepository.deleteById(userId);
