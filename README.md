@@ -130,3 +130,12 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost
 | [Hae roolit](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/role/get.md) | `GET`    | `/roles`     | -              |
 | [Hae rooli id:llä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/role/getById.md) | `GET`    | `/roles/:pk` | Integer (Long) |
 | [Lisää rooli](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/role/post.md)         | `POST`   | `/roles`     | -              |
+
+### Käyttäjät
+
+| Toiminto                                                                                             | Metodi   | Polku          | Param. tyyppi  |
+| ---------------------------------------------------------------------------------------------------- | -------- | -------------- | -------------- |
+| [Hae käyttäjät](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/appUser/get.md)            | `GET`    | `/appusers`     | -              |
+| [Hae käyttäjä id:llä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/appUser/getById.md) | `GET`    | `/appusers/:pk` | Integer (Long) |
+| [Lisää käyttäjä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/appUser/post.md)         | `POST`   | `/appusers`     | -              |
+| [Muokkaa käyttäjää](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/appUser/put.md)       | `PUT`    | `/appusers/:pk` | Integer (Long) |
