@@ -10,6 +10,10 @@
 
 `200 OK`
 
+`404 NOT FOUND`
+
+> `"message": "Lippuja ei löytynyt"`
+
 ## Esimerkkivastaus:
 
 **Polku**: `BASE_URL/tickets`

@@ -1,9 +1,11 @@
 package com.example.TicketGuru.web;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,11 +13,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.TicketGuru.domain.Ticket;
 import com.example.TicketGuru.domain.TicketRepository;
 import com.example.TicketGuru.domain.Transaction;
+import com.example.TicketGuru.domain.TransactionRepository;
+
+import jakarta.validation.Valid;
 
 @RestController
 public class TicketRestController {
@@ -23,16 +30,27 @@ public class TicketRestController {
 	@Autowired
 	private TicketRepository ticketRepository;
 	
+	@Autowired 
+	private TransactionRepository transactionRepository;
+	
 	// Palauttaa listan kaikista lipuista
 	@GetMapping("/tickets")
 	public Iterable<Ticket> getTickets() {
-		return ticketRepository.findAll();
+		List<Ticket> tickets = (List<Ticket>) ticketRepository.findAll();
+		if (tickets.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Lippuja ei löytynyt");
+		}
+		return tickets;
 	}
 	
 	// Palauttaa id:llä haetun lipun
 	@GetMapping("/tickets/{ticketId}")
 	public Optional<Ticket> getTicket(@PathVariable("ticketId") Long ticketId) {
-		return ticketRepository.findById(ticketId);
+		Optional<Ticket> ticket = ticketRepository.findById(ticketId);
+		if (ticket.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Lippua ei löytynyt annetulla id:llä");
+		}
+		return ticket;
 	}
 	
 	// Palauttaa lipun tarkastuskoodin perusteella
@@ -40,35 +58,77 @@ public class TicketRestController {
 	// esim http://localhost:8080/tickets/q?name=27cfbbca
 	@GetMapping("/tickets/q")
 	public Optional<Ticket> getTicketByVerificationCode(@RequestParam(value = "name") String verificationCode){
-		return ticketRepository.findByVerificationCode(verificationCode);
+		Optional<Ticket> ticket = ticketRepository.findByVerificationCode(verificationCode);
+		if (ticket.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Koodia vastaavaa lippua ei löytynyt");
+		}
+		return ticket;
 	}
 	
 	@GetMapping("/transactions/{transactionId}/tickets")
-	public Iterable<Ticket> getTicketByTransaction(@PathVariable("transactionId") Transaction transaction) {
-		return ticketRepository.findByTransaction(transaction);
+	public Iterable<Ticket> getTicketByTransaction(@PathVariable("transactionId") Long transactionId) {
+		// Haetaan myyntitapahtuma parametrinä tulleella id:llä
+		Optional<Transaction> transaction = transactionRepository.findById(transactionId);
+		if (transaction.isEmpty()) {
+			// Jos myyntitapahtumaa ei ole, heitetään 404
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Myyntitapahtumaa ei ole olemassa");
+		}
+		// Haetaan liput myyntitapahtuman perusteella
+		List<Ticket> tickets = (List<Ticket>) ticketRepository.findByTransaction(transaction);
+		if (tickets.isEmpty()) {
+			// Jos lippuja ei ole, 404
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Myyntitapahtumalla ei ole lippuja");
+		}
+		return tickets;
 	}
 	
 	// Lisää uuden lipun myydyksi
 	// Lisää uuden lipun a8b20a8e7ce12e054b433a08439424dda2f44ce6
 	@PostMapping("/tickets")
-	public Ticket newTicket(@RequestBody Ticket newTicket) {
+	@ResponseStatus(HttpStatus.CREATED)
+	public Ticket newTicket(@Valid @RequestBody Ticket newTicket) {
+		// Kutsutaan metodia jolla luodaan tarkastuskoodi
 		String verificationCode = generateVerificationCode();
-		newTicket.setVerificationCode(verificationCode);
-		return ticketRepository.save(newTicket);
+		try {
+			newTicket.setVerificationCode(verificationCode);
+			return ticketRepository.save(newTicket);
+		} catch (Exception e) {
+			// Heitetään 400 jos menee validoinnista läpi, muttei silti onnistu (esim eventId 999)
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}	
 	}
 	
 	// Muokkaa id:llä valittua lippua
 	@PutMapping("/tickets/{ticketId}")
-	public Ticket editTicket(@RequestBody Ticket editedTicket, @PathVariable("ticketId") Long ticketId) {
-		editedTicket.setTicketId(ticketId);
-		return ticketRepository.save(editedTicket);
+	public Ticket editTicket(@Valid @RequestBody Ticket editedTicket, @PathVariable("ticketId") Long ticketId) {
+		Optional<Ticket> ticket = ticketRepository.findById(ticketId);
+		if (ticket.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole olemassa lippua");		
+		}
+		try {
+			editedTicket.setTicketId(ticketId);
+			return ticketRepository.save(editedTicket);
+		} catch (Exception e) {
+			// Heitetään 404 jos eventIdtä ei löydy
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarkista viiteavaimet: " + e.getMessage());
+		}
 	}
 	
 	// Poistaa id:llä haetun lipun esim. virhemyyntitilanteessa
 	@DeleteMapping("/tickets/{ticketId}")
 	public Iterable<Ticket> deleteTicket(@PathVariable("ticketId") Long ticketId) {
-		ticketRepository.deleteById(ticketId);
-		return ticketRepository.findAll();
+		try {
+			ticketRepository.deleteById(ticketId);
+		} catch (Exception e) {
+			// Heitetään 404 jos poisto epäonnistui, tuskin muita syitä kun olematon id 
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole olemassa lippua");	
+		}
+		List<Ticket> tickets = (List<Ticket>) ticketRepository.findAll();
+		if (tickets.isEmpty()) {
+			// Palautetaan 204 jos poistettiin viimeinen lippu, eikä enää ole listattavaa
+			throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+		}
+		return tickets;
 	}
 	
 	// METODIT
