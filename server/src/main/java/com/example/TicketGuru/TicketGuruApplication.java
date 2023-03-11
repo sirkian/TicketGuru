@@ -60,19 +60,19 @@ public class TicketGuruApplication {
 		return (args) -> {
 
 			// POSTINUMEROT
-
-			
+				
+			/*
 			  PostalCode postcode1 = new PostalCode("00100", "Helsinki");
 			  postRepository.save(postcode1); PostalCode postcode2 = new
 			  PostalCode("33101", "Tampere"); postRepository.save(postcode2);
 			 
 
-			/*
+			
 			 * TO STRING AIHEUTTAA ONGELMIA TÄSSÄ System.out.println("** PostalCodes: **");
 			 * for (PostalCode postalCode : postRepository.findAll()) {
 			 * System.out.println("PostalCode: " + postalCode.toString()); }
 			 * System.out.println("");
-			 */
+			 
 			// TAPAHTUMAPAIKAT
 
 			
@@ -116,7 +116,7 @@ public class TicketGuruApplication {
 			
 			  EventTicketType eventTicketType1 = new EventTicketType(12.50, event1, type1);
 			  eventTicketTypeRepository.save(eventTicketType1);
-			 
+			 */
 
 			/*
 			 * System.out.println("** TicketTypes: **"); for (TicketType ticketType :
