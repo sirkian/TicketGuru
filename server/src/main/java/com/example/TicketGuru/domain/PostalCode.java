@@ -24,7 +24,7 @@ public class PostalCode {
     @Column(name = "postal_id", nullable = false, updatable = false, unique = true)
     private String postalCode;
 
-    @Pattern(regexp = "[a-zA-ZåäöÅÄÖ -]{1,100}")
+    @Pattern(regexp = "[a-zA-ZåäöÅÄÖ -]{1,100}", message = "numerot eivät ole sallittuja")
     @Column(name = "city")
     private String city;
     
