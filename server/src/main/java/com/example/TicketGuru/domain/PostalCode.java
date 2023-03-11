@@ -9,7 +9,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Pattern;
+
 
 @Entity
 public class PostalCode {
@@ -19,11 +20,11 @@ public class PostalCode {
     // Ja joutu muuttaa tyypin Stringiks, kokonaislukuna 00100 tulostu ja tallentu kantaan lukuna 64 :D
     // https://stackoverflow.com/a/7218803
     
-    @Size(min = 5, max = 5)
+    @Pattern(regexp = "[0-9]{5}")
     @Column(name = "postal_id", nullable = false, updatable = false, unique = true)
     private String postalCode;
 
-    @Size(min = 1, max = 100)
+    @Pattern(regexp = "[a-zA-ZåäöÅÄÖ -]{1,100}")
     @Column(name = "city")
     private String city;
     
