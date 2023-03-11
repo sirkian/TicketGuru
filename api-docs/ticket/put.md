@@ -10,9 +10,11 @@
 
 `200 OK`
 
-`201 Created`
+`400 BAD REQUEST`
 
-`204 No content`
+`404 NOT FOUND`
+
+> `"message": "Tarkista viiteavaimet: Unable to find com.example.TicketGuru.domain.EventTicketType with id 99"`
 
 ## Esimerkkipyyntö:
 

@@ -18,6 +18,8 @@
 
 > `"message": "Annetulla id:llä ei ole olemassa tapahtumaa"`
 
+> `"message": "Tarkista viiteavaimet: Unable to find com.example.TicketGuru.domain.Venue with id 99"`
+
 ## Esimerkkipyyntö:
 
 **Polku**: `BASE_URL/events/1`

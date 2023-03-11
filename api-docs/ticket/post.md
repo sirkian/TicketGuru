@@ -10,6 +10,8 @@
 
 `201 Created`
 
+`400 BAD REQUEST`
+
 ## Esimerkkipyyntö:
 
 **Polku**: `BASE_URL/tickets`

@@ -105,18 +105,18 @@ public class TicketGuruApplication {
 
 			// LIPPUTYYPIT
 
-			/*
-			 * TicketType type1 = new TicketType("Opiskelija-lippu");
-			 * ticketTypeRepository.save(type1); TicketType type2 = new
-			 * TicketType("Eläkeläinen"); ticketTypeRepository.save(type2);
-			 */
+			
+			  TicketType type1 = new TicketType("Opiskelija-lippu");
+			  ticketTypeRepository.save(type1); TicketType type2 = new
+			  TicketType("Eläkeläinen"); ticketTypeRepository.save(type2);
+			 
 
 			// EVENTTICKETTYPE- välitaulu
 
-			/*
-			 * EventTicketType eventTicketType1 = new EventTicketType(12.50, event1, type1);
-			 * eventTicketTypeRepository.save(eventTicketType1);
-			 */
+			
+			  EventTicketType eventTicketType1 = new EventTicketType(12.50, event1, type1);
+			  eventTicketTypeRepository.save(eventTicketType1);
+			 
 
 			/*
 			 * System.out.println("** TicketTypes: **"); for (TicketType ticketType :

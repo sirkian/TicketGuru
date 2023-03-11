@@ -10,6 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Ticket {
@@ -19,16 +21,18 @@ public class Ticket {
 	@Column(name = "ticket_id", nullable = false, updatable = false)
 	private Long ticketId;
 	
-	@Column(name = "verification_code", length = 8, unique = true)
+	@Column(name = "verification_code", unique = true)
 	private String verificationCode;
 	
 	@Column(name = "used_date")
 	private LocalDate usedDate;
 	
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "event_type_id")
 	private EventTicketType eventTicketType;
 	
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "transaction_id")
 	private Transaction transaction;

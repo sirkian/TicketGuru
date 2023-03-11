@@ -86,7 +86,11 @@ public class EventRestController {
 	@PostMapping("/events")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Event newEvent(@Valid @RequestBody Event newEvent) {
-		return eventRepository.save(newEvent);
+		try {
+			return eventRepository.save(newEvent);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
 	}
 	
 	// Muokkaa id:llä valittua tapahtumaa
@@ -96,8 +100,12 @@ public class EventRestController {
 		if (event.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole olemassa tapahtumaa");		
 		}
-		editedEvent.setEventId(eventId);
-	 	return eventRepository.save(editedEvent);
+		try {
+			editedEvent.setEventId(eventId);
+		 	return eventRepository.save(editedEvent);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarkista viiteavaimet: " + e.getMessage());
+		}
 	}
 	
 	//Poistaa tapahtuman id:n perusteella
@@ -112,7 +120,7 @@ public class EventRestController {
 		List<Event> events = (List<Event>) eventRepository.findAll();
 		if (events.isEmpty()) {
 			// Jos poistettiin viimeinen tapahtuma, palautetaan 204 
-			throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Poisto onnistui, ei tapahtumia");
+			throw new ResponseStatusException(HttpStatus.NO_CONTENT);
 		}
 		return events;
 	}
