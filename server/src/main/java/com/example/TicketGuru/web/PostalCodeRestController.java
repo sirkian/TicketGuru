@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.TicketGuru.domain.PostalCode;
 import com.example.TicketGuru.domain.PostalCodeRepository;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class PostalCodeRestController {
 
@@ -31,8 +33,11 @@ public class PostalCodeRestController {
 	}
 	
 	// Lisää uuden postinumeron
+	// liian lyhyt tai pitkä = 400 bad request
+	// onko joku yhdistelmä mahdoton? esim 00000
+	// lähetä vastaus, jos on jo olemassa -> ei anna luoda samaa, mutta ei vastaakaan mitään
 	@PostMapping("/postalcodes")
-	public PostalCode newPostalCode(@RequestBody PostalCode newPostalCode) {
+	public PostalCode newPostalCode(@Valid @RequestBody PostalCode newPostalCode) {
 		return pcrepository.save(newPostalCode);
 	}
 	
@@ -43,4 +48,5 @@ public class PostalCodeRestController {
 		return pcrepository.save(editedPostalCode);
 	}
 	
+	// listaa postinumeroon liittyvät tapahtumapaikat?
 }
