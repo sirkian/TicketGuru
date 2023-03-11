@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.example.TicketGuru.domain.TicketType;
 import com.example.TicketGuru.domain.TicketTypeRepository;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class TicketTypeRestController {
 	
@@ -35,14 +37,14 @@ public class TicketTypeRestController {
 	// luo uuden lipputyypin
 	// esim http://localhost:8080/tickettypes [POST] Body: {"typeName": "Varusmies"}
 	@PostMapping("/tickettypes")
-	public TicketType newTicketType(@RequestBody TicketType newTicketType) {
+	public TicketType newTicketType(@Valid @RequestBody TicketType newTicketType) {
 		return typeRepository.save(newTicketType);
 	}
 	
 	// muokkaa lipputyyppiä
 	// esim http://localhost:8080/tickettypes/4 [PUT] Body: {"typeId": 4,"typeName": "LapsiMUOKATTU"}
 	@PutMapping("/tickettypes/{typeId}")
-	public TicketType editTicketType(@RequestBody TicketType editedType, @PathVariable("typeId") Long typeId) {
+	public TicketType editTicketType(@Valid @RequestBody TicketType editedType, @PathVariable("typeId") Long typeId) {
 		editedType.setTypeId(typeId);
 		return typeRepository.save(editedType);
 	}

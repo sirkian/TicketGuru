@@ -15,38 +15,59 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="app_user")
 public class AppUser {
 	
+	@NotNull
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id", nullable = false, updatable = false)
 	private Long userId;
 	
+	@NotBlank
+	@Size(max = 50)
 	@Column(name="first_name", length = 50, nullable = false)
 	private String firstName;
 	
+	@NotBlank
+	@Size(max = 50)
 	@Column(name="last_name", length = 50, nullable = false)
 	private String lastName;
 	
+	@Email
+	@NotBlank
 	@Column(name="email", length = 150, nullable = false)
 	private String email;
 	
+	@NotBlank
+	@Size(max = 450)
 	@Column(name="password_hash", length = 450, nullable = false)
 	private String password;
 	
 	//Asetin tietotyypiksi stringin, jos halutaan käyttäjältä suuntanumero (+358..)
+	//Käytän validointiin size eikä max koska tietotyyppi String
+	@NotBlank
+	@Size(max = 15)
 	@Column(name="phone_num", length = 15, nullable = false)
 	private String phoneNum;
 	
+	@NotBlank
+	@Size(max = 450)
 	@Column(name="details", length = 450, nullable = true)
 	private String details;
 	
+	@NotBlank
+	@Size(max = 250)
 	@Column(name="address", length = 250, nullable = false)
 	private String address;
 	
+	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="postal_code")
 	private PostalCode postalCode;

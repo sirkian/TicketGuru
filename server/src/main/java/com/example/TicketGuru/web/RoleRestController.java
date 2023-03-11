@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.TicketGuru.domain.Role;
 import com.example.TicketGuru.domain.RoleRepository;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class RoleRestController {
 
@@ -31,7 +33,7 @@ public class RoleRestController {
 		
 	//Lisää roolin
 		@PostMapping("/roles")
-		public Role newRole(@RequestBody Role newRole) {
+		public Role newRole(@Valid @RequestBody Role newRole) {
 			return rolerepository.save(newRole);
 		}
 		

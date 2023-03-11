@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.TicketGuru.domain.AppUser_Role;
 import com.example.TicketGuru.domain.AppUser_RoleRepository;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class AppUserRoleRestController {
 
@@ -21,7 +23,7 @@ public class AppUserRoleRestController {
 	}
 	
 	@PostMapping("/appuserroles")
-	public AppUser_Role newUserRole(@RequestBody AppUser_Role newUserRole) {
+	public AppUser_Role newUserRole(@Valid @RequestBody AppUser_Role newUserRole) {
 		return userRoleRepository.save(newUserRole);
 	}
 }
