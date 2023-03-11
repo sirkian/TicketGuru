@@ -1,6 +1,7 @@
 package com.example.TicketGuru.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,8 +14,10 @@ import com.example.TicketGuru.domain.PostalCode;
 import com.example.TicketGuru.domain.PostalCodeRepository;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Pattern;
 
 @RestController
+
 public class PostalCodeRestController {
 
 	@Autowired
@@ -33,8 +36,6 @@ public class PostalCodeRestController {
 	}
 	
 	// Lisää uuden postinumeron
-	// liian lyhyt tai pitkä = 400 bad request
-	// onko joku yhdistelmä mahdoton? esim 00000
 	// lähetä vastaus, jos on jo olemassa -> ei anna luoda samaa, mutta ei vastaakaan mitään
 	@PostMapping("/postalcodes")
 	public PostalCode newPostalCode(@Valid @RequestBody PostalCode newPostalCode) {
@@ -43,7 +44,7 @@ public class PostalCodeRestController {
 	
 	// Muokkaa valittua postinumeroa
 	@PutMapping("/postalcodes/{postalCode}")
-	public PostalCode editPostalCode(@RequestBody PostalCode editedPostalCode, @PathVariable("postalCode") String postalCode) {
+	public PostalCode editPostalCode(@Valid @RequestBody PostalCode editedPostalCode, @PathVariable("postalCode") String postalCode) {
 		editedPostalCode.setPostalCode(postalCode);
 		return pcrepository.save(editedPostalCode);
 	}

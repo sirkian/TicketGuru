@@ -64,7 +64,7 @@ public class TicketGuruApplication {
 			
 			  PostalCode postcode1 = new PostalCode("00100", "Helsinki");
 			  postRepository.save(postcode1); PostalCode postcode2 = new
-			  PostalCode("33101", "Tampere 10"); postRepository.save(postcode2);
+			  PostalCode("33101", "Tampere"); postRepository.save(postcode2);
 			 
 
 			/*
