@@ -6,16 +6,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "ticket_type")
 public class TicketType {
 	
+	@NotNull
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "type_id", nullable = false, updatable = false)
 	private Long typeId;
 	
+	@NotBlank
 	@Column(name = "type_name", length = 25, nullable = false)
 	private String typeName;
 
