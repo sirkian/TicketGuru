@@ -10,9 +10,9 @@
 
 `200 OK`
 
-`201 Created`
+`400 Bad Request`
 
-`204 No content`
+`404 Not Found`
 
 ## Esimerkkipyyntö:
 
@@ -20,7 +20,7 @@
 
 ```json
 { 
-    "city":"Tampere (Suomen Chicago)"
+    "city":"Tampere"
 }
 ```
 
@@ -29,6 +29,6 @@
 ```json
 {
     "postalCode": "33101",
-    "city": "Tampere (Suomen Chicago)"
+    "city": "Tampere"
 }
 ```
