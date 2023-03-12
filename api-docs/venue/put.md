@@ -4,19 +4,15 @@
 
 **Metodi**: `PUT`
 
-#### Jos id ei löydy tietokannasta, metodi luo uuden tapahtumapaikan seuraavalle vapaalle id:lle
-
 ## Vastauksen paluukoodi
 
 **Koodit**:
 
 `200 OK`
 
-`201 Created`
-
-`204 No content`
-
 `400 Bad Request`
+
+´404 Not Found`
 
 ## Esimerkkipyyntö:
 
