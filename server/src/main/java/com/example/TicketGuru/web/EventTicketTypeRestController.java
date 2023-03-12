@@ -1,12 +1,14 @@
 package com.example.TicketGuru.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.TicketGuru.domain.Event;
 import com.example.TicketGuru.domain.EventTicketType;
@@ -29,6 +31,7 @@ public class EventTicketTypeRestController {
 	// Haetaan kaikkien tapahtumien kaikki lipputyypit
 	@GetMapping("/eventtickettypes")
 	public Iterable<EventTicketType> getAllEventTicketTypes() {
+		// 200 OK ja tyhjä taulukko jos ei ole lipputyyppejä
 		return ettRepository.findAll();
 	}
 	
@@ -40,14 +43,23 @@ public class EventTicketTypeRestController {
 	
 	@PostMapping("/eventtickettypes")
 	public EventTicketType newEventTT(@Valid @RequestBody EventTicketType newEventTT) {
-		return ettRepository.save(newEventTT);
+		try {
+			return ettRepository.save(newEventTT);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+
 	}
 	
 	// Muokkaa tapahtuman lipputyyppiä (eventId, typeId ja hinta)
 	@PutMapping("/eventtickettypes/{eventTypeId}")
 	public EventTicketType editEventTT(@Valid @RequestBody EventTicketType editedETT, @PathVariable("eventTypeId") Long eventTypeId) {
-		editedETT.setEventTypeId(eventTypeId);
-		return ettRepository.save(editedETT);
+		try {
+			editedETT.setEventTypeId(eventTypeId);
+			 return ettRepository.save(editedETT);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarkista viiteavaimet: " + e.getMessage());
+		}		
 	}
 	
 }
