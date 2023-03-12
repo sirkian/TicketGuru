@@ -1,10 +1,10 @@
 package com.example.TicketGuru.web;
 
-import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,11 +53,12 @@ public class PostalCodeRestController {
 	// Muokkaa valittua postinumeroa
 	@PutMapping("/postalcodes/{postalCode}")
 	public PostalCode editPostalCode(@Valid @RequestBody PostalCode editedPostalCode, @PathVariable("postalCode") String postalCode) {
+	
 		
 		Optional<PostalCode> postcode = pcrepository.findByPostalCode(postalCode);
 		if(postcode.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annettua postinumeroa ei löydy");
-		}
+		} 
 		// tästä puuttuu tarkistus cityn sisällölle -> jos sisältää numeron??
 		editedPostalCode.setPostalCode(postalCode);
 		return pcrepository.save(editedPostalCode);
