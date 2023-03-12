@@ -98,6 +98,7 @@ public class TicketRestController {
 		}
 		try {
 			editedTicket.setTicketId(ticketId);
+			editedTicket.setVerificationCode(ticket.get().getVerificationCode());
 			return ticketRepository.save(editedTicket);
 		} catch (Exception e) {
 			// Heitetään 404 jos eventIdtä ei löydy
