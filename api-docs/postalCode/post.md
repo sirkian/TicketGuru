@@ -10,6 +10,10 @@
 
 `201 Created`
 
+
+`400 Bad Request`
+
+
 ## Esimerkkipyyntö:
 
 **Polku**: `BASE_URL/postalcodes`
