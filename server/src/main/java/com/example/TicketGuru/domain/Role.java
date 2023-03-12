@@ -23,9 +23,9 @@ public class Role {
 	@Column(name = "role_id", nullable = false, updatable = false)
 	private Long roleId;
 	
-	@Column(name = "role", length=50)
 	@NotBlank
-	@Size(max = 50)
+	@Size(min = 1, max = 50)
+	@Column(name = "role", length=50)
 	private String role;
 	
 	// Lisätty välitaulu AppUser_Role

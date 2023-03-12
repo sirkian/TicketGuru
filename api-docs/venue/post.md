@@ -12,6 +12,8 @@
 
 `400 Bad request`
 
+`404 Not found`
+
 ## Esimerkkipyyntö:
 
 ```json

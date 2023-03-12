@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -25,6 +26,7 @@ public class Venue {
 	@Column(name = "venue_id", nullable = false, updatable = false)
 	private Long venueId;
 
+	@NotBlank
 	@Size(min = 2, max = 50)
 	@Column(name = "venue_name", length = 50)
 	private String venueName;
@@ -33,6 +35,7 @@ public class Venue {
 	@Column(name = "venue_description", length = 500)
 	private String venueDescription;
 
+	@NotBlank
 	@Size(min = 5, max = 250)
 	@Column(name = "address", length = 250)
 	private String address;

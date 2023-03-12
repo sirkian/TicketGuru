@@ -1,6 +1,6 @@
 # Näytä kaikki myyntitapahtumat
 
-**URL**: `/transactions`
+**URL**: `/transactions/:pk`
 
 **Metodi**: `GET`
 
@@ -10,11 +10,13 @@
 
 `200 OK`
 
-_Jos myyntitapahtumia ei ole, API palauttaa tyhjän taulukon koodilla 200 OK_
+`404 NOT FOUND`
+
+> `"message": "Myyntitapahtumaa ei löydy"`
 
 ## Esimerkkivastaus:
 
-**Polku**: `BASE_URL/transactions`
+**Polku**: `BASE_URL/transactions/1`
 
 ```json
 [

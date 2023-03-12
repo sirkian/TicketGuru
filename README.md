@@ -58,7 +58,8 @@ Versiohistoria:
 
 [Versio 1](https://user-images.githubusercontent.com/91193039/220620475-552eafc8-0e00-4c67-84d4-bca138d11271.png)
 
-[Tietohakemisto](https://github.com/Bjorn-Eric/TicketGuru/files/10862258/Tietokannan.suunnittelu.1.docx)
+[Tietohakemisto](https://github.com/Bjorn-Eric/TicketGuru/files/10951928/Tietohakemisto.docx)
+
 
 ## Rajapinnan kuvaus
 
@@ -102,17 +103,35 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost
 | [Lisää tapahtumalle lipputyyppi](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/eventTicketType/post.md)         | `POST` | `/eventtickettypes`            | -              |
 | [Muokkaa tapahtuman lipputyyppiä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/eventTicketType/put.md)         | `PUT`  | `/eventtickettypes/:pk`        | Integer (Long) |
 
+### Lipputyypit
+
+| Toiminto                                                                                             | Metodi   | Polku                       | Param. tyyppi  |
+| ---------------------------------------------------------------------------------------------------- | -------- | --------------------------- | -------------- |
+| [Hae lipputyypit](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticketType/get.md)  | `GET`    | `/tickettypes`              | -              |
+| [Lisää lipputyyppi](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticketType/post.md)  | `POST`   | `/tickettypes`           | -              |
+| [Muokkaa lipputyyppiä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticketType/put.md) | `PUT`    | `/tickettypes/:pk`              | Integer (Long) |
+
 ### Liput
 
 | Toiminto                                                                                             | Metodi   | Polku                       | Param. tyyppi  |
 | ---------------------------------------------------------------------------------------------------- | -------- | --------------------------- | -------------- |
 | [Hae liput](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/get.md)            | `GET`    | `/tickets`                  | -              |
 | [Hae lippu id:llä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/getById.md) | `GET`    | `/tickets/:pk`              | Integer (Long) |
-| [Hae myyntitapahtuman liput](LINKKI)                                                                 | `GET`    | `/transactions/:pk/tickets` | Integer (Long) |
-| [Hae tarkastuskoodilla](LINKKI)                                                                      | `GET`    | `/tickets/q?name=:koodi`    | String         |
+| [Hae myyntitapahtuman liput](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/getByTransaction.md)                                                                 | `GET`    | `/transactions/:pk/tickets` | Integer (Long) |
+| [Hae tarkastuskoodilla](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/getByVerificationCode.md)                                                                      | `GET`    | `/tickets/q?name=:koodi`    | String         |
 | [Lisää lippu](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/post.md)         | `POST`   | `/tickets`                  | -              |
 | [Muokkaa lippua](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/put.md)       | `PUT`    | `/tickets/:pk`              | Integer (Long) |
 | [Poista lippu](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticket/deleteById.md)  | `DELETE` | `/tickets/:pk`              | Integer (Long) |
+
+### Ostotapahtuma
+
+| Toiminto                                                                                             | Metodi   | Polku                       | Param. tyyppi  |
+| ---------------------------------------------------------------------------------------------------- | -------- | --------------------------- | -------------- |
+| [Hae ostotapahtumat](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/transaction/get.md)| `GET`    | `/transactions`           | -              |
+| [Hae ostotapahtuma id:llä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/transaction/getById.md) | `GET`    | `/transactions/:pk`| Integer (Long) |
+| [Lisää ostotapahtuma](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/transaction/post.md)         | `POST`   | `/transactions`  | -              |
+| [Muokkaa ostotapahtumaa](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/transaction/put.md)       | `PUT`    | `/transactions/:pk` | Integer (Long) |
+| [Poista ostotapahtuma](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/transaction/deleteById.md)  | `DELETE` | `/transactions/:pk` | Integer (Long) |
 
 ### Postinumerot
 
@@ -139,3 +158,10 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost
 | [Hae käyttäjä id:llä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/appUser/getById.md) | `GET`  | `/appusers/:pk` | Integer (Long) |
 | [Lisää käyttäjä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/appUser/post.md)         | `POST` | `/appusers`     | -              |
 | [Muokkaa käyttäjää](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/appUser/put.md)       | `PUT`  | `/appusers/:pk` | Integer (Long) |
+
+### Käyttäjän roolit
+
+| Toiminto                                                                                             | Metodi   | Polku                       | Param. tyyppi  |
+| ---------------------------------------------------------------------------------------------------- | -------- | --------------------------- | -------------- |
+| [Hae käyttäjän roolit](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/appUserRole/get.md)            | `GET`    | `/appuserroles` | -              |
+| [Lisää rooli käyttäjälle](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/appUserRole/post.md)       | `POST`    | `/appuserroles` | Integer (Long) |
