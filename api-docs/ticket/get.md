@@ -10,9 +10,7 @@
 
 `200 OK`
 
-`404 NOT FOUND`
-
-> `"message": "Lippuja ei löytynyt"`
+_Jos lippuja ei ole, API palauttaa tyhjän taulukon koodilla 200 OK_
 
 ## Esimerkkivastaus:
 

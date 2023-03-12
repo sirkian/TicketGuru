@@ -10,11 +10,11 @@
 
 `200 OK`
 
+_Jos lippuja ei ole, API palauttaa tyhjän taulukon koodilla 200 OK_
+
 `404 NOT FOUND`
 
 > `"message": "Myyntitapahtumaa ei ole olemassa"`
-
-> `"message": "Myyntitapahtumalla ei ole lippuja"`
 
 ## Esimerkkivastaus:
 

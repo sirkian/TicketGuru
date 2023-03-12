@@ -36,11 +36,8 @@ public class TicketRestController {
 	// Palauttaa listan kaikista lipuista
 	@GetMapping("/tickets")
 	public Iterable<Ticket> getTickets() {
-		List<Ticket> tickets = (List<Ticket>) ticketRepository.findAll();
-		if (tickets.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Lippuja ei löytynyt");
-		}
-		return tickets;
+		// 200 OK ja tyhjä taulukko jos ei ole lippuja, muuten palauttaa kaikki liput
+		return ticketRepository.findAll();
 	}
 	
 	// Palauttaa id:llä haetun lipun
@@ -73,13 +70,7 @@ public class TicketRestController {
 			// Jos myyntitapahtumaa ei ole, heitetään 404
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Myyntitapahtumaa ei ole olemassa");
 		}
-		// Haetaan liput myyntitapahtuman perusteella
-		List<Ticket> tickets = (List<Ticket>) ticketRepository.findByTransaction(transaction);
-		if (tickets.isEmpty()) {
-			// Jos lippuja ei ole, 404
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Myyntitapahtumalla ei ole lippuja");
-		}
-		return tickets;
+		return ticketRepository.findByTransaction(transaction);
 	}
 	
 	// Lisää uuden lipun myydyksi

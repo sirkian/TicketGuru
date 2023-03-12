@@ -10,9 +10,7 @@
 
 `200 OK`
 
-`404 NOT FOUND`
-
-> `"message": "Haetulla tapahtumapaikalla ei ole tapahtumia"`
+_Jos tapahtumia ei ole, API palauttaa tyhjän taulukon koodilla 200 OK_
 
 `404 NOT FOUND`
 

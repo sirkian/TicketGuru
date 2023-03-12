@@ -35,13 +35,9 @@ public class EventRestController {
 	
 	// Palauttaa kaikki järjestelmään tallennetut tapahtumat
 	@GetMapping("/events")
+	// 200 OK ja tyhjä taulukko jos ei ole tapahtumia
 	public Iterable<Event> getAllEvents() {
-		// Haetaan kaikki tapahtumat listaan helpomman käsittelyn takia
-		List<Event> events = (List<Event>) eventRepository.findAll();
-		if (events.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tapahtumia ei löytynyt");
-		}
-		return events;
+		return eventRepository.findAll();
 	}
 	
 	// Palauttaa tapahtuman haetulla id:llä
@@ -73,12 +69,7 @@ public class EventRestController {
 			// Heitetään 404, mikäli annetulla idllä ei ole tapahtumapaikkaa (esim. /venues/99/events)
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tapahtumapaikkaa ei ole olemassa");
 		}
-		List<Event> events = (List<Event>) eventRepository.findByVenue(venue);
-		if (events.isEmpty()) {
-			// Heitetään 404, mikäli tapahtumapaikalla ei ole tapahtumia
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Haetulla tapahtumapaikalla ei ole tapahtumia");			
-		}
-		return events;	
+		return eventRepository.findByVenue(venue);	
 			
 	}
 	
