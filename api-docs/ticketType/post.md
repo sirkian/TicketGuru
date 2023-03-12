@@ -1,6 +1,6 @@
 # Lisää uusi lipputyyppi
 
-**URL**: `/ticketTypes`
+**URL**: `/tickettypes`
 
 **metodi**: `POST`
 
