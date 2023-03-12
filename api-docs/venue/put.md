@@ -12,7 +12,7 @@
 
 `400 Bad Request`
 
-´404 Not Found`
+`404 Not Found`
 
 ## Esimerkkipyyntö:
 
