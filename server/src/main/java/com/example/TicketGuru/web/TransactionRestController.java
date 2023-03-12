@@ -59,14 +59,22 @@ public class TransactionRestController {
 		// Muokkaa id:llä valittua myyntitapahtumaa
 		@PutMapping("/transactions/{transactionId}")
 		public Transaction editTransaction(@Valid @RequestBody Transaction editedTransaction, @PathVariable("transactionId") Long transactionId) {
-			try {
-				editedTransaction.setTransactionId(transactionId);
-				// Asetetaan nyt muokkausaika transaction dateksi
-				editedTransaction.setTransactionDate(LocalDateTime.now());
-			 	return transactionRepository.save(editedTransaction);
-			} catch (Exception e) {
-				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+			// Haetaan myyntitapahtuma id:llä, jotta nähdään onko olemassa
+			Optional<Transaction> transaction = transactionRepository.findById(transactionId);
+			// Jos myyntitapahtuma on olemassa, haetaan id ja transactiondate m.tapahtuman tiedoista ja tallennetaan muutokset
+			if (transaction.isPresent()) {
+				try {
+					editedTransaction.setTransactionId(transactionId);
+					editedTransaction.setTransactionDate(transaction.get().getTransactionDate());
+				 	return transactionRepository.save(editedTransaction);
+				} catch (Exception e) {
+					throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+				}
+			} else {
+				// Jos myyntitapahtumaa ei ole olemassa, heitetään 404
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Myyntitapahtumaa ei löydy");
 			}
+
 		}
 		
 		//Poistaa myyntitapahtuman id:n perusteella

@@ -1,6 +1,5 @@
 package com.example.TicketGuru.web;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -92,35 +91,35 @@ public class TicketRestController {
 	// Muokkaa id:llä valittua lippua
 	@PutMapping("/tickets/{ticketId}")
 	public Ticket editTicket(@Valid @RequestBody Ticket editedTicket, @PathVariable("ticketId") Long ticketId) {
+		// Haetaan lippu id:llä, jotta nähdään onko olemassa
 		Optional<Ticket> ticket = ticketRepository.findById(ticketId);
-		if (ticket.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole olemassa lippua");		
+		// Jos lippu on olemassa, haetaan id ja verificationcode lipun tiedoista ja tallennetaan muutokset
+		if (ticket.isPresent()) {
+			try {
+				editedTicket.setTicketId(ticketId);
+				editedTicket.setVerificationCode(ticket.get().getVerificationCode());
+				return ticketRepository.save(editedTicket);
+			} catch (Exception e) {
+				// Heitetään 404 jos eventIdtä ei löydy
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarkista viiteavaimet: " + e.getMessage());
+			}				
+		} else {
+			// Jos lippua ei ole olemassa, heitetään 404
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole olemassa lippua");	
 		}
-		try {
-			editedTicket.setTicketId(ticketId);
-			editedTicket.setVerificationCode(ticket.get().getVerificationCode());
-			return ticketRepository.save(editedTicket);
-		} catch (Exception e) {
-			// Heitetään 404 jos eventIdtä ei löydy
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarkista viiteavaimet: " + e.getMessage());
-		}
+
 	}
 	
 	// Poistaa id:llä haetun lipun esim. virhemyyntitilanteessa
 	@DeleteMapping("/tickets/{ticketId}")
-	public Iterable<Ticket> deleteTicket(@PathVariable("ticketId") Long ticketId) {
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteTicket(@PathVariable("ticketId") Long ticketId) {
 		try {
 			ticketRepository.deleteById(ticketId);
 		} catch (Exception e) {
 			// Heitetään 404 jos poisto epäonnistui, tuskin muita syitä kun olematon id 
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole olemassa lippua");	
 		}
-		List<Ticket> tickets = (List<Ticket>) ticketRepository.findAll();
-		if (tickets.isEmpty()) {
-			// Palautetaan 204 jos poistettiin viimeinen lippu, eikä enää ole listattavaa
-			throw new ResponseStatusException(HttpStatus.NO_CONTENT);
-		}
-		return tickets;
 	}
 	
 	// METODIT

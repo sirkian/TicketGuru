@@ -87,16 +87,21 @@ public class EventRestController {
 	// Muokkaa id:llä valittua tapahtumaa
 	@PutMapping("/events/{eventId}")
 	public Event editEvent(@Valid @RequestBody Event editedEvent, @PathVariable("eventId") Long eventId) {
+		// Haetaan tapahtuma id:llä, jotta nähdään onko olemassa
 		Optional<Event> event = eventRepository.findById(eventId);
-		if (event.isEmpty()) {
+		// Jos tapahtuma on olemassa, tallennetaan muutokset
+		if (event.isPresent()) {
+			try {
+				editedEvent.setEventId(eventId);
+			 	return eventRepository.save(editedEvent);
+			} catch (Exception e) {
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarkista viiteavaimet: " + e.getMessage());
+			}		
+		} else {
+			// Jos tapahtumaa ei ole olemassa, heitetään 404
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole olemassa tapahtumaa");		
 		}
-		try {
-			editedEvent.setEventId(eventId);
-		 	return eventRepository.save(editedEvent);
-		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarkista viiteavaimet: " + e.getMessage());
-		}
+		
 	}
 	
 	//Poistaa tapahtuman id:n perusteella
