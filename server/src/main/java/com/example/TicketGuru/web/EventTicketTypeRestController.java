@@ -12,6 +12,8 @@ import com.example.TicketGuru.domain.Event;
 import com.example.TicketGuru.domain.EventTicketType;
 import com.example.TicketGuru.domain.EventTicketTypeRepository;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class EventTicketTypeRestController {
 	
@@ -37,13 +39,13 @@ public class EventTicketTypeRestController {
 	}
 	
 	@PostMapping("/eventtickettypes")
-	public EventTicketType newEventTT(@RequestBody EventTicketType newEventTT) {
+	public EventTicketType newEventTT(@Valid @RequestBody EventTicketType newEventTT) {
 		return ettRepository.save(newEventTT);
 	}
 	
 	// Muokkaa tapahtuman lipputyyppiä (eventId, typeId ja hinta)
 	@PutMapping("/eventtickettypes/{eventTypeId}")
-	public EventTicketType editEventTT(@RequestBody EventTicketType editedETT, @PathVariable("eventTypeId") Long eventTypeId) {
+	public EventTicketType editEventTT(@Valid @RequestBody EventTicketType editedETT, @PathVariable("eventTypeId") Long eventTypeId) {
 		editedETT.setEventTypeId(eventTypeId);
 		return ettRepository.save(editedETT);
 	}
