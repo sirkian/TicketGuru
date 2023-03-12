@@ -19,7 +19,6 @@ import jakarta.validation.constraints.Size;
 public class Role {
 	
 	@Id
-	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "role_id", nullable = false, updatable = false)
 	private Long roleId;

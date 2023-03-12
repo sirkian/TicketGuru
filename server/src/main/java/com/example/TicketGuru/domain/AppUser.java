@@ -24,7 +24,6 @@ import jakarta.validation.constraints.Size;
 @Table(name="app_user")
 public class AppUser {
 	
-	@NotNull
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id", nullable = false, updatable = false)

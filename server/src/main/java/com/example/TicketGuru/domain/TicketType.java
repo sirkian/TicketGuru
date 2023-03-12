@@ -13,7 +13,6 @@ import jakarta.validation.constraints.NotNull;
 @Table(name = "ticket_type")
 public class TicketType {
 	
-	@NotNull
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "type_id", nullable = false, updatable = false)

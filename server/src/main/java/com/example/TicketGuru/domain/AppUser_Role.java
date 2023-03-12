@@ -20,7 +20,6 @@ import jakarta.validation.constraints.NotNull;
 public class AppUser_Role {
 	
 	@Id
-	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_role_id", nullable = false, updatable = false)
 	private Long appUserRoleId;
