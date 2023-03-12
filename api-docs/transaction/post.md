@@ -1,6 +1,6 @@
 # Lisää uusi myyntitapahtuma
 
-**URL**: `/transaction`
+**URL**: `/transactions`
 
 **Metodi**: `POST`
 
