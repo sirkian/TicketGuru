@@ -34,10 +34,6 @@ public class VenueRestContoller {
 	@GetMapping("/venues")
 	public Iterable<Venue> getVenues() {
 		List<Venue> venues = (List<Venue>) venueRepository.findAll();
-		if (venues.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-					"Järjestelmässä ei ole ainuttakaan tapahtumapaikkaa");
-		}
 		return venueRepository.findAll();
 	}
 
