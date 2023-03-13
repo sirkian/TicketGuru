@@ -163,5 +163,7 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost
 
 | Toiminto                                                                                             | Metodi   | Polku                       | Param. tyyppi  |
 | ---------------------------------------------------------------------------------------------------- | -------- | --------------------------- | -------------- |
-| [Hae käyttäjän roolit](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/appUserRole/get.md)            | `GET`    | `/appuserroles` | -              |
+| [Hae kaikkien käyttäjien roolit](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/appUserRole/get.md) | `GET`    | `/appuserroles` | -              |
+| [Hae käyttäjän roolit](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/appUserRole/getByAppUser.md)   | `GET`    | `/appusers/:pk/appuserroles` |  Integer (Long)  |
 | [Lisää rooli käyttäjälle](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/appUserRole/post.md)       | `POST`    | `/appuserroles` | Integer (Long) |
+| [Poista käyttäjän rooli](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/appUserRole/deleteById.md)  | `DELETE` | `/appuserroles/:pk` | Integer (Long) |
