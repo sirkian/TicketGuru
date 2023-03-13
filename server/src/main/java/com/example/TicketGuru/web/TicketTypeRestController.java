@@ -1,6 +1,7 @@
 package com.example.TicketGuru.web;
 
 import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,29 +21,29 @@ import jakarta.validation.Valid;
 
 @RestController
 public class TicketTypeRestController {
-	
+
 	@Autowired
 	TicketTypeRepository typeRepository;
 
 	// palauttaa listan lipputyypeistä
 	@GetMapping("/tickettypes")
-	public Iterable<TicketType> getTicketTypes(){
-		
+	public Iterable<TicketType> getTicketTypes() {
+
 		return typeRepository.findAll();
 	}
-	
+
 	// hakee lippytyypin nimellä
 	// esim. http://localhost:8080/tickettypes/q?name=Opiskelija-lippu
 	// tai http://localhost:8080/tickettypes/q?name=Opiskelija
 	@GetMapping("tickettypes/q")
-	public Iterable<TicketType> getTicketTypeByName(@RequestParam(value = "name") String name){
-		if (name.isEmpty()) {
+	public Iterable<TicketType> getTicketTypeByName(@RequestParam(value = "name") String name) {
+		List<TicketType> ttypes = (List<TicketType>) typeRepository.findByTypeNameContainingIgnoreCase(name);
+		if (ttypes.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nimeä vastaavaa lippua ei löytynyt");
 		}
-		return typeRepository.findByTypeNameContainingIgnoreCase(name);
-		
+		return ttypes;
 	}
-	
+
 	// luo uuden lipputyypin
 	// esim http://localhost:8080/tickettypes [POST] Body: {"typeName": "Varusmies"}
 	@PostMapping("/tickettypes")
@@ -54,31 +55,28 @@ public class TicketTypeRestController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
-	
-	
+
 	// muokkaa lipputyyppiä
-	// esim http://localhost:8080/tickettypes/4 [PUT] Body: {"typeId": 4,"typeName": "LapsiMUOKATTU"}
+	// esim http://localhost:8080/tickettypes/4 [PUT] Body: {"typeId": 4,"typeName":
+	// "LapsiMUOKATTU"}
 	@PutMapping("/tickettypes/{typeId}")
 	public TicketType editTicketType(@Valid @RequestBody TicketType editedType, @PathVariable("typeId") Long typeId) {
 		Optional<TicketType> type = typeRepository.findById(typeId);
 		if ((type.isPresent())) {
 			try {
-		editedType.setTypeId(typeId);
-		return typeRepository.save(editedType);
-		}
-			catch (Exception e) {
+				editedType.setTypeId(typeId);
+				return typeRepository.save(editedType);
+			} catch (Exception e) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarkista viiteavaimet: " + e.getMessage());
-			}				
+			}
 		} else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole olemassa lipputyyppiä");	
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole olemassa lipputyyppiä");
 		}
 
 	}
-	
-	
-	
+
 	// poistaa lipputyypin soft deletellä
 	// lipputyypit vaikuttaa kaikkiin tapahtumiin, ei voi poistaa kokonaan, jos
 	// valittu yhdellekään tapahtumalle
-	
+
 }
