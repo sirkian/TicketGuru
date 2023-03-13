@@ -1,6 +1,6 @@
-# Näytä kaikkien käyttäjien roolit
+# Näytä käyttäjän roolit
 
-**URL**: `/appuserroles`
+**URL**: `/appusers/:pk/appuserroles` _:pk = userId_
 
 **Metodi**: `GET`
 
@@ -10,11 +10,15 @@
 
 `200 OK`
 
-_Jos mitään ei löydy, API palauttaa tyhjän taulukon koodilla 200 OK_
+_Jos käyttäjällä ei ole rooleja, API palauttaa tyhjän taulukon koodilla 200 OK_
+
+`404 NOT FOUND`
+
+> `"message": "Id:llä ei löytynyt käyttäjää"`
 
 ## Esimerkkivastaus:
 
-**Polku**: `BASE_URL/appuserroles`
+**Polku**: `BASE_URL/appusers/1/appuserroles`
 
 ```json
 [
@@ -35,12 +39,12 @@ _Jos mitään ei löydy, API palauttaa tyhjän taulukon koodilla 200 OK_
       }
     },
     "role": {
-      "roleId": 1,
-      "role": "ADMIN"
+      "roleId": 2,
+      "role": "MYYJÄ"
     }
   },
   {
-    "appUserRoleId": 4,
+    "appUserRoleId": 2,
     "appUser": {
       "userId": 1,
       "firstName": "Pera",
@@ -56,29 +60,8 @@ _Jos mitään ei löydy, API palauttaa tyhjän taulukon koodilla 200 OK_
       }
     },
     "role": {
-      "roleId": 2,
-      "role": "MYYJÄ"
-    }
-  },
-  {
-    "appUserRoleId": 5,
-    "appUser": {
-      "userId": 2,
-      "firstName": "Mantero",
-      "lastName": "Myyjä",
-      "email": "myyja@ticketguru.com",
-      "password": "password123",
-      "phoneNum": "+358654321",
-      "details": "TG:n luottomyyjä",
-      "address": "Hesentie 11",
-      "postalCode": {
-        "postalCode": "00100",
-        "city": "Helsinki"
-      }
-    },
-    "role": {
-      "roleId": 2,
-      "role": "MYYJÄ"
+      "roleId": 1,
+      "role": "ADMIN"
     }
   }
 ]
