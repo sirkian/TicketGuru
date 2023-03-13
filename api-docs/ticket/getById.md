@@ -12,6 +12,8 @@
 
 `404 NOT FOUND`
 
+> `"message": "Lippua ei löytynyt annetulla id:llä"`
+
 ## Esimerkkivastaus:
 
 **Polku**: `BASE_URL/tickets/1`

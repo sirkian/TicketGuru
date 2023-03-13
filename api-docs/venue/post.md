@@ -10,11 +10,9 @@
 
 `201 Created`
 
-`200 OK`
-
-`204 No Content`
-
 `400 Bad request`
+
+`404 Not found`
 
 ## Esimerkkipyyntö:
 

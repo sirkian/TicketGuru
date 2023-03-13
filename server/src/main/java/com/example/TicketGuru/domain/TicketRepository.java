@@ -8,7 +8,9 @@ import org.springframework.data.repository.CrudRepository;
 public interface TicketRepository extends CrudRepository<Ticket, Long> {
 	
 	Optional<Ticket> findById(Long ticketId);
-	List<Ticket> findByTransaction(Transaction transaction);
+	
+	// myyntitapahtuman liput
+	Iterable<Ticket> findByTransaction(Optional<Transaction> transaction);
 	
 	// lipun haku varmennuskoodilla
 	Optional<Ticket> findByVerificationCode(String verificationCode);

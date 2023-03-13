@@ -6,15 +6,15 @@
 
 ## Vastauksen paluukoodit
 
-**Koodit**: 
+**Koodit**:
 
 `200 OK`
 
-`404 NOT FOUND` Jos yritetään hakea ilman tapahtumapaikan id:tä.
+_Jos tapahtumia ei ole, API palauttaa tyhjän taulukon koodilla 200 OK_
 
-`500 INTERNAL SERVER ERROR` Jos yritetään hakea tapahtumapaikan id:llä, jota ei ole olemassa.
+`404 NOT FOUND`
 
-Vastaus: `"Required path variable 'venueId' is not present."`
+> `"message": "Tapahtumapaikkaa ei ole olemassa"`
 
 ## Esimerkkivastaus:
 

@@ -9,6 +9,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Pattern;
+
 
 @Entity
 public class PostalCode {
@@ -17,9 +19,12 @@ public class PostalCode {
     // Otin tästä autogenin pois, että voidaa ite asettaa postikoodi / PK
     // Ja joutu muuttaa tyypin Stringiks, kokonaislukuna 00100 tulostu ja tallentu kantaan lukuna 64 :D
     // https://stackoverflow.com/a/7218803
+    
+    @Pattern(regexp = "[0-9]{5}")
     @Column(name = "postal_id", nullable = false, updatable = false, unique = true)
     private String postalCode;
 
+    @Pattern(regexp = "[a-zA-ZåäöÅÄÖ -]{1,100}", message = "numerot eivät ole sallittuja")
     @Column(name = "city")
     private String city;
     

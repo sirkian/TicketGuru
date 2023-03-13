@@ -8,7 +8,11 @@
 
 **Koodit**:
 
-`201 Created`
+`201 CREATED`
+
+`400 BAD REQUEST`
+
+> `"message": "Validation failed for object='event'. Error count: n"`
 
 ## Esimerkkipyyntö:
 

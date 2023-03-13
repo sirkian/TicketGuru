@@ -1,6 +1,6 @@
 ## Näytä kaikki lipputyypit
 
-**URL**: `/ticketTypes`
+**URL**: `/tickettypes`
 
 **metodi**: `GET`
 

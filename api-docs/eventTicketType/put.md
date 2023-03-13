@@ -10,6 +10,12 @@
 
 `200 OK`
 
+`404 NOT FOUND`
+
+> `"message": "Tarkista viiteavaimet: Unable to find com.example.TicketGuru.domain.Event with id 5"`
+
+> `"message": "Tapahtuman lipputyyppiä ei löytynyt"`
+
 ## Esimerkkipyyntö:
 
 **Polku**: `BASE_URL/eventtickettypes/1`

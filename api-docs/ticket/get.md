@@ -10,6 +10,8 @@
 
 `200 OK`
 
+_Jos lippuja ei ole, API palauttaa tyhjän taulukon koodilla 200 OK_
+
 ## Esimerkkivastaus:
 
 **Polku**: `BASE_URL/tickets`

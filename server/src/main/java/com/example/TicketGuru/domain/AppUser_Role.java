@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 
 // Välitaulu, jolla mahdollistetaan yhdelle käyttäjälle monta roolia
 // PK user_role_id
@@ -24,10 +25,12 @@ public class AppUser_Role {
 	private Long appUserRoleId;
 	
 	@ManyToOne
+	@NotNull
 	@JoinColumn(name = "user_id")
 	private AppUser appUser;
 	
 	@ManyToOne
+	@NotNull
 	@JoinColumn(name = "role_id")
 	private Role role;
 	

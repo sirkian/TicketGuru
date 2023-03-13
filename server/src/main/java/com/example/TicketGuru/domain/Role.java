@@ -11,6 +11,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Role {
@@ -20,6 +23,8 @@ public class Role {
 	@Column(name = "role_id", nullable = false, updatable = false)
 	private Long roleId;
 	
+	@NotBlank
+	@Size(min = 1, max = 50)
 	@Column(name = "role", length=50)
 	private String role;
 	

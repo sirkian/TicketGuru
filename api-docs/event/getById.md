@@ -6,11 +6,13 @@
 
 ## Vastauksen paluukoodit
 
-**Koodit**: 
+**Koodit**:
 
 `200 OK`
 
- `404 NOT FOUND`
+`404 NOT FOUND`
+
+> `"message": "Annetulla id:llä ei löytynyt tapahtumaa"`
 
 ## Esimerkkivastaus:
 

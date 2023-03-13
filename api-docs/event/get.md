@@ -4,11 +4,13 @@
 
 **Metodi**: `GET`
 
-## Vastauksen paluukoodi
+## Vastauksen paluukoodit
 
-**Koodit**: 
+**Koodit**:
 
 `200 OK`
+
+_Jos tapahtumia ei ole, API palauttaa tyhjän taulukon koodilla 200 OK_
 
 ## Esimerkkivastaus:
 
