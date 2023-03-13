@@ -108,6 +108,7 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost
 | Toiminto                                                                                             | Metodi   | Polku                       | Param. tyyppi  |
 | ---------------------------------------------------------------------------------------------------- | -------- | --------------------------- | -------------- |
 | [Hae lipputyypit](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticketType/get.md)  | `GET`    | `/tickettypes`              | -              |
+| [Hae lipputyyppi nimellä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticketType/getByName.md)  | `GET`    | `/tickettypes/q?name=:hakusana`              | String             |
 | [Lisää lipputyyppi](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticketType/post.md)  | `POST`   | `/tickettypes`           | -              |
 | [Muokkaa lipputyyppiä](https://github.com/Bjorn-Eric/TicketGuru/blob/develop/api-docs/ticketType/put.md) | `PUT`    | `/tickettypes/:pk`              | Integer (Long) |
 
