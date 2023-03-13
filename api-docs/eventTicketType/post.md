@@ -8,7 +8,9 @@
 
 **Koodit**:
 
-`201 Created`
+`201 CREATED`
+
+`400 BAD REQUEST`
 
 ## Esimerkkipyyntö:
 
