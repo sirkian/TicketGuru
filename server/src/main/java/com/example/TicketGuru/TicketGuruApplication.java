@@ -10,12 +10,14 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.TicketGuru.domain.AppUser;
 import com.example.TicketGuru.domain.AppUserRepository;
+import com.example.TicketGuru.domain.AppUser_Role;
 import com.example.TicketGuru.domain.Event;
 import com.example.TicketGuru.domain.EventRepository;
 import com.example.TicketGuru.domain.EventTicketType;
 import com.example.TicketGuru.domain.EventTicketTypeRepository;
 import com.example.TicketGuru.domain.PostalCode;
 import com.example.TicketGuru.domain.PostalCodeRepository;
+import com.example.TicketGuru.domain.Role;
 import com.example.TicketGuru.domain.RoleRepository;
 import com.example.TicketGuru.domain.TicketRepository;
 import com.example.TicketGuru.domain.TicketType;
@@ -61,13 +63,13 @@ public class TicketGuruApplication {
 
 			// POSTINUMEROT
 				
-			/*
+			
 			  PostalCode postcode1 = new PostalCode("00100", "Helsinki");
 			  postRepository.save(postcode1); PostalCode postcode2 = new
 			  PostalCode("33101", "Tampere"); postRepository.save(postcode2);
 			 
 
-			
+			  /*
 			 * TO STRING AIHEUTTAA ONGELMIA TÄSSÄ System.out.println("** PostalCodes: **");
 			 * for (PostalCode postalCode : postRepository.findAll()) {
 			 * System.out.println("PostalCode: " + postalCode.toString()); }
@@ -122,28 +124,33 @@ public class TicketGuruApplication {
 			 * System.out.println("** TicketTypes: **"); for (TicketType ticketType :
 			 * ticketTypeRepository.findAll()) { System.out.println("TicketType: " +
 			 * ticketType.toString()); } System.out.println("");
-			 * 
-			 * // ROOLIT
-			 * 
-			 * Role role1 = new Role("Admin"); roleRepository.save(role1); Role role2 = new
-			 * Role("Clerk"); roleRepository.save(role2); Role role3 = new
-			 * Role("Ticket_inspector"); roleRepository.save(role3);
-			 * 
+			 */ 
+			 // ROOLIT
+			 
+			 Role role1 = new Role("Admin"); roleRepository.save(role1); 
+			 Role role2 = new Role("Clerk"); roleRepository.save(role2); 
+			 Role role3 = new Role("Ticket_inspector"); roleRepository.save(role3);
+			  
+			 /*
 			 * System.out.println("** Roles: **"); for (Role role :
 			 * roleRepository.findAll()) { System.out.println("Role: " + role.toString()); }
 			 * System.out.println("");
-			 * 
-			 * // KÄYTTÄJÄT
-			 * 
-			 * AppUser user1 = new AppUser("Anneli", "Admin", "admin@tiketguru.com",
-			 * "$2a$10$Xp67oEDHyODcnTzkIIp9z.SpmmpZg33mqZe/jvaSHMnpWtEQGov5e", "+358123456",
-			 * "Järjestelmän pääkäyttäjä", "Osoite1", role1, postcode1);
-			 * userRepository.save(user1); AppUser user2 = new AppUser("Make", "Myyjä",
-			 * "make@tiketguru.com",
-			 * "$2a$10$Rc25Yhstdcr9Ce3WcQFKLeHT3nN1Yr.ud6M0AywXA8Q1tidWcdvqy", "+358654321",
-			 * "Lipunmyyjä, hyvä jäbä", "Osoite2", role2, postcode2);
-			 * userRepository.save(user2);
-			 * 
+			 */ 
+			 // KÄYTTÄJÄT
+			 
+			  
+			  AppUser user1 = new AppUser("Anneli", "Admin", "admin@tiketguru.com","$2a$10$Xp67oEDHyODcnTzkIIp9z.SpmmpZg33mqZe/jvaSHMnpWtEQGov5e", "+358123456",
+			  "Järjestelmän pääkäyttäjä", "Osoite1", postcode1);
+			 	userRepository.save(user1);
+			 	
+			 AppUser user2 = new AppUser("Make", "Myyjä", "make@tiketguru.com", "$2a$10$Rc25Yhstdcr9Ce3WcQFKLeHT3nN1Yr.ud6M0AywXA8Q1tidWcdvqy", "+358654321",
+				"Lipunmyyjä, hyvä jäbä", "Osoite2", postcode2);
+				userRepository.save(user2);
+				
+			AppUser_Role apuserRole = new AppUser_Role(user1, role1);
+			AppUser_Role apuserRole2 = new AppUser_Role(user2, role2);
+			 
+			/*
 			 * System.out.println("** Users: **"); for (AppUser appUser :
 			 * userRepository.findAll()) { System.out.println("User: " +
 			 * appUser.toString()); } System.out.println("");

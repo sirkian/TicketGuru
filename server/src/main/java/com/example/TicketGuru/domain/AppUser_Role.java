@@ -36,9 +36,9 @@ public class AppUser_Role {
 	
 	public AppUser_Role() {}
 
-	public AppUser_Role(Long appUserRoleId, AppUser appUser, Role role) {
+	public AppUser_Role(AppUser appUser, Role role) {
 		super();
-		this.appUserRoleId = appUserRoleId;
+		//this.appUserRoleId = appUserRoleId;
 		this.appUser = appUser;
 		this.role = role;
 	}
