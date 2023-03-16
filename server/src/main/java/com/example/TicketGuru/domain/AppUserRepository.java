@@ -7,4 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface AppUserRepository extends CrudRepository<AppUser, Long> {
 
 	Optional<AppUser> findById(Long userId);
+	
+	AppUser findByEmail(String email);
 }
