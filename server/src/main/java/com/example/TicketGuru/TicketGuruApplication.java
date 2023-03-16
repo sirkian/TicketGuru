@@ -1,6 +1,7 @@
 package com.example.TicketGuru;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -157,6 +158,8 @@ public class TicketGuruApplication {
 			userRoleRepository.save(appuserRole);
 			AppUser_Role appuserRole2 = new AppUser_Role(user2, role2);
 			userRoleRepository.save(appuserRole2);
+			AppUser_Role appuserRole3 = new AppUser_Role(user1, role2);
+			userRoleRepository.save(appuserRole3);
 
 			/*
 			 * System.out.println("** Users: **"); for (AppUser appUser :

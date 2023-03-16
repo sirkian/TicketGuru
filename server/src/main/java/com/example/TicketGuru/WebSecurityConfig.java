@@ -26,12 +26,21 @@ public class WebSecurityConfig {
     };
 
     private static final AntPathRequestMatcher[] ADMIN_LIST_URLS = {
+            new AntPathRequestMatcher("/appusers"),
+            new AntPathRequestMatcher("/appuserroles"), new AntPathRequestMatcher("/roles")
+    };
+
+    private static final AntPathRequestMatcher[] CLERK_LIST_URLS = {
             new AntPathRequestMatcher("/tickets")
     };
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests().requestMatchers(ADMIN_LIST_URLS).hasAuthority("ADMIN")
+                .and()
+                .authorizeHttpRequests().requestMatchers(CLERK_LIST_URLS).hasAnyAuthority("CLERK", "ADMIN")
+                .and()
+                .authorizeHttpRequests().requestMatchers(WHITE_LIST_URLS).permitAll()
                 .and()
                 .headers().frameOptions().disable()
                 .and()
