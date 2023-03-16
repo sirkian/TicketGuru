@@ -161,12 +161,12 @@ public class TicketGuruApplication {
 			AppUser_Role appuserRole3 = new AppUser_Role(user1, role2);
 			userRoleRepository.save(appuserRole3);
 
-			/*
-			 * System.out.println("** Users: **"); for (AppUser appUser :
-			 * userRepository.findAll()) { System.out.println("User: " +
-			 * appUser.toString()); } System.out.println("");
-			 * 
-			 * // MYYNTITAPAHTUMAT
+			
+			  System.out.println("** Users: **"); for (AppUser appUser :
+			  userRepository.findAll()) { System.out.println("User: " +
+			  appUser.toString()); } System.out.println("");
+			  
+			/* // MYYNTITAPAHTUMAT
 			 * 
 			 * Transaction transaction1 = new Transaction(user2, LocalDateTime.now());
 			 * transactionRepository.save(transaction1); Transaction transaction2 = new
