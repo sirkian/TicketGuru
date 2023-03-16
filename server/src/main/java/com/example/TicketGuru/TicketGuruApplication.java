@@ -73,10 +73,6 @@ public class TicketGuruApplication {
 			postRepository.save(postcode2);
 
 			/*
-			 * TO STRING AIHEUTTAA ONGELMIA TÄSSÄ System.out.println("** PostalCodes: **");
-			 * for (PostalCode postalCode : postRepository.findAll()) {
-			 * System.out.println("PostalCode: " + postalCode.toString()); }
-			 * System.out.println("");
 			 * 
 			 * // TAPAHTUMAPAIKAT
 			 * 
@@ -103,10 +99,6 @@ public class TicketGuruApplication {
 			 * 00), 200, LocalDateTime.of(2023, 4, 19, 18, 00), false, venue1);
 			 * eventRepository.save(event3);
 			 * 
-			 * System.out.println("** Events: **"); for (Event event :
-			 * eventRepository.findAll()) { System.out.println("Event: " +
-			 * event.toString()); } System.out.println("");
-			 * 
 			 * 
 			 * // LIPPUTYYPIT
 			 * 
@@ -123,11 +115,6 @@ public class TicketGuruApplication {
 			 * eventTicketTypeRepository.save(eventTicketType1);
 			 */
 
-			/*
-			 * System.out.println("** TicketTypes: **"); for (TicketType ticketType :
-			 * ticketTypeRepository.findAll()) { System.out.println("TicketType: " +
-			 * ticketType.toString()); } System.out.println("");
-			 */
 			// ROOLIT
 
 			Role role1 = new Role("Admin");
@@ -137,11 +124,6 @@ public class TicketGuruApplication {
 			Role role3 = new Role("Ticket_inspector");
 			roleRepository.save(role3);
 
-			/*
-			 * System.out.println("** Roles: **"); for (Role role :
-			 * roleRepository.findAll()) { System.out.println("Role: " + role.toString()); }
-			 * System.out.println("");
-			 */
 			// KÄYTTÄJÄT
 
 			AppUser user1 = new AppUser("Anneli", "Admin", "admin@tiketguru.com",
@@ -161,12 +143,8 @@ public class TicketGuruApplication {
 			AppUser_Role appuserRole3 = new AppUser_Role(user1, role2);
 			userRoleRepository.save(appuserRole3);
 
-			
-			  System.out.println("** Users: **"); for (AppUser appUser :
-			  userRepository.findAll()) { System.out.println("User: " +
-			  appUser.toString()); } System.out.println("");
-			  
-			/* // MYYNTITAPAHTUMAT
+			/*
+			 * // MYYNTITAPAHTUMAT
 			 * 
 			 * Transaction transaction1 = new Transaction(user2, LocalDateTime.now());
 			 * transactionRepository.save(transaction1); Transaction transaction2 = new
@@ -193,37 +171,6 @@ public class TicketGuruApplication {
 			 * List<Transaction> transactions = new ArrayList<>();
 			 * transactions.add(transaction1); transactions.add(transaction2);
 			 * user2.setTransactions(transactions);
-			 * 
-			 * // Tulostellaan nyt vielä vähän lisää
-			 * 
-			 * System.out.println("** Tickets: **"); for (Ticket ticket :
-			 * ticketRepository.findAll()) { System.out.println("Ticket: " +
-			 * ticket.toString()); System.out.println("Price: " +
-			 * ticket.getTicketType().getPrice()); System.out.println("Verification code: "
-			 * + ticket.getVerificationCode()); System.out.println("Event: " +
-			 * ticket.getTicketType().getEvent().getEventName());
-			 * System.out.println("Transaction: " +
-			 * ticket.getTransaction().getTransactionId()); System.out.println(""); }
-			 * System.out.println("");
-			 * 
-			 * // Rautalankamallin mukainen tulostus (Kaavio 2)
-			 * 
-			 * System.out.println("** Transactions: ** \n"); for (Transaction transaction :
-			 * transactionRepository.findAll()) { System.out.println("Myyntitapahtuma: " +
-			 * transaction.getTransactionId()); System.out.println("Maksettu: " +
-			 * transaction.getTransactionDate()); // Huono formaatti, mutta ajaa asiansa
-			 * tässä System.out.println(""); // Summa pitää laskee viel, mutta siinä tuskin
-			 * törmätään ongelmiin for (Ticket ticket :
-			 * ticketRepository.findByTransaction(transaction)) {
-			 * System.out.println("Tapahtuma: " +
-			 * ticket.getTicketType().getEvent().getEventName());
-			 * System.out.println("Lippu: " + ticket.getTicketType().getTypeName());
-			 * System.out.println("Hinta: " + ticket.getTicketType().getPrice());
-			 * System.out.println("Koodi: " + ticket.getVerificationCode());
-			 * System.out.println(""); }
-			 * System.out.println("\n ** end of transaction ** \n");
-			 * 
-			 * }
 			 */
 		};
 
