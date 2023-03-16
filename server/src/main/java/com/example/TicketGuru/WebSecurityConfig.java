@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -34,13 +35,27 @@ public class WebSecurityConfig {
             new AntPathRequestMatcher("/tickets")
     };
 
+    // Sallitaan vapaa pääsy WHITE_LIST_URL -osotteisiin
+
+    // MUTTA: "You are asking Spring Security to ignore Ant [pattern='/events'].
+    // This is not recommended -- please use permitAll via
+    // HttpSecurity#authorizeHttpRequests instead."
+
+    // Ainakaan äsken en saanu toimimaan yllä mainitulla tavalla
+    // TODO:
+    // Selvitä riskit
+    // Pitää myös testata toimiiko method security white listed -endpointeilla
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring()
+                .requestMatchers(WHITE_LIST_URLS);
+    }
+
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests().requestMatchers(ADMIN_LIST_URLS).hasAuthority("ADMIN")
                 .and()
                 .authorizeHttpRequests().requestMatchers(CLERK_LIST_URLS).hasAnyAuthority("CLERK", "ADMIN")
-                .and()
-                .authorizeHttpRequests().requestMatchers(WHITE_LIST_URLS).permitAll()
                 .and()
                 .headers().frameOptions().disable()
                 .and()
