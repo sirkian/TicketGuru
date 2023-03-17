@@ -49,5 +49,4 @@ public class DetailsService implements UserDetailsService {
 
 		return user;
 	}
-
 }

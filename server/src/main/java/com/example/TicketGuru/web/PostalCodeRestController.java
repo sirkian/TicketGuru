@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+
 import com.example.TicketGuru.domain.PostalCode;
 import com.example.TicketGuru.domain.PostalCodeRepository;
 
@@ -43,6 +45,7 @@ public class PostalCodeRestController {
 	// Lisää uuden postinumeron
 	// lähetä vastaus, jos on jo olemassa -> ei anna luoda samaa, mutta ei
 	// vastaakaan mitään
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/postalcodes")
 	@ResponseStatus(HttpStatus.CREATED)
 	public PostalCode newPostalCode(@Valid @RequestBody PostalCode newPostalCode) {
