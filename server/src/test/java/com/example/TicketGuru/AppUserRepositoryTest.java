@@ -2,7 +2,7 @@ package com.example.TicketGuru;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
+// import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +33,15 @@ public class AppUserRepositoryTest {
 		AppUser appuser = auRepository.findByEmail("make@tiketguru.com");
 		assertThat(appuser.getFirstName()).isEqualTo("Make");		
 	}
+	
+	/* //Testi aiemmin ohjelman kaataneesta hausta listan kanssa (sama testi kuin yllä siis), ei toimi jostain syystä
+	@Test
+	public void findUserByEmailShouldReturnUser() {
+		List<AppUser> appusers = auRepository.findByEmailFromList("make@tiketguru.com");
+		assertThat(appusers).hasSize(1);
+		assertThat(appusers.get(0).getFirstName()).isEqualTo("Make");
+	}
+	*/
+	
 	
 }
