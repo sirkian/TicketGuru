@@ -45,7 +45,7 @@ public class WebSecurityConfig {
                         new AntPathRequestMatcher("/events"),
                         new AntPathRequestMatcher("/events/**"),
                         new AntPathRequestMatcher("/postalcodes"),
-                        new AntPathRequestMatcher("/venues")
+                        new AntPathRequestMatcher("/venues"),
         };
 
         // Sallitaan vapaa pääsy WHITE_LIST_URL -osotteisiin
@@ -68,7 +68,7 @@ public class WebSecurityConfig {
                 http.authorizeHttpRequests().requestMatchers(ADMIN_LIST_URLS).hasAuthority("ADMIN")
                                 .and()
                                 .authorizeHttpRequests().requestMatchers(AUTH_LIST_URLS)
-                                .hasAnyAuthority("CLERK", "ADMIN")
+                                .hasAnyAuthority("CLERK", "ADMIN", "TICKET_INSPECTOR")
                                 .and()
                                 .headers().frameOptions().disable()
                                 .and()

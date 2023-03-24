@@ -125,16 +125,24 @@ public class TicketGuruApplication {
 			roleRepository.save(role3);
 
 			// KÄYTTÄJÄT
-
+			
+			// admin
 			AppUser user1 = new AppUser("Anneli", "Admin", "admin@tiketguru.com",
 					"$2a$10$Xp67oEDHyODcnTzkIIp9z.SpmmpZg33mqZe/jvaSHMnpWtEQGov5e", "+358123456",
 					"Järjestelmän pääkäyttäjä", "Osoite1", postcode1);
 			userRepository.save(user1);
 
+			// user
 			AppUser user2 = new AppUser("Make", "Myyjä", "make@tiketguru.com",
 					"$2a$10$Rc25Yhstdcr9Ce3WcQFKLeHT3nN1Yr.ud6M0AywXA8Q1tidWcdvqy", "+358654321",
 					"Lipunmyyjä, hyvä jäbä", "Osoite2", postcode2);
 			userRepository.save(user2);
+			
+			// inspector
+			AppUser user3 = new AppUser("Liisa", "Lipuntarkastaja", "liisa@tiketguru.com",
+					"$2a$10$XZ5gr2DXwRTI5u0onj93suaESAYgnN2LNEeGmEx.ZbfK7DF7imOky", "+3581234567",
+					"Lipuntarkastaja ovella", "Osoite2", postcode2);
+			userRepository.save(user3);
 
 			AppUser_Role appuserRole = new AppUser_Role(user1, role1);
 			userRoleRepository.save(appuserRole);
@@ -142,6 +150,8 @@ public class TicketGuruApplication {
 			userRoleRepository.save(appuserRole2);
 			AppUser_Role appuserRole3 = new AppUser_Role(user1, role2);
 			userRoleRepository.save(appuserRole3);
+			AppUser_Role appuserRole4 = new AppUser_Role(user3, role3);
+			userRoleRepository.save(appuserRole4);
 
 			/*
 			 * // MYYNTITAPAHTUMAT
