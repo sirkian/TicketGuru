@@ -57,6 +57,7 @@ public class PostalCodeRestController {
 	}
 
 	// Muokkaa valittua postinumeroa
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PutMapping("/postalcodes/{postalCode}")
 	public PostalCode editPostalCode(@Valid @RequestBody PostalCode editedPostalCode,
 			@PathVariable("postalCode") String postalCode) {
@@ -65,7 +66,6 @@ public class PostalCodeRestController {
 		if (postcode.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annettua postinumeroa ei löydy");
 		}
-		// tästä puuttuu tarkistus cityn sisällölle -> jos sisältää numeron??
 		editedPostalCode.setPostalCode(postalCode);
 		return pcrepository.save(editedPostalCode);
 	}
