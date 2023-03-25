@@ -45,6 +45,7 @@ public class WebSecurityConfig {
                         new AntPathRequestMatcher("/events"),
                         new AntPathRequestMatcher("/events/**"),
                         new AntPathRequestMatcher("/postalcodes"),
+                        new AntPathRequestMatcher("/postalcodes/**"),
                         new AntPathRequestMatcher("/venues"),
         };
 
@@ -65,7 +66,9 @@ public class WebSecurityConfig {
 
         @Bean
         public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-                http.authorizeHttpRequests().requestMatchers(ADMIN_LIST_URLS).hasAuthority("ADMIN")
+                http.authorizeHttpRequests()
+                				.requestMatchers(AUTH_LIST_URLS).permitAll()
+                				.requestMatchers(ADMIN_LIST_URLS).hasAuthority("ADMIN")
                                 .and()
                                 .authorizeHttpRequests().requestMatchers(AUTH_LIST_URLS)
                                 .hasAnyAuthority("CLERK", "ADMIN", "TICKET_INSPECTOR")
