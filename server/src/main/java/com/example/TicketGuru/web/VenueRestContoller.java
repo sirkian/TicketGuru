@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,6 +49,7 @@ public class VenueRestContoller {
 	}
 
 	// Lisää uuden tapahtumapaikan
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/venues")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Venue newVenue(@Valid @RequestBody Venue newVenue) {
@@ -59,6 +61,7 @@ public class VenueRestContoller {
 	}
 
 	// Muokkaa tapahtumapaikkaa, jolla valittu venueId
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PutMapping("/venues/{venueId}")
 	public Venue editVenue(@Valid @RequestBody Venue editedVenue, @PathVariable("venueId") Long venueId) {
 		Optional<Venue> venue = venueRepository.findById(venueId);
@@ -75,6 +78,7 @@ public class VenueRestContoller {
 	}
 
 	// Poistaa tapahtumapaikan id:n perusteella
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@DeleteMapping("/venues/{venueId}")
 	public Iterable<Venue> deleteVenue(@PathVariable("venueId") Long venueId) {
 		Optional<Venue> venue = venueRepository.findById(venueId);

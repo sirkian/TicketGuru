@@ -31,8 +31,11 @@ public class WebSecurityConfig {
         // URLit, joihin pääsy vain ADMIN-roolilla
         private static final AntPathRequestMatcher[] ADMIN_LIST_URLS = {
                         new AntPathRequestMatcher("/appusers"),
+                        new AntPathRequestMatcher("/appusers/**"),
                         new AntPathRequestMatcher("/appuserroles"),
+                        new AntPathRequestMatcher("/appuserroles/**"),
                         new AntPathRequestMatcher("/roles"),
+                        new AntPathRequestMatcher("/roles/**"),
 
         };
 
@@ -47,6 +50,14 @@ public class WebSecurityConfig {
                         new AntPathRequestMatcher("/postalcodes"),
                         new AntPathRequestMatcher("/postalcodes/**"),
                         new AntPathRequestMatcher("/venues"),
+                        new AntPathRequestMatcher("/venues/**"),
+                        new AntPathRequestMatcher("/transactions"),
+                        new AntPathRequestMatcher("/transactions/**"),
+                        new AntPathRequestMatcher("/tickettypes"),
+                        new AntPathRequestMatcher("/tickettypes/**"),
+                        new AntPathRequestMatcher("/eventtickettypes"),
+                        new AntPathRequestMatcher("/eventtickettypes/**"),
+
         };
 
         // Sallitaan vapaa pääsy WHITE_LIST_URL -osotteisiin
@@ -67,8 +78,8 @@ public class WebSecurityConfig {
         @Bean
         public SecurityFilterChain configure(HttpSecurity http) throws Exception {
                 http.authorizeHttpRequests()
-                				.requestMatchers(AUTH_LIST_URLS).permitAll()
-                				.requestMatchers(ADMIN_LIST_URLS).hasAuthority("ADMIN")
+                                .requestMatchers(AUTH_LIST_URLS).permitAll()
+                                .requestMatchers(ADMIN_LIST_URLS).hasAuthority("ADMIN")
                                 .and()
                                 .authorizeHttpRequests().requestMatchers(AUTH_LIST_URLS)
                                 .hasAnyAuthority("CLERK", "ADMIN", "TICKET_INSPECTOR")
