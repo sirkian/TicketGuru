@@ -4,6 +4,8 @@
 
 **metodi**: `POST`
 
+**Vaadittu rooli**: Admin
+
 ## Vastauksen paluukoodit
 
 **Koodit**:

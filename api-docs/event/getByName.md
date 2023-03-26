@@ -8,6 +8,8 @@ Palauttaa tyhjän listan koodilla 200 OK, mikäli hakusanalla ei löydy yhtäkä
 
 **Metodi**: `GET`
 
+**Vaadittu rooli**: Admin tai Myyjä
+
 ## Vastauksen paluukoodit
 
 **Koodit**:

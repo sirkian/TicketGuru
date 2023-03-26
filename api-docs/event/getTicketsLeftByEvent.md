@@ -7,6 +7,8 @@ Hakee tapahtumalle asetetun lippumäärän, sekä myytyjen lippujen määrän ja
 
 **Metodi**: `GET`
 
+**Vaadittu rooli**: Admin tai Myyjä
+
 ## Vastauksen paluukoodit
 
 **Koodit**:

@@ -4,6 +4,8 @@
 
 **Metodi**: `DELETE`
 
+**Vaadittu rooli**: Admin
+
 ## Vastauksen paluukoodit
 
 **Koodit**:
