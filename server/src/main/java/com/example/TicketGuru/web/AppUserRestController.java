@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,8 @@ public class AppUserRestController {
 
 	@Autowired
 	private AppUserRepository auRepository;
+
+	BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
 
 	// Palauttaa kaikki käyttäjät
 	@GetMapping("/appusers")
@@ -44,6 +47,8 @@ public class AppUserRestController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public AppUser newAppUser(@Valid @RequestBody AppUser newAppUser) {
 		try {
+			String pwdHash = bcrypt.encode(newAppUser.getPassword());
+			newAppUser.setPassword(pwdHash);
 			return auRepository.save(newAppUser);
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
@@ -56,18 +61,18 @@ public class AppUserRestController {
 		Optional<AppUser> user = auRepository.findById(userId);
 		if ((user.isPresent())) {
 			try {
-		editedAppUser.setUserId(userId);
-		return auRepository.save(editedAppUser);
-		}
-			catch (Exception e) {
+				editedAppUser.setUserId(userId);
+				String pwdHash = bcrypt.encode(editedAppUser.getPassword());
+				editedAppUser.setPassword(pwdHash);
+				return auRepository.save(editedAppUser);
+			} catch (Exception e) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarkista viiteavaimet: " + e.getMessage());
-			}				
+			}
 		} else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole olemassa käyttäjää");	
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole olemassa käyttäjää");
 		}
 
 	}
-
 
 	// Poistaa id:llä haetun käyttäjän
 	// Jätin vielä kommentteihin, pitäisikö tähänkin miettiä sitä soft deleteä
