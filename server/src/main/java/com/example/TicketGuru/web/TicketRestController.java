@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -74,6 +75,7 @@ public class TicketRestController {
 	
 	// Lisää uuden lipun myydyksi
 	// Lisää uuden lipun a8b20a8e7ce12e054b433a08439424dda2f44ce6
+	@PreAuthorize("hasAnyAuthority('CLERC', 'ADMIN')")
 	@PostMapping("/tickets")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Ticket newTicket(@Valid @RequestBody Ticket newTicket) {
@@ -89,6 +91,7 @@ public class TicketRestController {
 	}
 	
 	// Muokkaa id:llä valittua lippua
+	@PreAuthorize("hasAnyAuthority('CLERC', 'ADMIN')")
 	@PutMapping("/tickets/{ticketId}")
 	public Ticket editTicket(@Valid @RequestBody Ticket editedTicket, @PathVariable("ticketId") Long ticketId) {
 		// Haetaan lippu id:llä, jotta nähdään onko olemassa
@@ -111,6 +114,7 @@ public class TicketRestController {
 	}
 	
 	// Poistaa id:llä haetun lipun esim. virhemyyntitilanteessa
+	@PreAuthorize("hasAnyAuthority('CLERC', 'ADMIN')")
 	@DeleteMapping("/tickets/{ticketId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteTicket(@PathVariable("ticketId") Long ticketId) {
