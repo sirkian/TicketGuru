@@ -34,6 +34,7 @@ public class TicketRestController {
 	private TransactionRepository transactionRepository;
 	
 	// Palauttaa listan kaikista lipuista
+	@PreAuthorize("hasAnyAuthority('CLERK', 'ADMIN', 'TICKET_INSPECTOR')")
 	@GetMapping("/tickets")
 	public Iterable<Ticket> getTickets() {
 		// 200 OK ja tyhjä taulukko jos ei ole lippuja, muuten palauttaa kaikki liput
@@ -41,6 +42,7 @@ public class TicketRestController {
 	}
 	
 	// Palauttaa id:llä haetun lipun
+	@PreAuthorize("hasAnyAuthority('CLERK', 'ADMIN', 'TICKET_INSPECTOR')")
 	@GetMapping("/tickets/{ticketId}")
 	public Optional<Ticket> getTicket(@PathVariable("ticketId") Long ticketId) {
 		Optional<Ticket> ticket = ticketRepository.findById(ticketId);
@@ -53,6 +55,7 @@ public class TicketRestController {
 	// Palauttaa lipun tarkastuskoodin perusteella
 	// lipun tarkastuksessa voi olla hyödyllinen
 	// esim http://localhost:8080/tickets/q?name=27cfbbca
+	@PreAuthorize("hasAnyAuthority('CLERK', 'ADMIN', 'TICKET_INSPECTOR')")
 	@GetMapping("/tickets/q")
 	public Optional<Ticket> getTicketByVerificationCode(@RequestParam(value = "name") String verificationCode){
 		Optional<Ticket> ticket = ticketRepository.findByVerificationCode(verificationCode);
@@ -63,6 +66,7 @@ public class TicketRestController {
 	}
 	
 	// Palauttaa transaction id:llä haetun lipun
+	@PreAuthorize("hasAnyAuthority('CLERK', 'ADMIN', 'TICKET_INSPECTOR')")
 	@GetMapping("/transactions/{transactionId}/tickets")
 	public Iterable<Ticket> getTicketByTransaction(@PathVariable("transactionId") Long transactionId) {
 		// Haetaan myyntitapahtuma parametrinä tulleella id:llä
