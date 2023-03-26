@@ -34,7 +34,6 @@ public class EventRestController {
 	private VenueRepository venueRepository;
 
 	// Palauttaa kaikki järjestelmään tallennetut tapahtumat
-	//@PreAuthorize("hasAnyAuthority('CLERK', 'ADMIN')")
 	@GetMapping("/events")
 	// 200 OK ja tyhjä taulukko jos ei ole tapahtumia
 	public Iterable<Event> getAllEvents() {

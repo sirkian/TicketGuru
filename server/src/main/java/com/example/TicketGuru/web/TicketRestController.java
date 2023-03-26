@@ -62,6 +62,7 @@ public class TicketRestController {
 		return ticket;
 	}
 	
+	// Palauttaa transaction id:llä haetun lipun
 	@GetMapping("/transactions/{transactionId}/tickets")
 	public Iterable<Ticket> getTicketByTransaction(@PathVariable("transactionId") Long transactionId) {
 		// Haetaan myyntitapahtuma parametrinä tulleella id:llä
@@ -75,7 +76,7 @@ public class TicketRestController {
 	
 	// Lisää uuden lipun myydyksi
 	// Lisää uuden lipun a8b20a8e7ce12e054b433a08439424dda2f44ce6
-	@PreAuthorize("hasAnyAuthority('CLERC', 'ADMIN')")
+	@PreAuthorize("hasAnyAuthority('CLERK', 'ADMIN')")
 	@PostMapping("/tickets")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Ticket newTicket(@Valid @RequestBody Ticket newTicket) {
@@ -91,7 +92,7 @@ public class TicketRestController {
 	}
 	
 	// Muokkaa id:llä valittua lippua
-	@PreAuthorize("hasAnyAuthority('CLERC', 'ADMIN')")
+	@PreAuthorize("hasAnyAuthority('CLERK', 'ADMIN')")
 	@PutMapping("/tickets/{ticketId}")
 	public Ticket editTicket(@Valid @RequestBody Ticket editedTicket, @PathVariable("ticketId") Long ticketId) {
 		// Haetaan lippu id:llä, jotta nähdään onko olemassa
@@ -114,7 +115,7 @@ public class TicketRestController {
 	}
 	
 	// Poistaa id:llä haetun lipun esim. virhemyyntitilanteessa
-	@PreAuthorize("hasAnyAuthority('CLERC', 'ADMIN')")
+	@PreAuthorize("hasAnyAuthority('CLERK', 'ADMIN')")
 	@DeleteMapping("/tickets/{ticketId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteTicket(@PathVariable("ticketId") Long ticketId) {

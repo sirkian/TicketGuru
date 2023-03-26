@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,6 +55,8 @@ public class EventTicketTypeRestController {
 		return ettRepository.findByEvent(event);
 	}
 
+	// Luodaan tapahtumaan lipputyyppi
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/eventtickettypes")
 	@ResponseStatus(HttpStatus.CREATED)
 	public EventTicketType newEventTT(@Valid @RequestBody EventTicketType newEventTT) {
@@ -66,6 +69,7 @@ public class EventTicketTypeRestController {
 	}
 
 	// Muokkaa tapahtuman lipputyyppiä (eventId, typeId ja hinta)
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PutMapping("/eventtickettypes/{eventTypeId}")
 	public EventTicketType editEventTT(@Valid @RequestBody EventTicketType editedETT,
 			@PathVariable("eventTypeId") Long eventTypeId) {

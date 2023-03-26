@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,6 +47,7 @@ public class TicketTypeRestController {
 
 	// luo uuden lipputyypin
 	// esim http://localhost:8080/tickettypes [POST] Body: {"typeName": "Varusmies"}
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/tickettypes")
 	@ResponseStatus(HttpStatus.CREATED)
 	public TicketType newTicketType(@Valid @RequestBody TicketType newTicketType) {
@@ -59,6 +61,7 @@ public class TicketTypeRestController {
 	// muokkaa lipputyyppiä
 	// esim http://localhost:8080/tickettypes/4 [PUT] Body: {"typeId": 4,"typeName":
 	// "LapsiMUOKATTU"}
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PutMapping("/tickettypes/{typeId}")
 	public TicketType editTicketType(@Valid @RequestBody TicketType editedType, @PathVariable("typeId") Long typeId) {
 		Optional<TicketType> type = typeRepository.findById(typeId);
