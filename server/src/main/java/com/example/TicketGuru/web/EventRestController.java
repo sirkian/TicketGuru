@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +41,7 @@ public class EventRestController {
 	}
 
 	// Palauttaa tapahtuman haetulla id:llä
+	@PreAuthorize("hasAnyAuthority('CLERK', 'ADMIN')")
 	@GetMapping("/events/{eventId}")
 	public Optional<Event> getEvent(@PathVariable("eventId") Long eventId) {
 		Optional<Event> event = eventRepository.findById(eventId);
@@ -50,6 +52,7 @@ public class EventRestController {
 	}
 
 	// Palauttaa tapahtumat joiden nimi sisältää hakusanan
+	@PreAuthorize("hasAnyAuthority('CLERK', 'ADMIN')")
 	@GetMapping("/events/q")
 	public Iterable<Event> getEventsByName(@RequestParam(value = "name") String name) {
 		List<Event> events = (List<Event>) eventRepository.findByEventNameContainingIgnoreCase(name);
@@ -61,6 +64,7 @@ public class EventRestController {
 
 	// Palauttaa haetun tapahtumapaikan kaikki tapahtumat
 	// Korvataan endpoint suoralla vastauksella (linkit poies)
+	@PreAuthorize("hasAnyAuthority('CLERK', 'ADMIN')")
 	@GetMapping("/venues/{venueId}/events")
 	public Iterable<Event> getEventsByVenue(@PathVariable("venueId") Long venueId) {
 		Optional<Venue> venue = venueRepository.findById(venueId);
@@ -73,7 +77,8 @@ public class EventRestController {
 
 	}
 
-	// lisää uuden tapahtuman
+	// Lisää uuden tapahtuman
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/events")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Event newEvent(@Valid @RequestBody Event newEvent) {
@@ -85,6 +90,7 @@ public class EventRestController {
 	}
 
 	// Muokkaa id:llä valittua tapahtumaa
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PutMapping("/events/{eventId}")
 	public Event editEvent(@Valid @RequestBody Event editedEvent, @PathVariable("eventId") Long eventId) {
 		// Haetaan tapahtuma id:llä, jotta nähdään onko olemassa
@@ -105,6 +111,7 @@ public class EventRestController {
 	}
 
 	// Poistaa tapahtuman id:n perusteella
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@DeleteMapping("/events/{eventId}")
 	public Iterable<Event> deleteEvent(@PathVariable("eventId") Long eventId) {
 		try {
@@ -123,6 +130,7 @@ public class EventRestController {
 
 	// Hakee tapahtuman kokonaislippumäärän ja vähentää myytyjen lippujen määrän
 	// Palauttaa tuloksen kokonaislukuna
+	@PreAuthorize("hasAnyAuthority('CLERK', 'ADMIN')")
 	@GetMapping("/events/{eventId}/ticketsleft")
 	public Integer getTicketsLeftByEvent(@PathVariable("eventId") Long eventId) {
 		try {

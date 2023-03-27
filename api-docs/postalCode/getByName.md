@@ -8,6 +8,8 @@ Palauttaa tyhjän listan koodilla 200 OK, mikäli hakusanalla ei löydy yhtäkä
 
 **Metodi**: `GET`
 
+**Vaadittu rooli**: -
+
 ## Vastauksen paluukoodi
 
 **Koodit**: 

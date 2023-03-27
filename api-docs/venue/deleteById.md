@@ -1,10 +1,10 @@
 # Poista tapahtumapaikka
 
-
 **URL**: `/venues/:pk`
 
-
 **Metodi**: DELETE
+
+**Vaadittu rooli**: Admin
 
 ## Vastauksen paluukoodi
 

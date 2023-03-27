@@ -4,6 +4,8 @@
 
 **Metodi**: `GET`
 
+**Vaadittu rooli**: Admin tai Myyjä tai Lipuntarkastaja
+
 ## Vastauksen paluukoodit
 
 **Koodit**:

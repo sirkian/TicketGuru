@@ -4,6 +4,8 @@
 
 **Metodi**: `PUT`
 
+**Vaadittu rooli**: Admin
+
 ## Vastauksen paluukoodi
 
 **Koodit**:

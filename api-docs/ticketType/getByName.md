@@ -4,6 +4,8 @@
 
 **metodi**: `GET`
 
+**Vaadittu rooli**: -
+
 ## Vastauksen paluukoodi
 
 **Koodit**:
