@@ -28,7 +28,6 @@ _Jos myyntitapahtumia ei ole, API palauttaa tyhjän taulukon koodilla 200 OK_
       "firstName": "Pera",
       "lastName": "Pääkäyttäjä",
       "email": "pertsa@ticketguru.com",
-      "password": "ghba2eo234igfnhi324iqaengineb342n",
       "phoneNum": "+358123456",
       "details": "Järjestelmän pääkäyttäjä",
       "address": "Kävelykatu 1",

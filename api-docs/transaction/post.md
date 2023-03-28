@@ -35,7 +35,6 @@
     "firstName": null,
     "lastName": null,
     "email": null,
-    "password": null,
     "phoneNum": null,
     "details": null,
     "address": null,

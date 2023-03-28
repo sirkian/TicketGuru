@@ -37,7 +37,6 @@
     "firstName": "Mantero",
     "lastName": "Myyjä",
     "email": "myyja@ticketguru.com",
-    "password": "password123",
     "phoneNum": "+358654321",
     "details": "TG:n luottomyyjä",
     "address": "Hesentie 11",
