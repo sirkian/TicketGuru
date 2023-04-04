@@ -19,24 +19,25 @@ jobs:
       - name: Set up Java version
         uses: actions/setup-java@v1
         with:
-          java-version: '17'
+          java-version: "17"
 
       - name: Build with Maven
+        working-directory: ./server
         run: mvn clean install
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
+          path: "${{ github.workspace }}/server/target/*.jar"
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'Production'
+      name: "Production"
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
@@ -47,7 +48,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'qo7-qo7fof'
-          slot-name: 'Production'
+          app-name: "qo7-qo7fof"
+          slot-name: "Production"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_984B14BD8B5446B28AD95B26D0365169 }}
-          package: '*.jar'
+          package: "./server/target/*.jar"
