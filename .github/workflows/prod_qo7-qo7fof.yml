@@ -51,4 +51,4 @@ jobs:
           app-name: "qo7-qo7fof"
           slot-name: "Production"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_984B14BD8B5446B28AD95B26D0365169 }}
-          package: "./server/target/*.jar"
+          package: "*.jar"
