@@ -8,24 +8,21 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 
 import com.example.TicketGuru.domain.AppUser;
 import com.example.TicketGuru.domain.AppUserRepository;
 import com.example.TicketGuru.domain.AppUser_Role;
 import com.example.TicketGuru.domain.AppUser_RoleRepository;
-import com.example.TicketGuru.domain.Event;
 import com.example.TicketGuru.domain.EventRepository;
-import com.example.TicketGuru.domain.EventTicketType;
 import com.example.TicketGuru.domain.EventTicketTypeRepository;
 import com.example.TicketGuru.domain.PostalCode;
 import com.example.TicketGuru.domain.PostalCodeRepository;
 import com.example.TicketGuru.domain.Role;
 import com.example.TicketGuru.domain.RoleRepository;
 import com.example.TicketGuru.domain.TicketRepository;
-import com.example.TicketGuru.domain.TicketType;
 import com.example.TicketGuru.domain.TicketTypeRepository;
 import com.example.TicketGuru.domain.TransactionRepository;
-import com.example.TicketGuru.domain.Venue;
 import com.example.TicketGuru.domain.VenueRepository;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -61,6 +58,7 @@ public class TicketGuruApplication {
 	}
 
 	@Bean
+	@Profile("dev")
 	public CommandLineRunner ticketguru(TicketRepository ticketRepository, TicketTypeRepository ticketTypeRepository,
 			TransactionRepository transactionRepository) {
 		return (args) -> {
@@ -125,7 +123,7 @@ public class TicketGuruApplication {
 			roleRepository.save(role3);
 
 			// KÄYTTÄJÄT
-			
+
 			// admin
 			AppUser user1 = new AppUser("Anneli", "Admin", "admin@tiketguru.com",
 					"$2a$10$Xp67oEDHyODcnTzkIIp9z.SpmmpZg33mqZe/jvaSHMnpWtEQGov5e", "+358123456",
@@ -137,7 +135,7 @@ public class TicketGuruApplication {
 					"$2a$10$Rc25Yhstdcr9Ce3WcQFKLeHT3nN1Yr.ud6M0AywXA8Q1tidWcdvqy", "+358654321",
 					"Lipunmyyjä, hyvä jäbä", "Osoite2", postcode2);
 			userRepository.save(user2);
-			
+
 			// inspector
 			AppUser user3 = new AppUser("Liisa", "Lipuntarkastaja", "liisa@tiketguru.com",
 					"$2a$10$XZ5gr2DXwRTI5u0onj93suaESAYgnN2LNEeGmEx.ZbfK7DF7imOky", "+3581234567",
