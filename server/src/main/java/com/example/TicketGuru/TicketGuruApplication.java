@@ -65,10 +65,10 @@ public class TicketGuruApplication {
 
 			// POSTINUMEROT
 
-			PostalCode postcode1 = new PostalCode("00100", "Helsinki");
-			postRepository.save(postcode1);
-			PostalCode postcode2 = new PostalCode("33101", "Tampere");
-			postRepository.save(postcode2);
+			// PostalCode postcode1 = new PostalCode("00100", "Helsinki");
+			// postRepository.save(postcode1);
+			// PostalCode postcode2 = new PostalCode("33101", "Tampere");
+			// postRepository.save(postcode2);
 
 			/*
 			 * 
@@ -115,16 +115,17 @@ public class TicketGuruApplication {
 
 			// ROOLIT
 
-			Role role1 = new Role("Admin");
-			roleRepository.save(role1);
-			Role role2 = new Role("Clerk");
-			roleRepository.save(role2);
-			Role role3 = new Role("Ticket_inspector");
-			roleRepository.save(role3);
+			// Role role1 = new Role("Admin");
+			// roleRepository.save(role1);
+			// Role role2 = new Role("Clerk");
+			// roleRepository.save(role2);
+			// Role role3 = new Role("Ticket_inspector");
+			// roleRepository.save(role3);
 
 			// KÄYTTÄJÄT
 
 			// admin
+
 			AppUser user1 = new AppUser("Anneli", "Admin", "admin@tiketguru.com",
 					"$2a$10$Xp67oEDHyODcnTzkIIp9z.SpmmpZg33mqZe/jvaSHMnpWtEQGov5e", "+358123456",
 					"Järjestelmän pääkäyttäjä", "Osoite1", postcode1);
