@@ -3,6 +3,7 @@ package com.example.TicketGuru.domain;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -21,68 +22,68 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name="app_user")
+@Table(name = "app_user")
 public class AppUser {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id", nullable = false, updatable = false)
 	private Long userId;
-	
+
 	@NotBlank
 	@Size(max = 50)
-	@Column(name="first_name", length = 50, nullable = false)
+	@Column(name = "first_name", length = 50, nullable = false)
 	private String firstName;
-	
+
 	@NotBlank
 	@Size(max = 50)
-	@Column(name="last_name", length = 50, nullable = false)
+	@Column(name = "last_name", length = 50, nullable = false)
 	private String lastName;
-	
+
 	@Email
 	@NotBlank
-	@Column(name="email", length = 150, nullable = false)
+	@Column(name = "email", length = 150, nullable = false)
 	private String email;
-	
+
 	@NotBlank
 	@Size(max = 450)
-	@Column(name="password_hash", length = 450, nullable = false)
+	@Column(name = "password_hash", length = 450, nullable = false)
 	private String password;
-	
-	//Asetin tietotyypiksi stringin, jos halutaan käyttäjältä suuntanumero (+358..)
-	//Käytän validointiin size eikä max koska tietotyyppi String
+
+	// Asetin tietotyypiksi stringin, jos halutaan käyttäjältä suuntanumero (+358..)
+	// Käytän validointiin size eikä max koska tietotyyppi String
 	@NotBlank
 	@Size(max = 15)
-	@Column(name="phone_num", length = 15, nullable = false)
+	@Column(name = "phone_num", length = 15, nullable = false)
 	private String phoneNum;
-	
+
 	@NotBlank
 	@Size(max = 450)
-	@Column(name="details", length = 450, nullable = true)
+	@Column(name = "details", length = 450, nullable = true)
 	private String details;
-	
+
 	@NotBlank
 	@Size(max = 250)
-	@Column(name="address", length = 250, nullable = false)
+	@Column(name = "address", length = 250, nullable = false)
 	private String address;
-	
+
 	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="postal_code")
+	@JoinColumn(name = "postal_code")
 	private PostalCode postalCode;
-	
+
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "appUser")
 	private List<Transaction> transactions;
-	
+
 	// Lisätty välitaulu AppUser_Role
 	// Käyttäjällä voi olla monta roolia, joten listataan ne käyttäjälle
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "appUser")
 	private List<AppUser_Role> appUserRoles;
-	
-	public AppUser() { }
-	
+
+	public AppUser() {
+	}
 
 	public AppUser(String firstName, String lastName, String email, String password, String phoneNum,
 			String details, String address, PostalCode postalCode) {
@@ -129,10 +130,12 @@ public class AppUser {
 		this.email = email;
 	}
 
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
 
+	@JsonSetter
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -192,10 +195,4 @@ public class AppUser {
 				+ ", postalCode=" + postalCode + "]";
 	}
 
-
-	
-	
-	
-	
-	
 }

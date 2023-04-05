@@ -17,18 +17,18 @@
 ## Esimerkkipyyntö:
 
 **Polku**: `BASE_URL/eventsappusers`
+
 ```json
 {
-    "firstName": "Testi",
-    "lastName": "Testiläinen",
-    "email": "test@tester.com",
-    "password": "test123",
-    "phoneNum": "040404404",
-    "details": "Testaillaan tässä nyt vähäsen",
-    "address": "Testikatu 324b",
-       "postalCode": {
-            "postalCode": "33101"
-        } 
+  "firstName": "Testi",
+  "lastName": "Testiläinen",
+  "email": "test@tester.com",
+  "phoneNum": "040404404",
+  "details": "Testaillaan tässä nyt vähäsen",
+  "address": "Testikatu 324b",
+  "postalCode": {
+    "postalCode": "33101"
+  }
 }
 ```
 
@@ -36,18 +36,18 @@
 
 ```json
 {
-    "userId": 2,
-    "firstName": "Testi",
-    "lastName": "Testiläinen",
-    "email": "test@tester.com",
-    "password": "test123",
-    "phoneNum": "040404404",
-    "details": "Testaillaan tässä nyt vähäsen",
-    "address": "Testikatu 324b",
-    "postalCode": {
-        "postalCode": "33101",
-        "city": null
-    }
+  "userId": 2,
+  "firstName": "Testi",
+  "lastName": "Testiläinen",
+  "email": "test@tester.com",
+  "phoneNum": "040404404",
+  "details": "Testaillaan tässä nyt vähäsen",
+  "address": "Testikatu 324b",
+  "postalCode": {
+    "postalCode": "33101",
+    "city": null
+  }
 }
 ```
+
 _Kaupunki ei oikeasti ole null, sen tietoja ei vain ole vielä haettu GET-metodilla._

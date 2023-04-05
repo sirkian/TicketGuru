@@ -4,18 +4,23 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.StreamingHttpOutputMessage.Body;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.TicketGuru.domain.AppUser;
 import com.example.TicketGuru.domain.AppUserRepository;
+import com.example.TicketGuru.service.DetailsService;
+
 import jakarta.validation.Valid;
 
 @RestController
@@ -62,8 +67,6 @@ public class AppUserRestController {
 		if ((user.isPresent())) {
 			try {
 				editedAppUser.setUserId(userId);
-				String pwdHash = bcrypt.encode(editedAppUser.getPassword());
-				editedAppUser.setPassword(pwdHash);
 				return auRepository.save(editedAppUser);
 			} catch (Exception e) {
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarkista viiteavaimet: " + e.getMessage());
@@ -71,7 +74,6 @@ public class AppUserRestController {
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole olemassa käyttäjää");
 		}
-
 	}
 
 	// Poistaa id:llä haetun käyttäjän

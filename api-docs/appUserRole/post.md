@@ -37,7 +37,6 @@ _Jos yritetään luoda virheellisella userId:llä tai roleId:llä._
     "firstName": null,
     "lastName": null,
     "email": null,
-    "password": null,
     "phoneNum": null,
     "details": null,
     "address": null,
