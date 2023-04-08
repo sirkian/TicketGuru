@@ -27,6 +27,7 @@ public class CorsFilter implements Filter {
         List<String> originList = new ArrayList<>();
         originList.add("http://localhost:3000");
         originList.add("https://qo7-qo7fof.azurewebsites.net");
+        //originList.add("http://localhost:8080");
 
         // Otetaan pyynnössä tullut origin header
         String origin = request.getHeader("Origin");

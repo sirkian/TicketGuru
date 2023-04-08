@@ -67,7 +67,7 @@ public class TicketGuruApplication {
 	public CommandLineRunner ticketguru(TicketRepository ticketRepository, TicketTypeRepository ticketTypeRepository,
 			TransactionRepository transactionRepository) {
 		return (args) -> {
-
+			
 			// POSTINUMEROT
 
 			PostalCode postcode1 = new PostalCode("00100", "Helsinki");
@@ -167,7 +167,7 @@ public class TicketGuruApplication {
 			ticketRepository.save(ticket2);
 			Ticket ticket3 = new Ticket("testcod3", null, eventTicketType1, transaction2);
 			ticketRepository.save(ticket3);
-
+			
 			// // Lisätään luodut liput myyntitapahtumiin
 
 			// List<Ticket> tickets = new ArrayList<>(); tickets.add(ticket1);

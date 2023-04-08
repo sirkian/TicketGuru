@@ -35,7 +35,9 @@ public class WebSecurityConfig {
         // URLit, joihin ei tarvita mitään tunnareita
         private static final AntPathRequestMatcher[] WHITE_LIST_URLS = {
                         new AntPathRequestMatcher("/h2-console/**"),
-                        new AntPathRequestMatcher("/login")
+                        new AntPathRequestMatcher("/**"),
+                        new AntPathRequestMatcher("/login"),
+                        
         };
 
         // URLit, joihin pääsy vain ADMIN-roolilla
@@ -67,6 +69,7 @@ public class WebSecurityConfig {
                         new AntPathRequestMatcher("/tickettypes/**"),
                         new AntPathRequestMatcher("/eventtickettypes"),
                         new AntPathRequestMatcher("/eventtickettypes/**"),
+                        new AntPathRequestMatcher("/resources/public/**"),
 
         };
 
