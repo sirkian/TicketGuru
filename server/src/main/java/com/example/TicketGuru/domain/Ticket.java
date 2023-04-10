@@ -23,6 +23,10 @@ public class Ticket {
 	@Column(name = "verification_code", unique = true)
 	private String verificationCode;
 
+	// QR-Koodi
+	@Column(name = "qr_code", unique = true, length = 500)
+	private byte[] qrCode;
+
 	@Column(name = "used_date")
 	private LocalDateTime usedDate;
 
@@ -63,6 +67,16 @@ public class Ticket {
 		this.transaction = transaction;
 	}
 
+	public Ticket(String verificationCode, byte[] qrCode, LocalDateTime usedDate, EventTicketType eventTicketType,
+			Transaction transaction) {
+		super();
+		this.verificationCode = verificationCode;
+		this.qrCode = qrCode;
+		this.usedDate = usedDate;
+		this.eventTicketType = eventTicketType;
+		this.transaction = transaction;
+	}
+
 	public Long getTicketId() {
 		return ticketId;
 	}
@@ -77,6 +91,14 @@ public class Ticket {
 
 	public void setVerificationCode(String verificationCode) {
 		this.verificationCode = verificationCode;
+	}
+
+	public byte[] getQrCode() {
+		return qrCode;
+	}
+
+	public void setQrCode(byte[] qrCode) {
+		this.qrCode = qrCode;
 	}
 
 	public LocalDateTime getUsedDate() {

@@ -1,6 +1,7 @@
 package com.example.TicketGuru.web;
 
-import java.time.LocalDate;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
@@ -20,6 +21,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.google.zxing.WriterException;
+import net.glxn.qrgen.javase.QRCode;
+import net.glxn.qrgen.core.image.ImageType;
 import com.example.TicketGuru.domain.Ticket;
 import com.example.TicketGuru.domain.TicketRepository;
 import com.example.TicketGuru.domain.Transaction;
@@ -91,6 +95,8 @@ public class TicketRestController {
 		String verificationCode = generateVerificationCode();
 		try {
 			newTicket.setVerificationCode(verificationCode);
+			newTicket.setQrCode(generateQrCode(verificationCode));
+			System.out.println(newTicket.getQrCode().length);
 			return ticketRepository.save(newTicket);
 		} catch (Exception e) {
 			// Heitetään 400 jos menee validoinnista läpi, muttei silti onnistu (esim
@@ -111,6 +117,7 @@ public class TicketRestController {
 			try {
 				editedTicket.setTicketId(ticketId);
 				editedTicket.setVerificationCode(ticket.get().getVerificationCode());
+				editedTicket.setQrCode(ticket.get().getQrCode());
 				return ticketRepository.save(editedTicket);
 			} catch (Exception e) {
 				// Heitetään 404 jos eventIdtä ei löydy
@@ -166,6 +173,13 @@ public class TicketRestController {
 		// RandomUUID palauttaa 32-merkkiä pitkän merkkijonon, palautetaan 8 ekaa
 		// merkkiä
 		return code.substring(0, 8);
+	}
+
+	// Luodaan tarkastuskoodin perusteella qr-koodi
+	private static byte[] generateQrCode(String content) throws IOException, WriterException {
+		QRCode qrCode = QRCode.from(content).to(ImageType.PNG).withSize(250, 250);
+		ByteArrayOutputStream baos = qrCode.stream();
+		return baos.toByteArray();
 	}
 
 }
