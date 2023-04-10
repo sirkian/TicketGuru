@@ -1,17 +1,136 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
-        
-       
-        <title>Lippu</title>
-    </head>
-    <body>
-        <p>Leimaa lippu</p>
-        <input type="text" name="koodi" placeholder="syötä koodi"/>
-        <br>
-        <br>
-        <button type="button" value="leimaa">Käytä lippu</button>
+<html lang="fi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lippu</title>
+  </head>
+  <body>
+    <p>Leimaa lippu</p>
+    <input type="text" id="verificationCode" placeholder="syötä koodi" />
+    <br />
+    <br />
+    <button type="button" onclick="fetchTicket()">Hae lippu</button>
 
-    </body>
+    <div id="ticketContainer" style="display: none">
+      <p>ID: <span id="ticketId"></span></p>
+      <p>Nimi: <span id="eventName"></span></p>
+      <p>Hinta: <span id="price"></span> e</p>
+      <p>Lippu: <span id="typeName"></span></p>
+      <div id="imgContainer"></div>
+      <button
+        onclick="useTicket(document.getElementById('ticketId').innerHTML)"
+      >
+        Käytä lippu
+      </button>
+      <button onclick="clearTicket()">Peruuta</button>
+    </div>
+    <div id="errorContainer">
+      <p id="error"></p>
+    </div>
+
+    <script>
+      const URL = "http://localhost:8080";
+
+      const authString = "admin@tiketguru.com:admin";
+      const encoder = new TextEncoder();
+      const data = encoder.encode(authString);
+      const authEncoded = btoa(String.fromCharCode.apply(null, data));
+
+      let error = "";
+      let ticket = null;
+
+      const fetchTicket = async () => {
+        if (ticket !== null) {
+          clearTicket();
+        }
+        const input = document.getElementById("verificationCode").value;
+        const reqOptions = {
+          method: "GET",
+          headers: {
+            Authorization: "Basic " + authEncoded,
+          },
+        };
+
+        try {
+          const response = await fetch(
+            `${URL}/tickets/q?name=${input}`,
+            reqOptions
+          );
+          if (response.status === 200) {
+            const json = await response.json();
+            if (json.usedDate !== null) {
+              error = "Lippu on jo käytetty! " + json.usedDate;
+            } else {
+              ticket = json;
+              error = "";
+              return showTicket(ticket);
+            }
+          } else {
+            error = response.status;
+          }
+          showError(error);
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+
+      const showTicket = (ticket) => {
+        document.getElementById("ticketContainer").style = "display: block;";
+        document.getElementById("errorContainer").style = "display: none;";
+        document.getElementById("ticketId").innerHTML = ticket.ticketId;
+        document.getElementById("eventName").innerHTML =
+          ticket.eventTicketType.event.eventName;
+        document.getElementById("price").innerHTML =
+          ticket.eventTicketType.price;
+        document.getElementById("typeName").innerHTML =
+          ticket.eventTicketType.ticketType.typeName;
+
+        if (ticket.qrCode !== null) {
+          const qrCode64 = `data:image/png;base64, ${ticket.qrCode}`;
+          const img = document.createElement("img");
+          img.src = qrCode64;
+          document.getElementById("imgContainer").appendChild(img);
+        }
+      };
+
+      const showError = (error) => {
+        document.getElementById("ticketContainer").style = "display: none;";
+        document.getElementById("errorContainer").style = "display: block;";
+        document.getElementById("error").innerHTML = error;
+      };
+
+      const useTicket = async (id) => {
+        const reqOptions = {
+          method: "PATCH",
+          headers: {
+            Authorization: "Basic " + authEncoded,
+          },
+        };
+
+        try {
+          const response = await fetch(`${URL}/tickets/${id}`, reqOptions);
+          if (response.status === 200) {
+            alert("Tapahtuma onnistui!");
+            ticket = null;
+            clearTicket();
+          } else {
+            error = response.status;
+          }
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+
+      const clearTicket = () => {
+        ticket = null;
+        document
+          .getElementById("imgContainer")
+          .removeChild(
+            document.getElementById("imgContainer").firstElementChild
+          );
+        document.getElementById("ticketContainer").style = "display: none;";
+      };
+    </script>
+  </body>
 </html>
