@@ -1,7 +1,6 @@
 package com.example.TicketGuru;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,15 +13,21 @@ import com.example.TicketGuru.domain.AppUser;
 import com.example.TicketGuru.domain.AppUserRepository;
 import com.example.TicketGuru.domain.AppUser_Role;
 import com.example.TicketGuru.domain.AppUser_RoleRepository;
+import com.example.TicketGuru.domain.Event;
 import com.example.TicketGuru.domain.EventRepository;
+import com.example.TicketGuru.domain.EventTicketType;
 import com.example.TicketGuru.domain.EventTicketTypeRepository;
 import com.example.TicketGuru.domain.PostalCode;
 import com.example.TicketGuru.domain.PostalCodeRepository;
 import com.example.TicketGuru.domain.Role;
 import com.example.TicketGuru.domain.RoleRepository;
+import com.example.TicketGuru.domain.Ticket;
 import com.example.TicketGuru.domain.TicketRepository;
+import com.example.TicketGuru.domain.TicketType;
 import com.example.TicketGuru.domain.TicketTypeRepository;
+import com.example.TicketGuru.domain.Transaction;
 import com.example.TicketGuru.domain.TransactionRepository;
+import com.example.TicketGuru.domain.Venue;
 import com.example.TicketGuru.domain.VenueRepository;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -62,7 +67,7 @@ public class TicketGuruApplication {
 	public CommandLineRunner ticketguru(TicketRepository ticketRepository, TicketTypeRepository ticketTypeRepository,
 			TransactionRepository transactionRepository) {
 		return (args) -> {
-
+			
 			// POSTINUMEROT
 
 			// PostalCode postcode1 = new PostalCode("00100", "Helsinki");
@@ -70,48 +75,44 @@ public class TicketGuruApplication {
 			// PostalCode postcode2 = new PostalCode("33101", "Tampere");
 			// postRepository.save(postcode2);
 
-			/*
-			 * 
-			 * // TAPAHTUMAPAIKAT
-			 * 
-			 * 
-			 * Venue venue1 = new Venue("tapahtumapaikka1", "pieni paikka", "Maitokatu 1",
-			 * postcode1); venueRepository.save(venue1); Venue venue2 = new
-			 * Venue("tapahtumapaikka2", "iso paikka", "Piimätie 34", postcode2);
-			 * venueRepository.save(venue2);
-			 * 
-			 * 
-			 * // TAPAHTUMAT
-			 * 
-			 * 
-			 * Event event1 = new Event("Testitapahtuma", "Tapahtuman kuvaus",
-			 * LocalDateTime.of(2023, 2, 14, 16, 00), LocalDateTime.of(2023, 2, 14, 18, 00),
-			 * 100, LocalDateTime.of(2023, 2, 12, 18, 00), false, venue1);
-			 * eventRepository.save(event1); Event event2 = new Event("Tapahtuma 2",
-			 * "Kuvaus kakkostapahtumalle", LocalDateTime.of(2023, 4, 20, 20, 30),
-			 * LocalDateTime.of(2023, 4, 20, 22, 00), 200, LocalDateTime.of(2023, 4, 19, 18,
-			 * 00), false, venue2); eventRepository.save(event2); Event event3 = new
-			 * Event("Kolmas tapahtuma toden sanoo",
-			 * "Syvällistä pohdintaa ja runonlausuntaa aiheesta testidatan keksimisen vaikeus"
-			 * , LocalDateTime.of(2023, 4, 20, 20, 30), LocalDateTime.of(2023, 4, 20, 22,
-			 * 00), 200, LocalDateTime.of(2023, 4, 19, 18, 00), false, venue1);
-			 * eventRepository.save(event3);
-			 * 
-			 * 
-			 * // LIPPUTYYPIT
-			 * 
-			 * 
-			 * TicketType type1 = new TicketType("Opiskelija-lippu");
-			 * ticketTypeRepository.save(type1); TicketType type2 = new
-			 * TicketType("Eläkeläinen"); ticketTypeRepository.save(type2);
-			 * 
-			 * 
-			 * // EVENTTICKETTYPE- välitaulu
-			 * 
-			 * 
-			 * EventTicketType eventTicketType1 = new EventTicketType(12.50, event1, type1);
-			 * eventTicketTypeRepository.save(eventTicketType1);
-			 */
+			// TAPAHTUMAPAIKAT
+
+			Venue venue1 = new Venue("tapahtumapaikka1", "pieni paikka", "Maitokatu 1",
+					postcode1);
+			venueRepository.save(venue1);
+			Venue venue2 = new Venue("tapahtumapaikka2", "iso paikka", "Piimätie 34", postcode2);
+			venueRepository.save(venue2);
+
+			// TAPAHTUMAT
+
+			Event event1 = new Event("Testitapahtuma", "Tapahtuman kuvaus",
+					LocalDateTime.of(2023, 2, 14, 16, 00), LocalDateTime.of(2023, 2, 14, 18, 00),
+					100, LocalDateTime.of(2023, 2, 12, 18, 00), false, venue1);
+			eventRepository.save(event1);
+			Event event2 = new Event("Tapahtuma 2",
+					"Kuvaus kakkostapahtumalle", LocalDateTime.of(2023, 4, 20, 20, 30),
+					LocalDateTime.of(2023, 4, 20, 22, 00), 200, LocalDateTime.of(2023, 4, 19, 18,
+							00),
+					false, venue2);
+			eventRepository.save(event2);
+			Event event3 = new Event("Kolmas tapahtuma toden sanoo",
+					"Syvällistä pohdintaa ja runonlausuntaa aiheesta testidatan keksimisen vaikeus",
+					LocalDateTime.of(2023, 4, 20, 20, 30), LocalDateTime.of(2023, 4, 20, 22,
+							00),
+					200, LocalDateTime.of(2023, 4, 19, 18, 00), false, venue1);
+			eventRepository.save(event3);
+
+			// LIPPUTYYPIT
+
+			TicketType type1 = new TicketType("Opiskelija-lippu");
+			ticketTypeRepository.save(type1);
+			TicketType type2 = new TicketType("Eläkeläinen");
+			ticketTypeRepository.save(type2);
+
+			// EVENTTICKETTYPE- välitaulu
+
+			EventTicketType eventTicketType1 = new EventTicketType(12.50, event1, type1);
+			eventTicketTypeRepository.save(eventTicketType1);
 
 			// ROOLIT
 
@@ -152,35 +153,36 @@ public class TicketGuruApplication {
 			AppUser_Role appuserRole4 = new AppUser_Role(user3, role3);
 			userRoleRepository.save(appuserRole4);
 
-			/*
-			 * // MYYNTITAPAHTUMAT
-			 * 
-			 * Transaction transaction1 = new Transaction(user2, LocalDateTime.now());
-			 * transactionRepository.save(transaction1); Transaction transaction2 = new
-			 * Transaction(user2, LocalDateTime.now());
-			 * transactionRepository.save(transaction2);
-			 * 
-			 * // LIPUT
-			 * 
-			 * Ticket ticket1 = new Ticket("testcod1", type1, transaction1);
-			 * ticketRepository.save(ticket1); Ticket ticket2 = new Ticket("testcod2",
-			 * type2, transaction1); ticketRepository.save(ticket2); Ticket ticket3 = new
-			 * Ticket("testcod3", type1, transaction2); ticketRepository.save(ticket3);
-			 * 
-			 * // Lisätään luodut liput myyntitapahtumiin
-			 * 
-			 * List<Ticket> tickets = new ArrayList<>(); tickets.add(ticket1);
-			 * tickets.add(ticket2); transaction1.setTickets(tickets);
-			 * 
-			 * List<Ticket> tickets2 = new ArrayList<>(); tickets2.add(ticket3);
-			 * transaction2.setTickets(tickets2);
-			 * 
-			 * // Lisätään myyntitapahtumat myyjälle
-			 * 
-			 * List<Transaction> transactions = new ArrayList<>();
-			 * transactions.add(transaction1); transactions.add(transaction2);
-			 * user2.setTransactions(transactions);
-			 */
+			// MYYNTITAPAHTUMAT
+
+			Transaction transaction1 = new Transaction(user2, LocalDateTime.now());
+			transactionRepository.save(transaction1);
+			Transaction transaction2 = new Transaction(user2, LocalDateTime.now());
+			transactionRepository.save(transaction2);
+
+			// LIPUT
+
+			Ticket ticket1 = new Ticket("testcod1", null, eventTicketType1, transaction1);
+			ticketRepository.save(ticket1);
+			Ticket ticket2 = new Ticket("testcod2", null, eventTicketType1, transaction1);
+			ticketRepository.save(ticket2);
+			Ticket ticket3 = new Ticket("testcod3", null, eventTicketType1, transaction2);
+			ticketRepository.save(ticket3);
+			
+			// // Lisätään luodut liput myyntitapahtumiin
+
+			// List<Ticket> tickets = new ArrayList<>(); tickets.add(ticket1);
+			// tickets.add(ticket2); transaction1.setTickets(tickets);
+
+			// List<Ticket> tickets2 = new ArrayList<>(); tickets2.add(ticket3);
+			// transaction2.setTickets(tickets2);
+
+			// // Lisätään myyntitapahtumat myyjälle
+
+			// List<Transaction> transactions = new ArrayList<>();
+			// transactions.add(transaction1); transactions.add(transaction2);
+			// user2.setTransactions(transactions);
+
 		};
 
 	}

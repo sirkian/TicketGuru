@@ -1,5 +1,7 @@
 package com.example.TicketGuru;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,8 +12,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
+import com.example.TicketGuru.service.CorsFilter;
 import com.example.TicketGuru.service.DetailsService;
 
 @Configuration
@@ -22,11 +29,8 @@ public class WebSecurityConfig {
         @Autowired
         private DetailsService userDetailsService;
 
-        // URLit, joihin ei tarvita mitään tunnareita
-        private static final AntPathRequestMatcher[] WHITE_LIST_URLS = {
-                        new AntPathRequestMatcher("/h2-console/**"),
-                        new AntPathRequestMatcher("/login")
-        };
+        @Autowired
+        private CorsFilter corsFilter;
 
         // URLit, joihin pääsy vain ADMIN-roolilla
         private static final AntPathRequestMatcher[] ADMIN_LIST_URLS = {
@@ -57,22 +61,18 @@ public class WebSecurityConfig {
                         new AntPathRequestMatcher("/tickettypes/**"),
                         new AntPathRequestMatcher("/eventtickettypes"),
                         new AntPathRequestMatcher("/eventtickettypes/**"),
+                        new AntPathRequestMatcher("/resources/public/**"),
+                        new AntPathRequestMatcher("/**"),
+                        new AntPathRequestMatcher("/h2-console"),
 
         };
 
-        // Sallitaan vapaa pääsy WHITE_LIST_URL -osotteisiin
-
-        // MUTTA: "You are asking Spring Security to ignore Ant [pattern='/events'].
-        // This is not recommended -- please use permitAll via
-        // HttpSecurity#authorizeHttpRequests instead."
-
-        // Ainakaan äsken en saanu toimimaan yllä mainitulla tavalla
-        // Metoditason preAuthorize-ym. hommat ei toimi jos WHITE_LISTillä
-        // Pidetään nyt vaan H2 listalla ja kaikki muut endpointit vaatii tunnarit
         @Bean
-        public WebSecurityCustomizer webSecurityCustomizer() {
-                return (web) -> web.ignoring()
-                                .requestMatchers(WHITE_LIST_URLS);
+        UrlBasedCorsConfigurationSource corsConfigurationSource() {
+                CorsConfiguration configuration = new CorsConfiguration();
+                UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+                source.registerCorsConfiguration("/**", configuration);
+                return source;
         }
 
         @Bean
@@ -92,7 +92,8 @@ public class WebSecurityConfig {
                                 .and()
                                 .httpBasic();
 
-                http.cors().and().csrf().disable();
+                http.csrf().disable();
+                http.addFilterBefore(corsFilter, ChannelProcessingFilter.class);
                 return http.build();
         }
 
