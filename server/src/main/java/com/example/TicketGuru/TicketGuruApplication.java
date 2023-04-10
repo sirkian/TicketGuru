@@ -67,13 +67,13 @@ public class TicketGuruApplication {
 	public CommandLineRunner ticketguru(TicketRepository ticketRepository, TicketTypeRepository ticketTypeRepository,
 			TransactionRepository transactionRepository) {
 		return (args) -> {
-			
+
 			// POSTINUMEROT
 
-			// PostalCode postcode1 = new PostalCode("00100", "Helsinki");
-			// postRepository.save(postcode1);
-			// PostalCode postcode2 = new PostalCode("33101", "Tampere");
-			// postRepository.save(postcode2);
+			PostalCode postcode1 = new PostalCode("00100", "Helsinki");
+			postRepository.save(postcode1);
+			PostalCode postcode2 = new PostalCode("33101", "Tampere");
+			postRepository.save(postcode2);
 
 			// TAPAHTUMAPAIKAT
 
@@ -116,12 +116,12 @@ public class TicketGuruApplication {
 
 			// ROOLIT
 
-			// Role role1 = new Role("Admin");
-			// roleRepository.save(role1);
-			// Role role2 = new Role("Clerk");
-			// roleRepository.save(role2);
-			// Role role3 = new Role("Ticket_inspector");
-			// roleRepository.save(role3);
+			Role role1 = new Role("Admin");
+			roleRepository.save(role1);
+			Role role2 = new Role("Clerk");
+			roleRepository.save(role2);
+			Role role3 = new Role("Ticket_inspector");
+			roleRepository.save(role3);
 
 			// KÄYTTÄJÄT
 
@@ -168,7 +168,7 @@ public class TicketGuruApplication {
 			ticketRepository.save(ticket2);
 			Ticket ticket3 = new Ticket("testcod3", null, eventTicketType1, transaction2);
 			ticketRepository.save(ticket3);
-			
+
 			// // Lisätään luodut liput myyntitapahtumiin
 
 			// List<Ticket> tickets = new ArrayList<>(); tickets.add(ticket1);
