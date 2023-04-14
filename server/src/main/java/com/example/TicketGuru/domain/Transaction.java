@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,7 +31,7 @@ public class Transaction {
 	
 	// Käytetään listaa, koska lippuja voi olla yksi tai useampi.
 	@JsonIgnore  
-	@OneToMany(mappedBy = "transaction")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "transaction")
 	private List<Ticket> tickets;
 	
 	@NotNull

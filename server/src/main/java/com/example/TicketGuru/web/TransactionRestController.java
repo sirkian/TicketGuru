@@ -97,5 +97,6 @@ public class TransactionRestController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole myyntitapahtumaa");
 		}
 	}
+	
 
 }
