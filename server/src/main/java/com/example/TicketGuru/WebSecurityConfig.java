@@ -35,7 +35,7 @@ public class WebSecurityConfig {
         // URLit, joihin ei tarvita mitään tunnareita
         private static final AntPathRequestMatcher[] WHITE_LIST_URLS = {
                         new AntPathRequestMatcher("/h2-console/**"),
-                        new AntPathRequestMatcher("/**"),
+                        //new AntPathRequestMatcher("/**"),
                         new AntPathRequestMatcher("/login"),
                         
         };
@@ -70,6 +70,7 @@ public class WebSecurityConfig {
                         new AntPathRequestMatcher("/eventtickettypes"),
                         new AntPathRequestMatcher("/eventtickettypes/**"),
                         new AntPathRequestMatcher("/resources/public/**"),
+                        new AntPathRequestMatcher("/**"),
 
         };
 
@@ -107,7 +108,8 @@ public class WebSecurityConfig {
                                 .and()
                                 .headers().frameOptions().disable()
                                 .and()
-                                .formLogin().loginPage("/login").defaultSuccessUrl("/", true)
+                                //.formLogin().loginPage("/login").defaultSuccessUrl("/", true) 
+                                .formLogin().defaultSuccessUrl("/index.html", true)
                                 .and()
                                 .logout().permitAll().logoutSuccessUrl("/")
                                 .and()
