@@ -65,6 +65,7 @@ public class WebSecurityConfig {
                         new AntPathRequestMatcher("/**"),
                         new AntPathRequestMatcher("/h2-console"),
 
+
         };
 
         @Bean

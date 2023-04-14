@@ -38,8 +38,11 @@ public class Transaction {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id") 
 	private AppUser appUser;
+
+	@Column(name = "paid")
+	private LocalDateTime paid;
 	
-	
+
 	public Transaction() {}
 
 	
@@ -74,6 +77,13 @@ public class Transaction {
 		this.appUser = appUser;
 	}
 
+	public void setPaid(LocalDateTime paid) {
+		this.paid = paid;
+	}
+
+	public LocalDateTime getPaid() {
+		return paid;
+	}
 
 	public List<Ticket> getTickets() {
 		return tickets;
@@ -88,11 +98,8 @@ public class Transaction {
 	@Override
 	public String toString() {
 		return "Transaction [transactionId=" + transactionId + ", transactionDate=" + transactionDate + ", tickets="
-				+ tickets + ", appUser=" + appUser + "]";
+				+ tickets + ", appUser=" + appUser + ", paid=" + paid + "]";
 	}
 
-
-	
-	
 
 }
