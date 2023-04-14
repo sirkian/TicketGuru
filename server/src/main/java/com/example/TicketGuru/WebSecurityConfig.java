@@ -32,14 +32,6 @@ public class WebSecurityConfig {
         @Autowired
         private CorsFilter corsFilter;
 
-        // URLit, joihin ei tarvita mitään tunnareita
-        private static final AntPathRequestMatcher[] WHITE_LIST_URLS = {
-                        new AntPathRequestMatcher("/h2-console/**"),
-                        //new AntPathRequestMatcher("/**"),
-                        new AntPathRequestMatcher("/login"),
-                        
-        };
-
         // URLit, joihin pääsy vain ADMIN-roolilla
         private static final AntPathRequestMatcher[] ADMIN_LIST_URLS = {
                         new AntPathRequestMatcher("/appusers"),
@@ -71,23 +63,10 @@ public class WebSecurityConfig {
                         new AntPathRequestMatcher("/eventtickettypes/**"),
                         new AntPathRequestMatcher("/resources/public/**"),
                         new AntPathRequestMatcher("/**"),
+                        new AntPathRequestMatcher("/h2-console"),
+
 
         };
-
-        // Sallitaan vapaa pääsy WHITE_LIST_URL -osotteisiin
-
-        // MUTTA: "You are asking Spring Security to ignore Ant [pattern='/events'].
-        // This is not recommended -- please use permitAll via
-        // HttpSecurity#authorizeHttpRequests instead."
-
-        // Ainakaan äsken en saanu toimimaan yllä mainitulla tavalla
-        // Metoditason preAuthorize-ym. hommat ei toimi jos WHITE_LISTillä
-        // Pidetään nyt vaan H2 listalla ja kaikki muut endpointit vaatii tunnarit
-        @Bean
-        public WebSecurityCustomizer webSecurityCustomizer() {
-                return (web) -> web.ignoring()
-                                .requestMatchers(WHITE_LIST_URLS);
-        }
 
         @Bean
         UrlBasedCorsConfigurationSource corsConfigurationSource() {
