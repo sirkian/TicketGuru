@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.interceptor.TransactionAttributeSource;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -84,6 +86,20 @@ public class TransactionRestController {
 
 	}
 
+	// Leimataan transaction myynti suoritetuksi
+	@PreAuthorize("hasAnyAuthority('CLERK', 'ADMIN')")
+	@PatchMapping("/transactions/{transactionId}")
+	public Transaction markTransactionPaid(@PathVariable("transactionId") Long transactionId) {
+		try {
+			Transaction transaction = transactionRepository.getById(transactionId);
+			transaction.setPaid(LocalDateTime.now());
+			return transactionRepository.save(transaction);
+
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Myyntitapahtumaa ei löydy");
+		}
+	}
+	
 	// Poistaa myyntitapahtuman id:n perusteella
 	@PreAuthorize("hasAnyAuthority('CLERK', 'ADMIN')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -97,5 +113,6 @@ public class TransactionRestController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole myyntitapahtumaa");
 		}
 	}
+	
 
 }
