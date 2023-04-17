@@ -108,11 +108,22 @@ public class TicketGuruApplication {
 			ticketTypeRepository.save(type1);
 			TicketType type2 = new TicketType("Eläkeläinen");
 			ticketTypeRepository.save(type2);
+			TicketType type3 = new TicketType("Aikuinen");
+			ticketTypeRepository.save(type3);
 
 			// EVENTTICKETTYPE- välitaulu
 
 			EventTicketType eventTicketType1 = new EventTicketType(12.50, event1, type1);
 			eventTicketTypeRepository.save(eventTicketType1);
+			EventTicketType eventTicketType2 = new EventTicketType(11.00, event1, type2);
+			eventTicketTypeRepository.save(eventTicketType2);
+			EventTicketType eventTicketType3 = new EventTicketType(15.00, event1, type3);
+			eventTicketTypeRepository.save(eventTicketType3);
+
+			EventTicketType eventTicketType4 = new EventTicketType(10.00, event2, type1);
+			eventTicketTypeRepository.save(eventTicketType4);
+			EventTicketType eventTicketType5 = new EventTicketType(12.00, event2, type3);
+			eventTicketTypeRepository.save(eventTicketType5);
 
 			// ROOLIT
 
