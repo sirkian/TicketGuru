@@ -1,13 +1,15 @@
-// package com.example.TicketGuru;
+package com.example.TicketGuru;
 
-// import org.junit.jupiter.api.Test;
-// import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
-// @SpringBootTest
-// class TicketGuruApplicationTests {
+@SpringBootTest
+@ActiveProfiles("dev")
+class TicketGuruApplicationTests {
 
-// @Test
-// void contextLoads() {
-// }
+    @Test
+    void contextLoads() {
+    }
 
-// }
+}

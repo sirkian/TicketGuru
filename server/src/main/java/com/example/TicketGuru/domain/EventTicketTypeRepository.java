@@ -11,4 +11,6 @@ public interface EventTicketTypeRepository extends CrudRepository<EventTicketTyp
 	// Haetaan kaikki tapahtuman lipputyypit
 	Iterable<EventTicketType> findByEvent(Optional<Event> event);
 
+	EventTicketType getById(Long eventTypeId);
+
 }

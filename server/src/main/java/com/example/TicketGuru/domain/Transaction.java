@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,18 +31,22 @@ public class Transaction {
 	
 	// Käytetään listaa, koska lippuja voi olla yksi tai useampi.
 	@JsonIgnore  
-	@OneToMany(mappedBy = "transaction")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "transaction")
 	private List<Ticket> tickets;
 	
 	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id") 
 	private AppUser appUser;
+
+	@Column(name = "paid")
+	private LocalDateTime paid;
+
+	private double total; 
 	
-	
+
 	public Transaction() {}
 
-	
 	public Transaction(AppUser appUser, LocalDateTime  transactionDate) {
 		super();
 		this.appUser = appUser;
@@ -73,6 +78,13 @@ public class Transaction {
 		this.appUser = appUser;
 	}
 
+	public void setPaid(LocalDateTime paid) {
+		this.paid = paid;
+	}
+
+	public LocalDateTime getPaid() {
+		return paid;
+	}
 
 	public List<Ticket> getTickets() {
 		return tickets;
@@ -83,15 +95,19 @@ public class Transaction {
 		this.tickets = tickets;
 	}
 
-
-	@Override
-	public String toString() {
-		return "Transaction [transactionId=" + transactionId + ", transactionDate=" + transactionDate + ", tickets="
-				+ tickets + ", appUser=" + appUser + "]";
+	public double getTotal() {
+		return total;
 	}
 
 
-	
-	
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Transaction [transactionId=" + transactionId + ", transactionDate=" + transactionDate + ", appUser=" + appUser + ", paid=" + paid + ", total=" + total + "]";
+	}
 
 }
