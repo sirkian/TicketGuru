@@ -41,11 +41,12 @@ public class Transaction {
 
 	@Column(name = "paid")
 	private LocalDateTime paid;
+
+	private double total; 
 	
 
 	public Transaction() {}
 
-	
 	public Transaction(AppUser appUser, LocalDateTime  transactionDate) {
 		super();
 		this.appUser = appUser;
@@ -94,12 +95,19 @@ public class Transaction {
 		this.tickets = tickets;
 	}
 
+	public double getTotal() {
+		return total;
+	}
+
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
 
 	@Override
 	public String toString() {
-		return "Transaction [transactionId=" + transactionId + ", transactionDate=" + transactionDate + ", tickets="
-				+ tickets + ", appUser=" + appUser + ", paid=" + paid + "]";
+		return "Transaction [transactionId=" + transactionId + ", transactionDate=" + transactionDate + ", appUser=" + appUser + ", paid=" + paid + ", total=" + total + "]";
 	}
-
 
 }
