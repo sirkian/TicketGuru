@@ -8,7 +8,7 @@ import com.example.TicketGuru.domain.AppUserRepository;
 public class LoginController {
 	
 	@Autowired
-    private AppUserRepository repository; 
+    private AppUserRepository repository;
 	
 	 @RequestMapping(value="/login")
     public String login() {	
