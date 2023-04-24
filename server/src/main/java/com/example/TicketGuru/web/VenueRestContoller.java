@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -46,6 +47,16 @@ public class VenueRestContoller {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei löytynyt tapahtumapaikkaa");
 		}
 		return venueRepository.findById(venueId);
+	}
+
+	// Palauttaa tapahtumapaikat joiden nimi sisältää hakusanan
+	@GetMapping("/venues/q")
+	public Iterable<Venue> getVenuesByName(@RequestParam(value = "name") String name) {
+		List<Venue> venues = (List<Venue>) venueRepository.findByVenueNameContainingIgnoreCase(name);
+		if (venues.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Hakusanalla ei löytynyt tapahtumapaikkoja");
+		}
+		return venues;
 	}
 
 	// Lisää uuden tapahtumapaikan
