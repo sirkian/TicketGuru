@@ -19,6 +19,8 @@ public interface EventRepository extends CrudRepository<Event, Long> {
 	// Sama toiminto kuin venues/id/events, mutta nätimpi formaatti responsessa
 	Iterable<Event> findByVenue(Optional<Venue> optional);
 
+	Event getByEventTicketTypes(EventTicketType ett);
+
 	// Hakee tapahtuman id:n perusteella kaikki luodut liput
 	// Palauttaa löydettyjen lippujen määrän
 	@Query(value = "SELECT COUNT(TICKET_ID) FROM TICKET WHERE EVENT_TYPE_ID IN (SELECT  EVENT_TYPE_ID  FROM EVENT_TICKET_TYPE WHERE EVENT_ID = :eventId)", nativeQuery = true)
