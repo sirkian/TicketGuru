@@ -24,6 +24,9 @@ import org.springframework.web.server.ResponseStatusException;
 import com.google.zxing.WriterException;
 import net.glxn.qrgen.javase.QRCode;
 import net.glxn.qrgen.core.image.ImageType;
+
+import com.example.TicketGuru.domain.Event;
+import com.example.TicketGuru.domain.EventRepository;
 import com.example.TicketGuru.domain.Ticket;
 import com.example.TicketGuru.domain.TicketRepository;
 import com.example.TicketGuru.domain.Transaction;
@@ -39,6 +42,9 @@ public class TicketRestController {
 
 	@Autowired
 	private TransactionRepository transactionRepository;
+
+	@Autowired
+	private EventRepository eventRepository;
 
 	// Palauttaa listan kaikista lipuista
 	@PreAuthorize("hasAnyAuthority('CLERK', 'ADMIN', 'TICKET_INSPECTOR')")
@@ -93,10 +99,18 @@ public class TicketRestController {
 	public Ticket newTicket(@Valid @RequestBody Ticket newTicket) {
 		// Kutsutaan metodia jolla luodaan tarkastuskoodi
 		String verificationCode = generateVerificationCode();
+
+		Event event = eventRepository.getByEventTicketTypes(newTicket.getEventTicketType());
+		Long eventId = event.getEventId();
+		int soldTickets = eventRepository.getAmountOfSoldTickets(eventId);
+		int ticketAmount = event.getAmountTickets();
+
 		try {
+			if ((ticketAmount - soldTickets) < 1) {
+				throw new ResponseStatusException(HttpStatus.CONFLICT, "Tapahtuma on loppuunmyyty!");
+			}
 			newTicket.setVerificationCode(verificationCode);
 			newTicket.setQrCode(generateQrCode(verificationCode));
-			System.out.println(newTicket.getQrCode().length);
 			return ticketRepository.save(newTicket);
 		} catch (Exception e) {
 			// Heitetään 400 jos menee validoinnista läpi, muttei silti onnistu (esim

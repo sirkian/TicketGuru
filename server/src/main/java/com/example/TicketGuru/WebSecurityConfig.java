@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -65,7 +66,6 @@ public class WebSecurityConfig {
                         new AntPathRequestMatcher("/**"),
                         new AntPathRequestMatcher("/h2-console"),
 
-
         };
 
         @Bean
@@ -76,7 +76,7 @@ public class WebSecurityConfig {
                 return source;
         }
 
-       @Bean
+        @Bean
         public SecurityFilterChain configure(HttpSecurity http) throws Exception {
                 http.authorizeHttpRequests()
                                 .requestMatchers(AUTH_LIST_URLS).permitAll()
@@ -87,7 +87,7 @@ public class WebSecurityConfig {
                                 .and()
                                 .headers().frameOptions().disable()
                                 .and()
-                                //.formLogin().loginPage("/login").defaultSuccessUrl("/", true)
+                                // .formLogin().loginPage("/login").defaultSuccessUrl("/", true)
                                 .formLogin().defaultSuccessUrl("/index.html", true)
                                 .and()
                                 .logout().permitAll().logoutSuccessUrl("/")
@@ -98,10 +98,10 @@ public class WebSecurityConfig {
                 http.addFilterBefore(corsFilter, ChannelProcessingFilter.class);
                 return http.build();
         }
-        
 
         @Autowired
         public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
                 auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
         }
+
 }

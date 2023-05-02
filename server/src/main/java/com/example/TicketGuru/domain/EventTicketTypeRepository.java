@@ -13,4 +13,6 @@ public interface EventTicketTypeRepository extends CrudRepository<EventTicketTyp
 
 	EventTicketType getById(Long eventTypeId);
 
+
+
 }

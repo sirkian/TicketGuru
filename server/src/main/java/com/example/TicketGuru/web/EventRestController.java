@@ -19,6 +19,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.example.TicketGuru.domain.Event;
 import com.example.TicketGuru.domain.EventRepository;
+import com.example.TicketGuru.domain.EventTicketType;
+import com.example.TicketGuru.domain.EventTicketTypeRepository;
 import com.example.TicketGuru.domain.Venue;
 import com.example.TicketGuru.domain.VenueRepository;
 
@@ -32,6 +34,9 @@ public class EventRestController {
 
 	@Autowired
 	private VenueRepository venueRepository;
+
+	@Autowired
+	private EventTicketTypeRepository ettRepository;
 
 	// Palauttaa kaikki järjestelmään tallennetut tapahtumat
 	@GetMapping("/events")
@@ -139,6 +144,14 @@ public class EventRestController {
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole olemassa tapahtumaa");
 		}
+	}
+
+	// haetaan tapahtuman lipputyypit
+	@GetMapping("/events/{eventId}/report")
+	public Iterable<EventTicketType> getReport(@PathVariable("eventId") Long eventId){
+
+		return eventRepository.findById(eventId).get().getEventTicketTypes();
+
 	}
 
 }

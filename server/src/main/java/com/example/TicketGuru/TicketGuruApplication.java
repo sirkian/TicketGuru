@@ -99,7 +99,7 @@ public class TicketGuruApplication {
 					"Syvällistä pohdintaa ja runonlausuntaa aiheesta testidatan keksimisen vaikeus",
 					LocalDateTime.of(2023, 4, 20, 20, 30), LocalDateTime.of(2023, 4, 20, 22,
 							00),
-					200, LocalDateTime.of(2023, 4, 19, 18, 00), false, venue1);
+					10, LocalDateTime.of(2023, 4, 19, 18, 00), false, venue1);
 			eventRepository.save(event3);
 
 			// LIPPUTYYPIT
@@ -124,6 +124,9 @@ public class TicketGuruApplication {
 			eventTicketTypeRepository.save(eventTicketType4);
 			EventTicketType eventTicketType5 = new EventTicketType(12.00, event2, type3);
 			eventTicketTypeRepository.save(eventTicketType5);
+
+			EventTicketType eventTicketType6 = new EventTicketType(69.00, event3, type3);
+			eventTicketTypeRepository.save(eventTicketType6);
 
 			// ROOLIT
 
