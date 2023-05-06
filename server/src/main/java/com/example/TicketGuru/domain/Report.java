@@ -10,6 +10,10 @@ public class Report {
 
     private int amountSoldTickets;
 
+    private double price;
+
+    private double total;
+
     public String getEvent() {
         return event;
     }
@@ -30,9 +34,6 @@ public class Report {
         return total;
     }
 
-    private double price;
-
-    private double total;
 
     public void setEvent(String event) {
         this.event = event;
@@ -55,6 +56,5 @@ public class Report {
         //this.total = total;
     }
 
-    
     
 }
