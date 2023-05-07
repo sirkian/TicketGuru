@@ -170,7 +170,7 @@ public class EventRestController {
 			String eventtickettype = eventTicketType.getTicketType().getTypeName();
 			report.setEventTicketType(eventtickettype);
 			// haetaan määrä, jota lipputyyppiä on myyty
-			int amountSoldTickets = eventRepository.getAmountOfSoldTicketsOfTicketType(eventTicketType.getEvent().getEventId(), eventTicketType.getTicketType().getTypeId());
+			int amountSoldTickets = eventRepository.getAmountOfSoldTicketsOfTicketType(eventTicketType.getEvent().getEventId(), eventTicketType.getEventTypeId());
 			report.setAmountSoldTickets(amountSoldTickets);
 			report.setTotal(price, amountSoldTickets);
 			// lisätään raporttiolio raporttilistalle

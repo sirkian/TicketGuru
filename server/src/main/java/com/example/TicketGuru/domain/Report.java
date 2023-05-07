@@ -14,6 +14,8 @@ public class Report {
 
     private double total;
 
+    private Long eventTypeId;
+
     public String getEvent() {
         return event;
     }
@@ -34,6 +36,14 @@ public class Report {
         return total;
     }
 
+
+    public Long getEventTypeId() {
+        return eventTypeId;
+    }
+
+    public void setEventTypeId(Long eventTypeId) {
+        this.eventTypeId = eventTypeId;
+    }
 
     public void setEvent(String event) {
         this.event = event;
