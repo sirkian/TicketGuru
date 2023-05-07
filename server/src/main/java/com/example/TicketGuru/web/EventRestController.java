@@ -149,9 +149,11 @@ public class EventRestController {
 	}
 
 	// haetaan tapahtuman lipputyypit ja niiden tiedot raporttiin
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/events/{eventId}/report")
 	public ArrayList<Report> getReport(@PathVariable("eventId") Long eventId){
 
+		try {
 		Iterable <EventTicketType> ett = eventRepository.findById(eventId).get().getEventTicketTypes();
 
 		ArrayList<Report> reports = new ArrayList <Report>();
@@ -175,8 +177,11 @@ public class EventRestController {
 			reports.add(report);
 
 		}
-		// palautetaan tapahtuman raporttilista
+		// palautetaan tapahtuman raporttilistan
 		return reports;
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole lipputyyppejä");
+		}
 
 	}
 
