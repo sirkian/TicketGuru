@@ -1,5 +1,6 @@
 package com.example.TicketGuru.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,7 @@ import com.example.TicketGuru.domain.Event;
 import com.example.TicketGuru.domain.EventRepository;
 import com.example.TicketGuru.domain.EventTicketType;
 import com.example.TicketGuru.domain.EventTicketTypeRepository;
+import com.example.TicketGuru.domain.Report;
 import com.example.TicketGuru.domain.Venue;
 import com.example.TicketGuru.domain.VenueRepository;
 
@@ -146,11 +148,40 @@ public class EventRestController {
 		}
 	}
 
-	// haetaan tapahtuman lipputyypit
+	// haetaan tapahtuman lipputyypit ja niiden tiedot raporttiin
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/events/{eventId}/report")
-	public Iterable<EventTicketType> getReport(@PathVariable("eventId") Long eventId){
+	public ArrayList<Report> getReport(@PathVariable("eventId") Long eventId){
 
-		return eventRepository.findById(eventId).get().getEventTicketTypes();
+		try {
+		Iterable <EventTicketType> ett = eventRepository.findById(eventId).get().getEventTicketTypes();
+
+		ArrayList<Report> reports = new ArrayList <Report>();
+
+		for(EventTicketType eventTicketType : ett){
+			Report report = new Report();
+			//haetaan hinta
+			double price = eventTicketType.getPrice();
+			report.setPrice(price);
+			//haetaan tapahtuma (nimi)
+			String event = eventTicketType.getEvent().getEventName();
+			report.setEvent(event);
+			//haetaan lipputyyppi (nimi)
+			String eventtickettype = eventTicketType.getTicketType().getTypeName();
+			report.setEventTicketType(eventtickettype);
+			// haetaan määrä, jota lipputyyppiä on myyty
+			int amountSoldTickets = eventRepository.getAmountOfSoldTicketsOfTicketType(eventTicketType.getEvent().getEventId(), eventTicketType.getEventTypeId());
+			report.setAmountSoldTickets(amountSoldTickets);
+			report.setTotal(price, amountSoldTickets);
+			// lisätään raporttiolio raporttilistalle
+			reports.add(report);
+
+		}
+		// palautetaan tapahtuman raporttilistan
+		return reports;
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Annetulla id:llä ei ole lipputyyppejä");
+		}
 
 	}
 
