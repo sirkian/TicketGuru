@@ -171,3 +171,15 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost
 | [Hae käyttäjän roolit](https://github.com/sirkian/TicketGuru/blob/main/api-docs/appUserRole/getByAppUser.md)   | `GET`    | `/appusers/:pk/appuserroles` |  Integer (Long)  |
 | [Lisää rooli käyttäjälle](https://github.com/sirkian/TicketGuru/blob/main/api-docs/appUserRole/post.md)       | `POST`    | `/appuserroles` | Integer (Long) |
 | [Poista käyttäjän rooli](https://github.com/sirkian/TicketGuru/blob/main/api-docs/appUserRole/deleteById.md)  | `DELETE` | `/appuserroles/:pk` | Integer (Long) |
+
+## Testisuunnitelma 
+
+| Testattava asia | Testin suoritus |
+| ----------------| ----------------|
+| Yksittäiset luokat ja niitä vastaavien repositorioiden toiminta. | Ajetaan testiluokat palvelinohjelmistossa. Ajetaan aina kun ohjelmaan lisätään uusia ominaisuuksia.|
+| Integraatiotesti. Tapahtuman ja lipun testaus rajapinnan (REST API) kautta. | Ajetaan testit palvelinohjelmistossa. MocMVC. Testataan rajapinnan käyttö autentikoinnin kanssa. |
+| End-to-end testit. Järjestelmän toiminta clientiltä tietokannalle. | Testataan käyttämällä ohjelmistoa clientin kautta sekä Postman- ohjelmalla. Lisäksi automatisoituja testejä Robot frameworkillä. |
+
+
+
+

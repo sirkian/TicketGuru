@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.TicketGuru.domain.AppUser;
+import com.example.TicketGuru.domain.AppUserRepository;
 import com.example.TicketGuru.domain.LoginRequest;
 import com.example.TicketGuru.domain.LoginResponse;
 import com.example.TicketGuru.service.DetailsService;
@@ -23,6 +25,9 @@ public class LoginRestController {
     @Autowired
     private DetailsService detailsService;
 
+    @Autowired
+    private AppUserRepository userRepository;
+
     BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
 
     @PostMapping("/appusers/login")
@@ -32,6 +37,8 @@ public class LoginRestController {
         String password = loginRequest.getPassword();
         // Ladataan DetailsService-luokasta User frontista tulleella spostilla
         UserDetails user = detailsService.loadUserByUsername(email);
+        AppUser appUser = userRepository.findByEmail(email);
+        Long id = appUser.getUserId();
         // Tarkastetaan että käyttäjän antama salasana täsmää tallennettuun
         boolean pwdMatch = BCrypt.checkpw(password, user.getPassword());
         if (pwdMatch) {
@@ -39,7 +46,7 @@ public class LoginRestController {
             // fetch-pyyntöjen mukana
             String token = "Basic " + Base64.getEncoder().encodeToString((email + ":" + password).getBytes());
             // Luodaan LoginResponse-olio tokenilla, spostilla ja käyttäjän rooleilla
-            LoginResponse res = new LoginResponse(token, email, user.getAuthorities());
+            LoginResponse res = new LoginResponse(id, token, email, user.getAuthorities());
             return ResponseEntity.ok(res);
         }
         // Jos salasanat ei täsmää, palautetaan 400
