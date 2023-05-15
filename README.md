@@ -80,7 +80,15 @@ Versiohistoria:
 [Tietohakemisto](https://github.com/sirkian/TicketGuru/files/10951928/Tietohakemisto.docx)
 
 
-## Rajapinnan kuvaus
+## Tekninen kuvaus
+
+Projektin palvelinpuolen repositoryssa on kolme haaraa: develop, main ja prod.
+
+- **Develop** on kehityshaara, jossa käytetään MySQL -tietokantaa joka jokaisen uudelleen käynnistyksen yhteydessä tyhjentää tietokannan ja luo sen uudelleen.
+- **Main** oli alunperin julkaisuhaara, johon siirrettiin develop -haara aina sprintin päätteeksi. Nykyään main -haarassa varmistetaan ettää konfiguraatiot ovat kunnossa julkaisua varten.
+- **Prod** on julkaisuhaara jonka muutokset julkaistaan GitHub Actionsilla automaattisesti Microsoft Azureen. Azuressa tietokanta on persistentti.
+
+Projektin client on erillisessä [repositoryssa.](https://github.com/sirkian/ticketguru-client)
 
 ---
 
@@ -91,6 +99,8 @@ _Vielä yksityiskohtaisempaa API-dokumentaatiota varten käytössä on Open-API:
 _YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost:8080/v3/api-docs.yaml)
 
 ---
+
+**REST-rajapintojen kuvaukset**
 
 ### Tapahtumat
 
@@ -189,7 +199,10 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost
 | [Lisää rooli käyttäjälle](https://github.com/sirkian/TicketGuru/blob/main/api-docs/appUserRole/post.md)       | `POST`    | `/appuserroles` | Integer (Long) |
 | [Poista käyttäjän rooli](https://github.com/sirkian/TicketGuru/blob/main/api-docs/appUserRole/deleteById.md)  | `DELETE` | `/appuserroles/:pk` | Integer (Long) |
 
-## Testisuunnitelma 
+- Palvelin on toteutettu Spring Boot -alustalle, tietokantana käytetään MySQL ja palvelinohjelma on julkaistu Microsoft Azure -palveluun. Client pyörii [GitHub Pagesissa.](https://sirkian.github.io/ticketguru-client/)
+- Palvelinohjelma käyttää HTTP Basic -autentikointia.
+
+## Testaus
 
 | Testattava asia | Testin suoritus |
 | ----------------| ----------------|
@@ -197,6 +210,11 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost
 | Integraatiotesti. Tapahtuman ja lipun testaus rajapinnan (REST API) kautta. | Ajetaan testit palvelinohjelmistossa. MocMVC. Testataan rajapinnan käyttö autentikoinnin kanssa. |
 | End-to-end testit. Järjestelmän toiminta clientiltä tietokannalle. | Testataan käyttämällä ohjelmistoa clientin kautta sekä Postman- ohjelmalla. Lisäksi automatisoituja testejä Robot frameworkillä. |
 
+
+
+## Asennustiedot
+
+## Käynnistys- ja käyttöohje
 
 
 
