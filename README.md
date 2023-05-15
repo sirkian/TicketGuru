@@ -8,9 +8,9 @@ Projekti tuottaa “TicketGuru” nimisen lipunmyyntijärjestelmän lipputoimist
 
 Järjestelmää käyttävät lipputoimiston pääkäyttäjät ja lippujen myyjät. Pääkäyttäjät voivat muun muassa lisätä järjestelmään tapahtumia, määrittää lippujen hintoja ja tarkastella menneiden tapahtumien tietoja. Myyjät voivat järjestelmän kautta myydä ja tulostaa uniikilla 8-merkkisellä koodilla varustettuja lippuja, jotka merkitään käytetyksi tapahtumaan saavuttaessa. Järjestelmää voidaan käyttää pohjana myöhemmin toteutettavalle verkkokaupalle.
 
-Valmiin tuotoksen tulee olla ominaisuuksiltaan käyttäjäystävällinen. Tämä voidaan toteuttaa esimerkiksi sisällyttämällä järjestelmään search bar-ominaisuus tietyn tapahtuman etsimistä varten ja suunnittelemalla järjestelmän ulkoasu yksinkertaiseksi.
+Valmis tuotos on ominaisuuksiltaan selkeä ja käyttäjäystävällinen. Tämä on toteutettu esimerkiksi sisällyttämällä järjestelmään search bar-ominaisuus tietyn tapahtuman etsimistä varten ja suunnittelemalla järjestelmän ulkoasu yksinkertaiseksi.
 
-Järjestelmä hyödyntää palvelinratkaisussa Spring Framework -alustaa ja alustavasti MariaDB -tietokantajärjestelmää. Järjestelmän käyttöliittymä toteutetaan desktop-versiona.
+Järjestelmä hyödyntää palvelinratkaisussa Spring Framework -alustaa ja MySQL -tietokantajärjestelmää. Järjestelmän käyttöliittymä toteutetaan desktop-versiona.
 
 ## Järjestelmän määrittely
 
@@ -36,17 +36,34 @@ Järjestelmä hyödyntää palvelinratkaisussa Spring Framework -alustaa ja alus
 
 ## Käyttöliittymä
 
-**Lipunmyynti** toteutetaan valitsemalla tapahtumaan oikea määrä oikean lipputyypin lippuja ja vahvistamalla myyntitapahtuma. Vahvistuksen jälkeen järjestelmä näyttää tehdyn myyntitapahtuman tiedot, ja myydyt liput tulostusta varten.
+**Lipunmyynti** toteutetaan valitsemalla tapahtuma listasta, jolloin alle avautuu tapahtuman eri lipputyypit. Lipputyypeistä valitaan myytävien lippujen määrät, ja myydään liput. Myynnin jälkeen näkyviin tulee myyntitapahtuma, jonka kautta voi tulostaa liput asiakkaalle tai peruuttaa myyntitapahtuman.
 
-![lipunmyynti](https://user-images.githubusercontent.com/118562724/216830185-57b29eff-eecc-4302-8de2-5e49887690b9.png)
+![Lipunmyynti](https://github.com/sirkian/TicketGuru/assets/118562724/58e840c7-8804-44b7-bd79-6fe6cbd3bb3d)
 
-**Tapahtumia hallitaan** yhteisnäkymästä, jossa tapahtumat on listattu. Näkymässä jokaista olemassa olevaa tapahtumaa voi muokata, sen lipputyyppejä voi tarkastella, muokata sekä lisätä, tai ottaa tapahtumasta myyntiraportin. Samasta näkymästä pääsee lisäämään uuden tapahtuman.
+[Lipunmyynnin rautalankamalli](https://user-images.githubusercontent.com/118562724/216830185-57b29eff-eecc-4302-8de2-5e49887690b9.png)
 
-![tapahtumien_hallinta](https://user-images.githubusercontent.com/118562724/216830349-4b8a5827-883b-46ee-99d7-1b436aaf5558.png)
+---
 
-**Myyntiraportti** näyttää, montako mitäkin lipputyyppiä on tapahtumaan myyty, ja paljonko lipputuotot ovat per lipputyyppi sekä kaikki myydyt liput yhteensä. Raportin kautta pääsee selaamaan listaa tapahtuman myyntitapahtumista, joka näyttää jokaisen myyntitapahtuman ajan, uniikin id:n sekä yhteissumman.
+**Tapahtumia hallitaan** resurssien hallinnan kautta. Tapahtumat -napin kautta pääsee lisäämään uuden tapahtuman sekä muokkaamaan olemassa olevia tapahtumia. Tapahtumapaikat -painikkeen kautta pääsee lisäämään uuden tapahtumapaikan, muokkaamaan tai poistamaan olemassa olevia tapahtumapaikkoja, sekä lisäämään uusia postinumeroita. Tapahtuman lipputyypit -painikkeen kautta voi hakea kunkin tapahtuman lipputyypit sekä lisätä tapahtumalle uusia lipputyyppejä ja muokata nykyisten lipputyyppien hintoja. Täysin uusia lipputyypejä pääsee myös lisäämään erillisen Lipputyypit -painikkeen kautta.
 
-![myyntiraportti](https://user-images.githubusercontent.com/118562724/216830550-99eab081-4e99-4e12-9a96-9f7a6185226d.png)
+![Tapahtumien hallinta](https://github.com/sirkian/TicketGuru/assets/118562724/adada89f-801f-4eb5-b8b9-a1a509f8d134)
+
+[Tapahtumien hallinnan rautalankamalli](https://user-images.githubusercontent.com/118562724/216830349-4b8a5827-883b-46ee-99d7-1b436aaf5558.png)
+
+---
+
+**Myyntiraportti** näyttää, montako mitäkin lipputyyppiä on tapahtumaan myyty, ja paljonko lipputuotot ovat per lipputyyppi. Jokaisen tapahtuman myyntiraportti haetaan näkyville Hae raportti -painikkeen kautta.
+
+![Myyntiraportti](https://github.com/sirkian/TicketGuru/assets/118562724/6dc8116c-cd25-43ac-a970-4c9a4bd60dd8)
+
+[Myyntiraportin rautalankamalli](https://user-images.githubusercontent.com/118562724/216830550-99eab081-4e99-4e12-9a96-9f7a6185226d.png)
+
+---
+
+**Lippu tarkistetaan** tarkistuskoodin kautta. Lipun tiedot näytetään ja lipun voi merkata käytetyksi painikkeen kautta. Jos käytettyä lippua haetaan uudelleen, antaa järjestelmä virheilmoituksen, jossa kerrotaan milloin lippu on jo käytetty. 
+
+![Lipun tarkistus](https://github.com/sirkian/TicketGuru/assets/118562724/2c8ae46c-ec8e-45ca-a030-491e95944718)
+
 
 Wireframemallit on saatu asiakkaalta.
 
@@ -63,7 +80,20 @@ Versiohistoria:
 [Tietohakemisto](https://github.com/sirkian/TicketGuru/files/10951928/Tietohakemisto.docx)
 
 
-## Rajapinnan kuvaus
+## Tekninen kuvaus
+
+Projektin palvelinpuolen repositoryssa on kolme haaraa: develop, main ja prod.
+
+- **Develop** on kehityshaara, jossa käytetään MySQL -tietokantaa joka jokaisen uudelleen käynnistyksen yhteydessä tyhjentää tietokannan ja luo sen uudelleen.
+- **Main** oli alunperin julkaisuhaara, johon siirrettiin develop -haara aina sprintin päätteeksi. Nykyään main -haarassa varmistetaan ettää konfiguraatiot ovat kunnossa julkaisua varten.
+- **Prod** on julkaisuhaara jonka muutokset julkaistaan GitHub Actionsilla automaattisesti Microsoft Azureen. Azuressa tietokanta on persistentti.
+
+Projektin client on erillisessä [repositoryssa.](https://github.com/sirkian/ticketguru-client)
+
+**Yleiskuvaus**
+
+- Palvelin on toteutettu Spring Boot -alustalle, tietokantana käytetään MySQL ja palvelinohjelma on julkaistu Microsoft Azure -palveluun. Client pyörii [GitHub Pagesissa.](https://sirkian.github.io/ticketguru-client/)
+- Palvelinohjelma käyttää HTTP Basic -autentikointia.
 
 ---
 
@@ -74,6 +104,8 @@ _Vielä yksityiskohtaisempaa API-dokumentaatiota varten käytössä on Open-API:
 _YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost:8080/v3/api-docs.yaml)
 
 ---
+
+**REST-rajapintojen kuvaukset**
 
 ### Tapahtumat
 
@@ -171,3 +203,43 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost
 | [Hae käyttäjän roolit](https://github.com/sirkian/TicketGuru/blob/main/api-docs/appUserRole/getByAppUser.md)   | `GET`    | `/appusers/:pk/appuserroles` |  Integer (Long)  |
 | [Lisää rooli käyttäjälle](https://github.com/sirkian/TicketGuru/blob/main/api-docs/appUserRole/post.md)       | `POST`    | `/appuserroles` | Integer (Long) |
 | [Poista käyttäjän rooli](https://github.com/sirkian/TicketGuru/blob/main/api-docs/appUserRole/deleteById.md)  | `DELETE` | `/appuserroles/:pk` | Integer (Long) |
+
+
+## Testaus
+
+Kaikkia järjestelmän rajapintoja on testattu tutkivalla testauksella Postman -sovellusta ja clientiä käyttäen. 
+
+| Testattava asia | Testin suoritus |
+| ----------------| ----------------|
+| Yksittäiset luokat ja niitä vastaavien repositorioiden toiminta. | Ajetaan testiluokat palvelinohjelmistossa. Ajetaan aina kun ohjelmaan lisätään uusia ominaisuuksia.|
+| Integraatiotesti. Tapahtuman ja lipun testaus rajapinnan (REST API) kautta. | Ajetaan testit palvelinohjelmistossa. MocMVC. Testataan rajapinnan käyttö autentikoinnin kanssa. |
+| End-to-end testit. Järjestelmän toiminta clientiltä tietokannalle. | Testataan käyttämällä ohjelmistoa clientin kautta sekä Postman- ohjelmalla. Lisäksi automatisoituja testejä Robot frameworkillä. |
+
+Testeissä ei ilmennyt korjattavia ongelmia, ja tutkivassa testauksessa havaituista virheistä avattiin issuet projektin scrum boardille, ja ne hoidettiin joko kuluvassa tai seuraavassa sprintissä pois.
+
+## Asennustiedot
+
+**Palvelin**
+- Asenna koneelle esimerkiksi Eclipse tai VS Code.
+- Asenna koneelle MySQL -tietokanta ja määrittele se käyttämään porttia 3307 (tai muokkaa serverin application-dev.properties -tiedosta portti oikeaksi).
+- Kloonaa projektin repositorio GitHubista.
+- Laita application-dev.properties -tiedostoon MySQL:n käyttäjätunnus sekä salasana ja varmista, että application.properties -tiedostossa aktiivinen profiili on "dev".
+- Käynnistä palvelin (käynnistyy portissa 8080).
+
+**Client**
+- Kloonaa projektin repositorio GitHubista. (https://github.com/sirkian/ticketguru-client)
+- Navigoi kloonattuun kansioon ja suorita "npm install".
+- Käynnistä client "npm start" -komennolla.
+
+
+## Käynnistys- ja käyttöohje
+
+#### Sovelluksen käyttäminen paikallisessa kehitysympäristössä
+Sovellus käynnistetään asennustietojen ohjeiden mukaisesti.
+Kehitysympäristössä tietokantaan luodaan automaattisesti kolme käyttäjää: admin, myyjä ja lipuntarkastaja.  
+- ADMIN: admin@tiketguru.com / admin
+- MYYJÄ: make@tiketguru.com / user
+- LIPUNTARKASTAJA: liisa@tiketguru.com / inspector
+
+#### Sovelluksen käyttäminen julkaistussa ympäristössä
+Tietokantaan on tallennettu kolme käyttäjää: admin (admin@tiketguru.com), myyjä (myyja_make@tiketguru.com) ja lipuntarkastaja (liisa@tiketguru.com). Salasanat käyttäjille on saatavilla tiimin jäseniltä. 
