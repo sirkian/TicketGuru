@@ -90,6 +90,11 @@ Projektin palvelinpuolen repositoryssa on kolme haaraa: develop, main ja prod.
 
 Projektin client on erillisessä [repositoryssa.](https://github.com/sirkian/ticketguru-client)
 
+**Yleiskuvaus**
+
+- Palvelin on toteutettu Spring Boot -alustalle, tietokantana käytetään MySQL ja palvelinohjelma on julkaistu Microsoft Azure -palveluun. Client pyörii [GitHub Pagesissa.](https://sirkian.github.io/ticketguru-client/)
+- Palvelinohjelma käyttää HTTP Basic -autentikointia.
+
 ---
 
 **Base URL:** `http://localhost:8080/`
@@ -199,10 +204,10 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost
 | [Lisää rooli käyttäjälle](https://github.com/sirkian/TicketGuru/blob/main/api-docs/appUserRole/post.md)       | `POST`    | `/appuserroles` | Integer (Long) |
 | [Poista käyttäjän rooli](https://github.com/sirkian/TicketGuru/blob/main/api-docs/appUserRole/deleteById.md)  | `DELETE` | `/appuserroles/:pk` | Integer (Long) |
 
-- Palvelin on toteutettu Spring Boot -alustalle, tietokantana käytetään MySQL ja palvelinohjelma on julkaistu Microsoft Azure -palveluun. Client pyörii [GitHub Pagesissa.](https://sirkian.github.io/ticketguru-client/)
-- Palvelinohjelma käyttää HTTP Basic -autentikointia.
 
 ## Testaus
+
+Kaikkia järjestelmän rajapintoja on testattu tutkivalla testauksella Postman -sovellusta ja clientiä käyttäen. 
 
 | Testattava asia | Testin suoritus |
 | ----------------| ----------------|
@@ -210,11 +215,31 @@ _YAML-muotoinen API-dokumentaatio on ladattavissa_ [/v3/api-docs.yaml](localhost
 | Integraatiotesti. Tapahtuman ja lipun testaus rajapinnan (REST API) kautta. | Ajetaan testit palvelinohjelmistossa. MocMVC. Testataan rajapinnan käyttö autentikoinnin kanssa. |
 | End-to-end testit. Järjestelmän toiminta clientiltä tietokannalle. | Testataan käyttämällä ohjelmistoa clientin kautta sekä Postman- ohjelmalla. Lisäksi automatisoituja testejä Robot frameworkillä. |
 
-
+Testeissä ei ilmennyt korjattavia ongelmia, ja tutkivassa testauksessa havaituista virheistä avattiin issuet projektin scrum boardille, ja ne hoidettiin joko kuluvassa tai seuraavassa sprintissä pois.
 
 ## Asennustiedot
 
+**Palvelin**
+- Asenna koneelle esimerkiksi Eclipse tai VS Code.
+- Asenna koneelle MySQL -tietokanta ja määrittele se käyttämään porttia 3307 (tai muokkaa serverin application-dev.properties -tiedosta portti oikeaksi).
+- Kloonaa projektin repositorio GitHubista.
+- Laita application-dev.properties -tiedostoon MySQL:n käyttäjätunnus sekä salasana ja varmista, että application.properties -tiedostossa aktiivinen profiili on "dev".
+- Käynnistä palvelin (käynnistyy portissa 8080).
+
+**Client**
+- Kloonaa projektin repositorio GitHubista. (https://github.com/sirkian/ticketguru-client)
+- Navigoi kloonattuun kansioon ja suorita "npm install".
+- Käynnistä client "npm start" -komennolla.
+
+
 ## Käynnistys- ja käyttöohje
 
+#### Sovelluksen käyttäminen paikallisessa kehitysympäristössä
+Sovellus käynnistetään asennustietojen ohjeiden mukaisesti.
+Kehitysympäristössä tietokantaan luodaan automaattisesti kolme käyttäjää: admin, myyjä ja lipuntarkastaja.  
+- ADMIN: admin@tiketguru.com / admin
+- MYYJÄ: make@tiketguru.com / user
+- LIPUNTARKASTAJA: liisa@tiketguru.com / inspector
 
-
+#### Sovelluksen käyttäminen julkaistussa ympäristössä
+Tietokantaan on tallennettu kolme käyttäjää: admin (admin@tiketguru.com), myyjä (myyja_make@tiketguru.com) ja lipuntarkastaja (liisa@tiketguru.com). Salasanat käyttäjille on saatavilla tiimin jäseniltä. 
